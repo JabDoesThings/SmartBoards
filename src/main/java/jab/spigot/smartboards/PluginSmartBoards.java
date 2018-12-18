@@ -5,12 +5,17 @@ import com.comphenix.protocol.ProtocolManager;
 import com.sun.istack.internal.NotNull;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * TODO: Document.
+ *
+ * @author Josh
+ */
 public class PluginSmartBoards extends JavaPlugin {
 
   public static PluginSmartBoards instance;
   public static ProtocolManager protocolManager;
 
-  private BoardThread thread;
+  private SmartBoardThread thread;
 
   @Override
   public void onLoad() {
@@ -21,17 +26,17 @@ public class PluginSmartBoards extends JavaPlugin {
   public void onEnable() {
     protocolManager = ProtocolLibrary.getProtocolManager();
     // Create and start the main thread for processing smartboards.
-    thread = new BoardThread();
-    thread.enable();
+    thread = new SmartBoardThread();
+    thread.start();
   }
 
   @Override
   public void onDisable() {
-    thread.disable();
+    thread.stop();
   }
 
   @NotNull
-  public BoardThread getThread() {
+  public SmartBoardThread getThread() {
     return this.thread;
   }
 }
