@@ -1,6 +1,6 @@
 package jab.spigot.smartboards.utils;
 
-import jab.spigot.smartboards.SmartBoard;
+import jab.spigot.smartboards.boards.SmartBoard;
 import jab.spigot.smartboards.enums.BoardDirection;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

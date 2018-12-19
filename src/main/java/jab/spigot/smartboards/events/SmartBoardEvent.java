@@ -1,6 +1,6 @@
 package jab.spigot.smartboards.events;
 
-import jab.spigot.smartboards.SmartBoard;
+import jab.spigot.smartboards.boards.SmartBoard;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 

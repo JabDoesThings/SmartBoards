@@ -1,6 +1,6 @@
 package jab.spigot.smartboards.events;
 
-import jab.spigot.smartboards.SmartBoard;
+import jab.spigot.smartboards.boards.SmartBoard;
 import jab.spigot.smartboards.enums.BoardClick;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;

@@ -6,7 +6,7 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import jab.spigot.smartboards.SmartBoardThread;
-import jab.spigot.smartboards.SmartBoard;
+import jab.spigot.smartboards.boards.SmartBoard;
 import jab.spigot.smartboards.enums.BoardClick;
 import jab.spigot.smartboards.events.SmartBoardClickEvent;
 import jab.spigot.smartboards.utils.SmartBoardSearch;

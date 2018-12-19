@@ -6,7 +6,7 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import jab.spigot.smartboards.SmartBoardThread;
-import jab.spigot.smartboards.SmartBoard;
+import jab.spigot.smartboards.boards.SmartBoard;
 import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;

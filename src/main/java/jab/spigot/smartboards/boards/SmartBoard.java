@@ -1,7 +1,8 @@
-package jab.spigot.smartboards;
+package jab.spigot.smartboards.boards;
 
 import jab.spigot.smartboards.enums.BoardDirection;
 import jab.spigot.smartboards.events.SmartBoardClickEvent;
+import jab.spigot.smartboards.utils.BoardProfile;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -40,6 +41,9 @@ public interface SmartBoard {
 
   /** NOTE: This method is only fired for async smartboards. */
   void dispatch();
+
+  /** @return Returns the profile used to define attributes for the smartboard. */
+  BoardProfile getProfile();
 
   /**
    * @return Returns the bottom-left location of the smartboard. (Relative to the direction the

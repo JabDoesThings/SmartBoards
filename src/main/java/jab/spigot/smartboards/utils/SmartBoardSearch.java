@@ -1,6 +1,6 @@
 package jab.spigot.smartboards.utils;
 
-import jab.spigot.smartboards.SmartBoard;
+import jab.spigot.smartboards.boards.SmartBoard;
 import org.jetbrains.annotations.NotNull;
 
 /**

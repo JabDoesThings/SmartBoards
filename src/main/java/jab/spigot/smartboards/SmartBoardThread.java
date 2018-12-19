@@ -1,6 +1,7 @@
 package jab.spigot.smartboards;
 
 import com.comphenix.protocol.ProtocolManager;
+import jab.spigot.smartboards.boards.SmartBoard;
 import jab.spigot.smartboards.protocol.SmartBoardsMapAdapter;
 import jab.spigot.smartboards.protocol.SmartBoardsClickAdapter;
 import jab.spigot.smartboards.utils.SmartBoardSearch;
@@ -107,7 +108,7 @@ public class SmartBoardThread implements Runnable {
 
   private void renderBoards(@NotNull SmartBoard[] boards) {
     synchronized (lockBoards) {
-      // Go through each board that is listed as dirty and render them to their MiniMapImage
+      // Go through each board that is listed as dirty and render them to their MapImage
       // caches.
       for (SmartBoard board : boards) {
         if (board.isDirty()) {
