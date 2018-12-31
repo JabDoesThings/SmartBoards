@@ -16,7 +16,7 @@ public enum BoardClick {
    *
    * @author Jab
    */
-  public static enum Type {
+  public enum Type {
     /** The mouse clicked down, indicating a hold. */
     DOWN,
     /** The mouse clicked up, indicating a release of the button. */

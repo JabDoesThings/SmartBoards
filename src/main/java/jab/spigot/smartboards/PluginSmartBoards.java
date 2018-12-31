@@ -2,7 +2,6 @@ package jab.spigot.smartboards;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
-import com.sun.istack.internal.NotNull;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -14,8 +13,8 @@ public class PluginSmartBoards extends JavaPlugin {
 
   public static PluginSmartBoards instance;
   public static ProtocolManager protocolManager;
-
-  private SmartBoardThread thread;
+  public static int NEXT_ID = 0;
+  private static int THREAD_COUNT = 1;
 
   @Override
   public void onLoad() {
@@ -26,17 +25,15 @@ public class PluginSmartBoards extends JavaPlugin {
   public void onEnable() {
     protocolManager = ProtocolLibrary.getProtocolManager();
     // Create and start the main thread for processing smartboards.
-    thread = new SmartBoardThread();
-    thread.start();
+    SmartBoardThread.instance = new SmartBoardThread();
+    CompilerManager.instance = new CompilerManager(THREAD_COUNT);
+    SmartBoardThread.instance.start();
+    CompilerManager.instance.start();
   }
 
   @Override
   public void onDisable() {
-    thread.stop();
-  }
-
-  @NotNull
-  public SmartBoardThread getThread() {
-    return this.thread;
+    SmartBoardThread.instance.stop();
+    CompilerManager.instance.stop();
   }
 }

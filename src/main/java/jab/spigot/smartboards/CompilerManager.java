@@ -6,6 +6,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Stack;
 
+/**
+ * TODO: Document.
+ *
+ * @author Josh
+ */
 public class CompilerManager implements Runnable {
 
   private static final long SLEEP_TIME = 250L;

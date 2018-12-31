@@ -1,12 +1,11 @@
 package jab.spigot.smartboards.utils;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import jab.spigot.smartboards.enums.MapAnchor;
-import jab.spigot.smartboards.enums.MapScale;
+import jab.spigot.smartboards.enums.ImageScale;
 import jab.spigot.smartboards.exceptions.IllegalDimensionsException;
 import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
 import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
@@ -22,8 +21,6 @@ import org.jetbrains.annotations.NotNull;
  */
 public class MapImage {
 
-  /** The image source to modify. */
-  private BufferedImage image;
   /** The stored raster of map colors for the image. */
   private byte[] bytes;
   /** The width in pixels of the image. */
@@ -33,6 +30,10 @@ public class MapImage {
   /** Flag to mark the image as dirty. */
   private boolean dirty;
 
+  private boolean immutable;
+
+  private PacketPlayOutMap packet;
+
   /**
    * Image constructor.
    *
@@ -41,7 +42,7 @@ public class MapImage {
   public MapImage(@NotNull BufferedImage image) {
     setWidth(image.getWidth());
     setHeight(image.getHeight());
-    setImage(image);
+    drawImage(image, 0, 0);
     setDirty(true);
   }
 
@@ -54,14 +55,7 @@ public class MapImage {
   public MapImage(int width, int height) {
     setWidth(width);
     setHeight(height);
-    // Create a blank image.
-    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
-    Graphics2D g = (Graphics2D) image.getGraphics();
-    g.setColor(Color.WHITE);
-    g.fillRect(0, 0, width, height);
-    g.dispose();
-    setImage(image);
-    setDirty(true);
+    fillRect(0, 0, width, height, Color.WHITE);
   }
 
   /**
@@ -75,30 +69,77 @@ public class MapImage {
     setWidth(width);
     setHeight(height);
     // Create a blank image.
-    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
-    Graphics2D g = (Graphics2D) image.getGraphics();
-    g.setColor(color);
-    g.fillRect(0, 0, width, height);
-    g.dispose();
-    setImage(image);
+    fillRect(0, 0, width, height, color);
     setDirty(true);
   }
 
+  /**
+   * Draws a BufferedImage.
+   *
+   * @param image The image to draw.
+   * @param offsetX The starting x offset of the MapImage to draw.
+   * @param offsetY The starting y offset of the MapImage to draw.
+   * @throws NullPointerException Thrown if the image given is null.
+   * @throws IllegalArgumentException Thrown if the image is invalid.
+   */
+  public void drawImage(@NotNull BufferedImage image, int offsetX, int offsetY) {
+    checkImmutable();
+    int width = image.getWidth();
+    int height = image.getHeight();
+    if (width == 0 || height == 0) {
+      throw new IllegalArgumentException(
+          "Image is invalid. (width=" + width + ", height=" + height + ")");
+    }
+    int size = width * height;
+    bytes = new byte[size];
+    int[] pixels = image.getRGB(0, 0, width, height, null, 0, width);
+    for (int y = 0; y < image.getHeight(); y++) {
+      // Prevent overflow errors.
+      if (y >= this.height) break;
+      for (int x = 0; x < image.getWidth(); x++) {
+        // Prevent overflow errors.
+        if (x >= this.width) break;
+        int dx = x + offsetX;
+        int dy = y + offsetY;
+        this.bytes[getOffset(dx, dy)] = MapUtils.matchColor(pixels[getOffset(x, y, width)]);
+      }
+    }
+    setDirty(true);
+  }
+
+  public void fillRect(int offsetX, int offsetY, int width, int height, @NotNull Color color) {
+    fillRect(offsetX, offsetY, width, height, MapUtils.getColor(color));
+  }
+
+  public void fillRect(int offsetX, int offsetY, int width, int height, byte color) {
+    checkImmutable();
+    for (int y = offsetY; y < offsetY + height; y++) {
+      // Prevent overflow errors.
+      if (y >= this.height) break;
+      for (int x = offsetX; x < offsetX + width; x++) {
+        // Prevent overflow errors.
+        if (x >= this.width) break;
+        bytes[getOffset(x, y)] = color;
+      }
+    }
+    this.dirty = true;
+  }
+
   public void draw(@NotNull MapImage image) {
-    draw(image, 0, 0, 1, MapAnchor.TOP_LEFT, MapScale.ABSOLUTE);
+    draw(image, 0, 0, 1, MapAnchor.TOP_LEFT, ImageScale.ABSOLUTE);
   }
 
   public void draw(@NotNull MapImage image, int x, int y) {
-    draw(image, x, y, 1, MapAnchor.TOP_LEFT, MapScale.ABSOLUTE);
+    draw(image, x, y, 1, MapAnchor.TOP_LEFT, ImageScale.ABSOLUTE);
   }
 
   public void draw(@NotNull MapImage image, int x, int y, double scale) {
-    draw(image, x, y, scale, MapAnchor.TOP_LEFT, MapScale.ABSOLUTE);
+    draw(image, x, y, scale, MapAnchor.TOP_LEFT, ImageScale.ABSOLUTE);
   }
 
   public void draw(
       @NotNull MapImage image, int x, int y, double scale, @NotNull MapAnchor mapAnchor) {
-    draw(image, x, y, scale, mapAnchor, MapScale.ABSOLUTE);
+    draw(image, x, y, scale, mapAnchor, ImageScale.ABSOLUTE);
   }
 
   public void draw(
@@ -107,7 +148,8 @@ public class MapImage {
       int offsetY,
       double scale,
       @NotNull MapAnchor mapAnchor,
-      @NotNull MapScale mapScale) {
+      @NotNull ImageScale imageScale) {
+    checkImmutable();
     int w = getWidth();
     int h = getHeight();
     int iw = image.getWidth();
@@ -132,44 +174,10 @@ public class MapImage {
     setDirty(true);
   }
 
-  /**
-   * Sets the source of the image.
-   *
-   * @param image The BufferedImage to render on the map image.
-   */
-  public void setImage(@NotNull BufferedImage image) {
-    this.image = image;
-    if (bytes == null) {
-      bytes = new byte[width * height];
+  private void checkImmutable() {
+    if (isImmutable()) {
+      throw new IllegalStateException("The MapImage is immutable and cannot be altered.");
     }
-    for (int y = 0; y < height; y++) {
-      for (int x = 0; x < width; x++) {
-        bytes[getOffset(x, y)] = MapUtils.matchColor(new Color(image.getRGB(x, y), true));
-      }
-    }
-    setDirty(true);
-  }
-
-  /**
-   * Clears the image.
-   *
-   * @param color The map color.
-   */
-  private void clear(byte color) {
-    for (int y = 0; y < height; y++) {
-      for (int x = 0; x < width; x++) {
-        bytes[getOffset(x, y)] = color;
-      }
-    }
-    setDirty(true);
-  }
-
-  /**
-   * @param pixel The int[x,y] pixel with the x-coordinate, and the y-coordinate.
-   * @return returns the map color for the given pixel coordinates.
-   */
-  public byte getColor(int[] pixel) {
-    return getColor(pixel[0], pixel[1]);
   }
 
   /**
@@ -198,10 +206,6 @@ public class MapImage {
     return bytes[getOffset(x, y)];
   }
 
-  private int getOffset(int x, int y) {
-    return (y * width) + x;
-  }
-
   /**
    * Sets the map color for the given pixel coordinates.
    *
@@ -211,6 +215,7 @@ public class MapImage {
    *     the last index of the array. (greater than the width and height)
    */
   private void setColor(int x, int y, byte color) {
+    checkImmutable();
     // Check to make sure the X value is valid.
     if (x < 0) {
       throw new IllegalArgumentException("X cannot be negative: " + x);
@@ -241,6 +246,17 @@ public class MapImage {
     }
     setColor(pixel[0], pixel[1], color);
     setDirty(true);
+  }
+
+  public PacketPlayOutMap createPacket(short index) {
+    if (isPacketCreated()) {
+      throw new IllegalStateException("Packet is already created for MapImage.");
+    }
+    byte b = (byte) 0;
+    boolean c = true;
+    packet = new PacketPlayOutMap(index, b, c, new ArrayList<>(), bytes, 0, 0, 128, 128);
+    PacketUtils.setRawByteArrayForMapPacket(packet, bytes);
+    return packet;
   }
 
   /**
@@ -299,6 +315,22 @@ public class MapImage {
     }
   }
 
+  @NotNull
+  public BufferedImage toBufferedImage() {
+    BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+    int size = width * height;
+    int[] pixels = new int[size];
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
+        int offset = getOffset(x, y);
+        byte color = bytes[offset];
+        pixels[offset] = MapUtils.getRGB(color);
+      }
+    }
+    bufferedImage.setRGB(0, 0, width, height, pixels, 0, width);
+    return bufferedImage;
+  }
+
   /**
    * @param u The u-coordinate to approximate.
    * @param v The v-coordinate to approximate.
@@ -317,11 +349,27 @@ public class MapImage {
    * @param height The height of the pixel data array.
    */
   public void setRaster(@NotNull byte[] bytes, int width, int height) {
+    checkImmutable();
     // Set the raster.
     this.bytes = bytes;
     // Set the dimensions too.
     setWidth(width);
     setHeight(height);
+    setDirty(true);
+  }
+
+  /**
+   * Clears the image.
+   *
+   * @param color The map color.
+   */
+  private void clear(byte color) {
+    checkImmutable();
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
+        bytes[getOffset(x, y)] = color;
+      }
+    }
     setDirty(true);
   }
 
@@ -351,6 +399,18 @@ public class MapImage {
    */
   double[] toUV(int x, int y) {
     return toUV(x, y, getWidth(), getHeight());
+  }
+
+  private int getOffset(int x, int y) {
+    return getOffset(x, y, width);
+  }
+
+  /**
+   * @param pixel The int[x,y] pixel with the x-coordinate, and the y-coordinate.
+   * @return returns the map color for the given pixel coordinates.
+   */
+  public byte getColor(int[] pixel) {
+    return getColor(pixel[0], pixel[1]);
   }
 
   /** Clears the image. (White) */
@@ -386,6 +446,10 @@ public class MapImage {
     this.height = height;
   }
 
+  public boolean isPacketCreated() {
+    return this.packet != null;
+  }
+
   public boolean isDirty() {
     return this.dirty;
   }
@@ -398,8 +462,12 @@ public class MapImage {
     return bytes;
   }
 
-  public BufferedImage getImage() {
-    return this.image;
+  public void setImmutable() {
+    this.immutable = true;
+  }
+
+  public boolean isImmutable() {
+    return this.immutable;
   }
 
   /**
@@ -445,5 +513,17 @@ public class MapImage {
     double rx = Math.floor((double) x / (double) width);
     double ry = Math.floor((double) y / (double) height);
     return new double[] {rx, ry};
+  }
+
+  private static int getOffset(int x, int y, int width) {
+    return (y * width) + x;
+  }
+
+  public PacketPlayOutMap getPacket() {
+    return this.packet;
+  }
+
+  public int getPacketId() {
+    return PacketUtils.getMapId(getPacket());
   }
 }

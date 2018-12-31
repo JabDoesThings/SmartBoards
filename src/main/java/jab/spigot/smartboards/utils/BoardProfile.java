@@ -2,6 +2,7 @@ package jab.spigot.smartboards.utils;
 
 import jab.spigot.smartboards.enums.BoardDirection;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -70,6 +71,12 @@ public class BoardProfile implements Cloneable {
   @NotNull
   public BoardDirection getDirection() {
     return this.direction;
+  }
+
+  /** @return Returns the world where the BoardProfile is defined. */
+  @NotNull
+  public World getWorld() {
+    return location.getWorld();
   }
 
   /** @return Returns the location of the top-left of the smartboard. */

@@ -2,12 +2,14 @@ package jab.spigot.smartboards;
 
 import com.comphenix.protocol.ProtocolManager;
 import jab.spigot.smartboards.boards.SmartBoard;
+import jab.spigot.smartboards.boards.graphics.BoardGraphics;
 import jab.spigot.smartboards.protocol.SmartBoardsMapAdapter;
 import jab.spigot.smartboards.protocol.SmartBoardsClickAdapter;
 import jab.spigot.smartboards.utils.SmartBoardSearch;
 import jab.spigot.smartboards.utils.UVUtil;
 import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +25,36 @@ public class SmartBoardThread implements Runnable {
   public static final String THREAD_NAME = "SmartBoard Thread";
   private static volatile long SLEEP_TIME = 25L;
 
+  public static SmartBoardThread instance;
+
+  private BukkitRunnable runnableSync =
+      new BukkitRunnable() {
+        @Override
+        public void run() {
+          try {
+            SmartBoard[] boards = getLoopBoards();
+            if (boards.length > 0) {
+              synchronized (lockBoardsSync) {
+                updateBoards(boards);
+              }
+              removeFlaggedBoards();
+              synchronized (lockBoardsSync) {
+                renderBoards(boards);
+              }
+              removeFlaggedBoards();
+            }
+          } catch (Exception e) {
+            System.out.println("An exception has occurred in the SmartBoard thread. (sync)");
+            e.printStackTrace();
+          }
+          try {
+            Thread.sleep(SLEEP_TIME);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+        }
+      };
+
   /** Store all maps to the thread. */
   private final Map<Integer, SmartBoard> mapBoards;
 
@@ -35,6 +67,7 @@ public class SmartBoardThread implements Runnable {
   private final List<SmartBoard> listFlaggedBoards;
 
   private SmartBoard[] boardsToLoop;
+  private SmartBoard[] boardsToLoopSync;
 
   /** Flag to stop the thread on the next tick. */
   private volatile boolean stopped;
@@ -43,6 +76,7 @@ public class SmartBoardThread implements Runnable {
 
   public final Object lockPackets = new Object();
   public final Object lockBoards = new Object();
+  public final Object lockBoardsSync = new Object();
 
   private SmartBoardsMapAdapter smartSmartBoardsMapAdapter;
   private SmartBoardsClickAdapter smartBoardsClickAdapter;
@@ -56,21 +90,29 @@ public class SmartBoardThread implements Runnable {
     this.listApprovedPackets = new ArrayList<>();
     this.listFlaggedBoards = new ArrayList<>();
     this.boardsToLoop = new SmartBoard[0];
+    this.boardsToLoopSync = new SmartBoard[0];
     this.smartSmartBoardsMapAdapter = new SmartBoardsMapAdapter(this, PluginSmartBoards.instance);
     this.smartBoardsClickAdapter = new SmartBoardsClickAdapter(this, PluginSmartBoards.instance);
   }
 
   @Override
   public void run() {
+    runnableSync.runTaskTimer(PluginSmartBoards.instance, 0L, 1L);
     while (!stopped) {
       try {
         SmartBoard[] boards = getLoopBoards();
         if (boards.length > 0) {
-          updateBoards(boards);
-          renderBoards(boards);
+          synchronized (lockBoards) {
+            updateBoards(boards);
+          }
+          removeFlaggedBoards();
+          synchronized (lockBoards) {
+            renderBoards(boards);
+          }
+          removeFlaggedBoards();
         }
       } catch (Exception e) {
-        System.out.println("An exception has occurred in the SmartBoard thread.");
+        System.out.println("An exception has occurred in the SmartBoard thread. (async)");
         e.printStackTrace();
       }
       try {
@@ -79,62 +121,62 @@ public class SmartBoardThread implements Runnable {
         e.printStackTrace();
       }
     }
+    runnableSync.cancel();
   }
 
   private void updateBoards(@NotNull SmartBoard[] boards) {
-    synchronized (lockBoards) {
-      // Update the MapBoards that are set to update.
-      for (SmartBoard board : boards) {
-        if (board.canUpdate()) {
-          try {
-            board.update();
-          } catch (Exception e) {
-            System.err.println(
-                "The SmartBoard "
-                    + board.getClass().getSimpleName()
-                    + "(ID: "
-                    + board.getId()
-                    + ") has encountered an uncaught exception and has been disabled."
-                    + "(Update)");
-            e.printStackTrace(System.out);
+    // Update the MapBoards that are set to update.
+    for (SmartBoard board : boards) {
+      if (board.canUpdate()) {
+        try {
+          board.update();
+        } catch (Exception e) {
+          System.err.println(
+              "The SmartBoard "
+                  + board.getClass().getSimpleName()
+                  + "(ID: "
+                  + board.getId()
+                  + ") has encountered an uncaught exception and has been disabled."
+                  + "(Update)");
+          e.printStackTrace(System.out);
+          synchronized (listFlaggedBoards) {
             // Add the board to be removed.
             listFlaggedBoards.add(board);
           }
         }
       }
+      BoardGraphics graphics = board.getGraphics();
     }
-    removeFlaggedBoards();
   }
 
   private void renderBoards(@NotNull SmartBoard[] boards) {
-    synchronized (lockBoards) {
-      // Go through each board that is listed as dirty and render them to their MapImage
-      // caches.
-      for (SmartBoard board : boards) {
-        if (board.isDirty()) {
-          try {
-            // Render the board.
-            board.render();
-            // Let the thread know that this board is now drawn and doesn't need to be redrawn.
-            board.setDirty(false);
-            // Go through the rendered mini-maps and send them out to players nearby.
-            board.dispatch();
-          } catch (Exception e) {
-            System.err.println(
-                "The SmartBoard "
-                    + board.getClass().getSimpleName()
-                    + "(ID: "
-                    + board.getId()
-                    + ") has encountered an uncaught exception and has been disabled."
-                    + "(Render)");
-            e.printStackTrace(System.out);
+    // Go through each board that is listed as dirty and render them to their MapImage
+    // caches.
+    for (SmartBoard board : boards) {
+      if (board.isDirty()) {
+        try {
+          // Render the board.
+          board.render();
+          // Let the thread know that this board is now drawn and doesn't need to be redrawn.
+          board.setDirty(false);
+          // Go through the rendered mini-maps and send them out to players nearby.
+          board.dispatch();
+        } catch (Exception e) {
+          System.err.println(
+              "The SmartBoard "
+                  + board.getClass().getSimpleName()
+                  + "(ID: "
+                  + board.getId()
+                  + ") has encountered an uncaught exception and has been disabled."
+                  + "(Render)");
+          e.printStackTrace(System.out);
+          synchronized (listFlaggedBoards) {
             // Add the board to be removed.
             listFlaggedBoards.add(board);
           }
         }
       }
     }
-    removeFlaggedBoards();
   }
 
   /**
@@ -190,13 +232,27 @@ public class SmartBoardThread implements Runnable {
 
   public void addBoard(@NotNull SmartBoard board) {
     if (!isRegistered(board)) {
-      // Place the board in the registrar map.
-      mapBoards.put(board.getId(), board);
-      // Add the board to the loop array to be updated.
-      SmartBoard[] boardsToLoopNew = new SmartBoard[boardsToLoop.length + 1];
-      System.arraycopy(boardsToLoop, 0, boardsToLoopNew, 0, boardsToLoop.length);
-      boardsToLoopNew[boardsToLoop.length] = board;
-      boardsToLoop = boardsToLoopNew;
+      synchronized (mapBoards) {
+        // Place the board in the registrar map.
+        mapBoards.put(board.getId(), board);
+      }
+      if (board.isAsync()) {
+        synchronized (lockBoards) {
+          // Add the board to the async loop array to be updated.
+          SmartBoard[] boardsToLoopNew = new SmartBoard[boardsToLoop.length + 1];
+          System.arraycopy(boardsToLoop, 0, boardsToLoopNew, 0, boardsToLoop.length);
+          boardsToLoopNew[boardsToLoop.length] = board;
+          boardsToLoop = boardsToLoopNew;
+        }
+      } else {
+        synchronized (lockBoardsSync) {
+          // Add the board to the sync loop array to be updated.
+          SmartBoard[] boardsToLoopSyncNew = new SmartBoard[boardsToLoopSync.length + 1];
+          System.arraycopy(boardsToLoopSync, 0, boardsToLoopSyncNew, 0, boardsToLoopSync.length);
+          boardsToLoopSyncNew[boardsToLoopSync.length] = board;
+          boardsToLoopSync = boardsToLoopSyncNew;
+        }
+      }
       // Add any registered map IDs to be interpreted by the packet checker.
       updateBoardIds(board);
     }
@@ -204,18 +260,34 @@ public class SmartBoardThread implements Runnable {
 
   public void removeBoard(@NotNull SmartBoard board) {
     if (isRegistered(board)) {
-      synchronized (lockBoards) {
+      synchronized (mapBoards) {
         // Remove the board from the registrar map.
         mapBoards.remove(board.getId());
-        // Remove the board from the loop array.
-        SmartBoard[] boardsToLoopNew = new SmartBoard[boardsToLoop.length - 1];
-        int index = 0;
-        for (SmartBoard boardNext : boardsToLoop) {
-          if (!boardNext.equals(board)) {
-            boardsToLoopNew[index++] = boardNext;
+      }
+      if (board.isAsync()) {
+        synchronized (lockBoards) {
+          // Remove the board from the loop array.
+          SmartBoard[] boardsToLoopNew = new SmartBoard[boardsToLoop.length - 1];
+          int index = 0;
+          for (SmartBoard boardNext : boardsToLoop) {
+            if (!boardNext.equals(board)) {
+              boardsToLoopNew[index++] = boardNext;
+            }
           }
+          boardsToLoop = boardsToLoopNew;
         }
-        boardsToLoop = boardsToLoopNew;
+      } else {
+        synchronized (lockBoardsSync) {
+          // Remove the board from the loop array.
+          SmartBoard[] boardsToLoopNew = new SmartBoard[boardsToLoopSync.length - 1];
+          int index = 0;
+          for (SmartBoard boardNext : boardsToLoopSync) {
+            if (!boardNext.equals(board)) {
+              boardsToLoopNew[index++] = boardNext;
+            }
+          }
+          boardsToLoopSync = boardsToLoopNew;
+        }
       }
       // Remove any registered map IDs from the board.
       removeBoardIds(board);

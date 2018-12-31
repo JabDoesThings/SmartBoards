@@ -8,15 +8,74 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedHashMap;
 
 import org.bukkit.map.MapCanvas;
+import org.jetbrains.annotations.NotNull;
 
+/**
+ * TODO: Document.
+ *
+ * @author Josh
+ */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class MapUtils {
 
-  public static LinkedHashMap<Color, Byte> mapColorCache = new LinkedHashMap<>();
+  public static final LinkedHashMap<Color, Byte> mapColorCache = new LinkedHashMap<>();
+  public static final LinkedHashMap<Integer, Byte> mapColorCacheInt = new LinkedHashMap<>();
+  public static final LinkedHashMap<Byte, Integer> mapColorCacheRGB = new LinkedHashMap<>();
+  public static final Color[] colors;
+  public static final int[] colorsRGB;
+
+  public static final byte TRANSPARENT = 0;
+  public static final byte LIGHT_GREEN = 4;
+  public static final byte LIGHT_BROWN = 8;
+  public static final byte GRAY_1 = 12;
+  public static final byte RED = 16;
+  public static final byte PALE_BLUE = 20;
+  public static final byte GRAY_2 = 24;
+  public static final byte DARK_GREEN = 28;
+  public static final byte WHITE = 32;
+  public static final byte LIGHT_GRAY = 36;
+  public static final byte BROWN = 40;
+  public static final byte DARK_GRAY = 44;
+  public static final byte BLUE = 48;
+  public static final byte DARK_BROWN = 52;
+  // Cursor directions.
+  public static final byte DIRECTION_SOUTH = 0;
+  public static final byte DIRECTION_SOUTHWESTSOUTH = 1;
+  public static final byte DIRECTION_SOUTHWEST = 2;
+  public static final byte DIRECTION_SOUTHWESTWEST = 3;
+  public static final byte DIRECTION_WEST = 4;
+  public static final byte DIRECTION_NORTHWESTWEST = 5;
+  public static final byte DIRECTION_NORTHWEST = 6;
+  public static final byte DIRECTION_NORTHWESTNORTH = 7;
+  public static final byte DIRECTION_NORTH = 8;
+  public static final byte DIRECTION_NORTHEASTNORTH = 9;
+  public static final byte DIRECTION_NORTHEAST = 10;
+  public static final byte DIRECTION_NORTHEASTEAST = 11;
+  public static final byte DIRECTION_EAST = 12;
+  public static final byte DIRECTION_SOUTHEASTEAST = 13;
+  public static final byte DIRECTION_SOUTHEAST = 14;
+  public static final byte DIRECTION_SOUTHEASTSOUTH = 15;
+  // Cursors.
+  public static final byte CURSOR_POINTER_WHITE = 0;
+  public static final byte CURSOR_POINTER_GREEN = 1;
+  public static final byte CURSOR_POINTER_RED = 2;
+  public static final byte CURSOR_POINTER_BLUE = 3;
+  public static final byte CURSOR_CLOVER_WHITE = 4;
+  public static final byte CURSOR_POINTER_RED_BOLD = 5;
+  public static final byte CURSOR_DOT_WHITE = 6;
+  public static final byte CURSOR_SQUARE_BLUE = 7;
+
 
   public static void clearCache() {
     mapColorCache.clear();
+    mapColorCacheInt.clear();
+    mapColorCacheRGB.clear();
     for (Color color : colors) {
-      mapColorCache.put(color, matchColor(color));
+      byte c = matchColor(color);
+      int rgb = color.getRGB();
+      mapColorCache.put(color, c);
+      mapColorCacheInt.put(rgb, c);
+      mapColorCacheRGB.put(c, color.getRGB());
     }
   }
 
@@ -41,7 +100,6 @@ public class MapUtils {
         int capXMax = hasEast ? east + 64 : 128;
         int z = north + 64;
         g.drawLine(capXMin, z, capXMax, z);
-        ;
       }
     }
     if (hasSouth) {
@@ -76,13 +134,11 @@ public class MapUtils {
     int capXMax = -(centerX - maxX) + 64;
     int capZMin = -(centerZ - minZ) + 64;
     int capZMax = -(centerZ - maxZ) + 64;
-    int x = capXMin;
-    int y = capZMin;
     int width = (capXMax - capXMin);
     int height = (capZMax - capZMin);
     Color oldColor = g.getColor();
     g.setColor(color);
-    g.fillRect(x, y, width, height);
+    g.fillRect(capXMin, capZMin, width, height);
     g.setColor(oldColor);
   }
 
@@ -146,6 +202,16 @@ public class MapUtils {
     return bimage;
   }
 
+  public static byte getColor(@NotNull Color color) {
+    return matchColor(color.getRGB());
+  }
+  private static final int TRANSPARENT_RGB = new Color(0, 0, 0, 0).getRGB();
+
+
+  public static int getRGB(byte color) {
+    return colorsRGB[color];
+  }
+
   public static BufferedImage scaleImage(BufferedImage before, int width, int height) {
     BufferedImage after = new BufferedImage(width, height, before.getType());
     Graphics2D graphics2D = after.createGraphics();
@@ -157,7 +223,7 @@ public class MapUtils {
     return after;
   }
 
-  public static void drawImage(MapCanvas canvas, int x, int y, Image image) {
+  public static void drawImage(MapCanvas canvas, int x, int y, BufferedImage image) {
     byte[] bytes = imageToBytes(image);
     for (int x2 = 0; x2 < image.getWidth(null); ++x2) {
       for (int y2 = 0; y2 < image.getHeight(null); ++y2) {
@@ -171,6 +237,21 @@ public class MapUtils {
     double r = c1.getRed() - c2.getRed();
     double g = c1.getGreen() - c2.getGreen();
     int b = c1.getBlue() - c2.getBlue();
+    double weightR = 2 + rmean / 256.0;
+    double weightG = 4.0;
+    double weightB = 2 + (255 - rmean) / 256.0;
+    return weightR * r * r + weightG * g * g + weightB * b * b;
+  }
+
+  private static double getDistance(int r, int g, int b, short[] color) {
+    return getDistance(r, g, b, color[0], color[1], color[2]);
+  }
+
+  private static double getDistance(int r1, int g1, int b1, int r2, int g2, int b2) {
+    double rmean = (r1 + r2) / 2.0;
+    double r = r1 - r2;
+    double g = g1 - g2;
+    int b = b1 - b2;
     double weightR = 2 + rmean / 256.0;
     double weightG = 4.0;
     double weightB = 2 + (255 - rmean) / 256.0;
@@ -197,21 +278,51 @@ public class MapUtils {
    * @param image The image to convert.
    * @return A byte[] containing the pixels of the image.
    */
-  public static byte[] imageToBytes(Image image) {
-    BufferedImage temp =
-        new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-    Graphics2D graphics = temp.createGraphics();
-    graphics.drawImage(image, 0, 0, null);
-    graphics.dispose();
-    int[] pixels = new int[temp.getWidth() * temp.getHeight()];
-    temp.getRGB(0, 0, temp.getWidth(), temp.getHeight(), pixels, 0, temp.getWidth());
-    byte[] result = new byte[temp.getWidth() * temp.getHeight()];
-    for (int i = 0; i < pixels.length; i++) {
-      result[i] = matchColor(new Color(pixels[i], true));
+  public static byte[] imageToBytes(BufferedImage image) {
+    int width = image.getWidth();
+    int height = image.getHeight();
+    int size = width * height;
+    int[] pixels = image.getRGB(0, 0, width, height, new int[size], 0, width);
+    byte[] result = new byte[size];
+    for (int index = 0; index < pixels.length; index++) {
+      result[index] = matchColor(pixels[index]);
     }
     return result;
   }
 
+  public static byte matchColor(int argb) {
+    int a = (argb >> 24) & 0xFF;
+    // Everything below 128 is the same byte color.
+    if (a < 128) return 0;
+    int r = (argb >> 16) & 0xFF;
+    int g = (argb >> 8) & 0xFF;
+    int b = (argb) & 0xFF;
+    // Only match colors based on RGB.
+    int rgb = r;
+    rgb = (rgb << 8) + g;
+    rgb = (rgb << 8) + b;
+    synchronized (mapColorCacheInt) {
+      // Check if the color is already in the cache.
+      if (mapColorCacheInt.containsKey(rgb)) {
+        return mapColorCacheInt.get(rgb);
+      }
+      int index = 0;
+      double best = -1;
+      for (int i = 4; i < colors.length; i++) {
+        double distance = getDistance(r, g, b, colorsShort[i]);
+        if (distance < best || best == -1) {
+          best = distance;
+          index = i;
+        }
+      }
+      // Minecraft has 143 colors, some of which have negative byte
+      // representations
+      byte value = (byte) (index < 128 ? index : -129 + (index - 127));
+      mapColorCacheInt.put(rgb, value);
+      mapColorCacheRGB.put(value, rgb);
+      return value;
+    }
+  }
   /**
    * Get the index of the closest matching color in the palette to the given color.
    *
@@ -260,7 +371,7 @@ public class MapUtils {
    * @return The Color of the palette entry.
    */
   public static Color getColor(byte index) {
-    if ((index > -49 && index < 0) || index > 127) {
+    if ((index > -49 && index < 0)) {
       throw new IndexOutOfBoundsException();
     } else {
       // Minecraft has 143 colors, some of which have negative byte
@@ -269,274 +380,236 @@ public class MapUtils {
     }
   }
 
-  // @formatter:off
-  public static final Color[] colors = {
-    new Color(0, 0, 0),
-    new Color(0, 0, 0),
-    new Color(0, 0, 0),
-    new Color(0, 0, 0),
-    new Color(89, 125, 39),
-    new Color(109, 153, 48),
-    new Color(127, 178, 56),
-    new Color(67, 94, 29),
-    new Color(174, 164, 115),
-    new Color(213, 201, 140),
-    new Color(247, 233, 163),
-    new Color(130, 123, 86),
-    new Color(140, 140, 140),
-    new Color(171, 171, 171),
-    new Color(199, 199, 199),
-    new Color(105, 105, 105),
-    new Color(180, 0, 0),
-    new Color(220, 0, 0),
-    new Color(255, 0, 0),
-    new Color(135, 0, 0),
-    new Color(112, 112, 180),
-    new Color(138, 138, 220),
-    new Color(160, 160, 255),
-    new Color(84, 84, 135),
-    new Color(117, 117, 117),
-    new Color(144, 144, 144),
-    new Color(167, 167, 167),
-    new Color(88, 88, 88),
-    new Color(0, 87, 0),
-    new Color(0, 106, 0),
-    new Color(0, 124, 0),
-    new Color(0, 65, 0),
-    new Color(180, 180, 180),
-    new Color(220, 220, 220),
-    new Color(255, 255, 255),
-    new Color(135, 135, 135),
-    new Color(115, 118, 129),
-    new Color(141, 144, 158),
-    new Color(164, 168, 184),
-    new Color(86, 88, 97),
-    new Color(106, 76, 54),
-    new Color(130, 94, 66),
-    new Color(151, 109, 77),
-    new Color(79, 57, 40),
-    new Color(79, 79, 79),
-    new Color(96, 96, 96),
-    new Color(112, 112, 112),
-    new Color(59, 59, 59),
-    new Color(45, 45, 180),
-    new Color(55, 55, 220),
-    new Color(64, 64, 255),
-    new Color(33, 33, 135),
-    new Color(100, 84, 50),
-    new Color(123, 102, 62),
-    new Color(143, 119, 72),
-    new Color(75, 63, 38),
-    new Color(180, 177, 172),
-    new Color(220, 217, 211),
-    new Color(255, 252, 245),
-    new Color(135, 133, 129),
-    new Color(152, 89, 36),
-    new Color(186, 109, 44),
-    new Color(216, 127, 51),
-    new Color(114, 67, 27),
-    new Color(125, 53, 152),
-    new Color(153, 65, 186),
-    new Color(178, 76, 216),
-    new Color(94, 40, 114),
-    new Color(72, 108, 152),
-    new Color(88, 132, 186),
-    new Color(102, 153, 216),
-    new Color(54, 81, 114),
-    new Color(161, 161, 36),
-    new Color(197, 197, 44),
-    new Color(229, 229, 51),
-    new Color(121, 121, 27),
-    new Color(89, 144, 17),
-    new Color(109, 176, 21),
-    new Color(127, 204, 25),
-    new Color(67, 108, 13),
-    new Color(170, 89, 116),
-    new Color(208, 109, 142),
-    new Color(242, 127, 165),
-    new Color(128, 67, 87),
-    new Color(53, 53, 53),
-    new Color(65, 65, 65),
-    new Color(76, 76, 76),
-    new Color(40, 40, 40),
-    new Color(108, 108, 108),
-    new Color(132, 132, 132),
-    new Color(153, 153, 153),
-    new Color(81, 81, 81),
-    new Color(53, 89, 108),
-    new Color(65, 109, 132),
-    new Color(76, 127, 153),
-    new Color(40, 67, 81),
-    new Color(89, 44, 125),
-    new Color(109, 54, 153),
-    new Color(127, 63, 178),
-    new Color(67, 33, 94),
-    new Color(36, 53, 125),
-    new Color(44, 65, 153),
-    new Color(51, 76, 178),
-    new Color(27, 40, 94),
-    new Color(72, 53, 36),
-    new Color(88, 65, 44),
-    new Color(102, 76, 51),
-    new Color(54, 40, 27),
-    new Color(72, 89, 36),
-    new Color(88, 109, 44),
-    new Color(102, 127, 51),
-    new Color(54, 67, 27),
-    new Color(108, 36, 36),
-    new Color(132, 44, 44),
-    new Color(153, 51, 51),
-    new Color(81, 27, 27),
-    new Color(17, 17, 17),
-    new Color(21, 21, 21),
-    new Color(25, 25, 25),
-    new Color(13, 13, 13),
-    new Color(176, 168, 54),
-    new Color(215, 205, 66),
-    new Color(250, 238, 77),
-    new Color(132, 126, 40),
-    new Color(64, 154, 150),
-    new Color(79, 188, 183),
-    new Color(92, 219, 213),
-    new Color(48, 115, 112),
-    new Color(52, 90, 180),
-    new Color(63, 110, 220),
-    new Color(74, 128, 255),
-    new Color(39, 67, 135),
-    new Color(0, 153, 40),
-    new Color(0, 187, 50),
-    new Color(0, 217, 58),
-    new Color(0, 114, 30),
-    new Color(91, 60, 34),
-    new Color(111, 74, 42),
-    new Color(129, 86, 49),
-    new Color(68, 45, 25),
-    new Color(79, 1, 0),
-    new Color(96, 1, 0),
-    new Color(112, 2, 0),
-    new Color(59, 1, 0),
-    new Color(147, 124, 113),
-    new Color(180, 152, 138),
-    new Color(209, 177, 161),
-    new Color(110, 93, 85),
-    new Color(112, 57, 25),
-    new Color(137, 70, 31),
-    new Color(159, 82, 36),
-    new Color(84, 43, 19),
-    new Color(105, 61, 76),
-    new Color(128, 75, 93),
-    new Color(149, 87, 108),
-    new Color(78, 46, 57),
-    new Color(79, 76, 97),
-    new Color(96, 93, 119),
-    new Color(112, 108, 138),
-    new Color(59, 57, 73),
-    new Color(131, 93, 25),
-    new Color(160, 114, 31),
-    new Color(186, 133, 36),
-    new Color(98, 70, 19),
-    new Color(72, 82, 37),
-    new Color(88, 100, 45),
-    new Color(103, 117, 53),
-    new Color(54, 61, 28),
-    new Color(112, 54, 55),
-    new Color(138, 66, 67),
-    new Color(160, 77, 78),
-    new Color(84, 40, 41),
-    new Color(40, 28, 24),
-    new Color(49, 35, 30),
-    new Color(57, 41, 35),
-    new Color(30, 21, 18),
-    new Color(95, 75, 69),
-    new Color(116, 92, 84),
-    new Color(135, 107, 98),
-    new Color(71, 56, 51),
-    new Color(61, 64, 64),
-    new Color(75, 79, 79),
-    new Color(87, 92, 92),
-    new Color(46, 48, 48),
-    new Color(86, 51, 62),
-    new Color(105, 62, 75),
-    new Color(122, 73, 88),
-    new Color(64, 38, 46),
-    new Color(53, 43, 64),
-    new Color(65, 53, 79),
-    new Color(76, 62, 92),
-    new Color(40, 32, 48),
-    new Color(53, 35, 24),
-    new Color(65, 43, 30),
-    new Color(76, 50, 35),
-    new Color(40, 26, 18),
-    new Color(53, 57, 29),
-    new Color(65, 70, 36),
-    new Color(76, 82, 42),
-    new Color(40, 43, 22),
-    new Color(100, 42, 32),
-    new Color(122, 51, 39),
-    new Color(142, 60, 46),
-    new Color(75, 31, 24),
-    new Color(26, 15, 11),
-    new Color(31, 18, 13),
-    new Color(37, 22, 16),
-    new Color(19, 11, 8)
-  };
-
-  private static byte min = Byte.MIN_VALUE;
-  private static byte max = Byte.MAX_VALUE;
-
   public static byte normalizeByte(int c) {
-    if (c < min) c = min;
-    else if (c > max) c = max;
+    if (c < Byte.MIN_VALUE) c = Byte.MIN_VALUE;
+    else if (c > Byte.MIN_VALUE) c = Byte.MAX_VALUE;
     return (byte) c;
   }
-
-  public static final byte TRANSPARENT = 0;
-  public static final byte LIGHT_GREEN = 4;
-  public static final byte LIGHT_BROWN = 8;
-  public static final byte GRAY_1 = 12;
-  public static final byte RED = 16;
-  public static final byte PALE_BLUE = 20;
-  public static final byte GRAY_2 = 24;
-  public static final byte DARK_GREEN = 28;
-  public static final byte WHITE = 32;
-  public static final byte LIGHT_GRAY = 36;
-  public static final byte BROWN = 40;
-  public static final byte DARK_GRAY = 44;
-  public static final byte BLUE = 48;
-  public static final byte DARK_BROWN = 52;
-
-  // Cursor directions.
-  public static final byte DIRECTION_SOUTH = 0;
-  public static final byte DIRECTION_SOUTHWESTSOUTH = 1;
-  public static final byte DIRECTION_SOUTHWEST = 2;
-  public static final byte DIRECTION_SOUTHWESTWEST = 3;
-  public static final byte DIRECTION_WEST = 4;
-  public static final byte DIRECTION_NORTHWESTWEST = 5;
-  public static final byte DIRECTION_NORTHWEST = 6;
-  public static final byte DIRECTION_NORTHWESTNORTH = 7;
-  public static final byte DIRECTION_NORTH = 8;
-  public static final byte DIRECTION_NORTHEASTNORTH = 9;
-  public static final byte DIRECTION_NORTHEAST = 10;
-  public static final byte DIRECTION_NORTHEASTEAST = 11;
-  public static final byte DIRECTION_EAST = 12;
-  public static final byte DIRECTION_SOUTHEASTEAST = 13;
-  public static final byte DIRECTION_SOUTHEAST = 14;
-  public static final byte DIRECTION_SOUTHEASTSOUTH = 15;
-
-  // Cursors.
-  public static final byte CURSOR_POINTER_WHITE = 0;
-  public static final byte CURSOR_POINTER_GREEN = 1;
-  public static final byte CURSOR_POINTER_RED = 2;
-  public static final byte CURSOR_POINTER_BLUE = 3;
-  public static final byte CURSOR_CLOVER_WHITE = 4;
-  public static final byte CURSOR_POINTER_RED_BOLD = 5;
-  public static final byte CURSOR_DOT_WHITE = 6;
-  public static final byte CURSOR_SQUARE_BLUE = 7;
+  public static final short[][] colorsShort = {
+    {0, 0, 0, 0},
+    {0, 0, 0},
+    {0, 0, 0},
+    {0, 0, 0},
+    {89, 125, 39},
+    {109, 153, 48},
+    {127, 178, 56},
+    {67, 94, 29},
+    {174, 164, 115},
+    {213, 201, 140},
+    {247, 233, 163},
+    {130, 123, 86},
+    {140, 140, 140},
+    {171, 171, 171},
+    {199, 199, 199},
+    {105, 105, 105},
+    {180, 0, 0},
+    {220, 0, 0},
+    {255, 0, 0},
+    {135, 0, 0},
+    {112, 112, 180},
+    {138, 138, 220},
+    {160, 160, 255},
+    {84, 84, 135},
+    {117, 117, 117},
+    {144, 144, 144},
+    {167, 167, 167},
+    {88, 88, 88},
+    {0, 87, 0},
+    {0, 106, 0},
+    {0, 124, 0},
+    {0, 65, 0},
+    {180, 180, 180},
+    {220, 220, 220},
+    {255, 255, 255},
+    {135, 135, 135},
+    {115, 118, 129},
+    {141, 144, 158},
+    {164, 168, 184},
+    {86, 88, 97},
+    {106, 76, 54},
+    {130, 94, 66},
+    {151, 109, 77},
+    {79, 57, 40},
+    {79, 79, 79},
+    {96, 96, 96},
+    {112, 112, 112},
+    {59, 59, 59},
+    {45, 45, 180},
+    {55, 55, 220},
+    {64, 64, 255},
+    {33, 33, 135},
+    {100, 84, 50},
+    {123, 102, 62},
+    {143, 119, 72},
+    {75, 63, 38},
+    {180, 177, 172},
+    {220, 217, 211},
+    {255, 252, 245},
+    {135, 133, 129},
+    {152, 89, 36},
+    {186, 109, 44},
+    {216, 127, 51},
+    {114, 67, 27},
+    {125, 53, 152},
+    {153, 65, 186},
+    {178, 76, 216},
+    {94, 40, 114},
+    {72, 108, 152},
+    {88, 132, 186},
+    {102, 153, 216},
+    {54, 81, 114},
+    {161, 161, 36},
+    {197, 197, 44},
+    {229, 229, 51},
+    {121, 121, 27},
+    {89, 144, 17},
+    {109, 176, 21},
+    {127, 204, 25},
+    {67, 108, 13},
+    {170, 89, 116},
+    {208, 109, 142},
+    {242, 127, 165},
+    {128, 67, 87},
+    {53, 53, 53},
+    {65, 65, 65},
+    {76, 76, 76},
+    {40, 40, 40},
+    {108, 108, 108},
+    {132, 132, 132},
+    {153, 153, 153},
+    {81, 81, 81},
+    {53, 89, 108},
+    {65, 109, 132},
+    {76, 127, 153},
+    {40, 67, 81},
+    {89, 44, 125},
+    {109, 54, 153},
+    {127, 63, 178},
+    {67, 33, 94},
+    {36, 53, 125},
+    {44, 65, 153},
+    {51, 76, 178},
+    {27, 40, 94},
+    {72, 53, 36},
+    {88, 65, 44},
+    {102, 76, 51},
+    {54, 40, 27},
+    {72, 89, 36},
+    {88, 109, 44},
+    {102, 127, 51},
+    {54, 67, 27},
+    {108, 36, 36},
+    {132, 44, 44},
+    {153, 51, 51},
+    {81, 27, 27},
+    {17, 17, 17},
+    {21, 21, 21},
+    {25, 25, 25},
+    {13, 13, 13},
+    {176, 168, 54},
+    {215, 205, 66},
+    {250, 238, 77},
+    {132, 126, 40},
+    {64, 154, 150},
+    {79, 188, 183},
+    {92, 219, 213},
+    {48, 115, 112},
+    {52, 90, 180},
+    {63, 110, 220},
+    {74, 128, 255},
+    {39, 67, 135},
+    {0, 153, 40},
+    {0, 187, 50},
+    {0, 217, 58},
+    {0, 114, 30},
+    {91, 60, 34},
+    {111, 74, 42},
+    {129, 86, 49},
+    {68, 45, 25},
+    {79, 1, 0},
+    {96, 1, 0},
+    {112, 2, 0},
+    {59, 1, 0},
+    {147, 124, 113},
+    {180, 152, 138},
+    {209, 177, 161},
+    {110, 93, 85},
+    {112, 57, 25},
+    {137, 70, 31},
+    {159, 82, 36},
+    {84, 43, 19},
+    {105, 61, 76},
+    {128, 75, 93},
+    {149, 87, 108},
+    {78, 46, 57},
+    {79, 76, 97},
+    {96, 93, 119},
+    {112, 108, 138},
+    {59, 57, 73},
+    {131, 93, 25},
+    {160, 114, 31},
+    {186, 133, 36},
+    {98, 70, 19},
+    {72, 82, 37},
+    {88, 100, 45},
+    {103, 117, 53},
+    {54, 61, 28},
+    {112, 54, 55},
+    {138, 66, 67},
+    {160, 77, 78},
+    {84, 40, 41},
+    {40, 28, 24},
+    {49, 35, 30},
+    {57, 41, 35},
+    {30, 21, 18},
+    {95, 75, 69},
+    {116, 92, 84},
+    {135, 107, 98},
+    {71, 56, 51},
+    {61, 64, 64},
+    {75, 79, 79},
+    {87, 92, 92},
+    {46, 48, 48},
+    {86, 51, 62},
+    {105, 62, 75},
+    {122, 73, 88},
+    {64, 38, 46},
+    {53, 43, 64},
+    {65, 53, 79},
+    {76, 62, 92},
+    {40, 32, 48},
+    {53, 35, 24},
+    {65, 43, 30},
+    {76, 50, 35},
+    {40, 26, 18},
+    {53, 57, 29},
+    {65, 70, 36},
+    {76, 82, 42},
+    {40, 43, 22},
+    {100, 42, 32},
+    {122, 51, 39},
+    {142, 60, 46},
+    {75, 31, 24},
+    {26, 15, 11},
+    {31, 18, 13},
+    {37, 22, 16},
+    {19, 11, 8}
+  };
 
   static {
-    for (Color color : colors) {
-      mapColorCache.put(color, matchColor(color));
+    colors = new Color[colorsShort.length];
+    for (int index = 0; index < colorsShort.length; index++) {
+      short[] rgba = colorsShort[index];
+      if (rgba.length == 4) {
+        colors[index] = new Color(rgba[0], rgba[1], rgba[2], rgba[3]);
+      } else {
+        colors[index] = new Color(rgba[0], rgba[1], rgba[2]);
+      }
     }
+    colorsRGB = new int[colors.length];
+    for (int index = 0; index < colors.length; index++) {
+      colorsRGB[index] = colors[index].getRGB();
+    }
+    clearCache();
   }
-  // @formatter:on
 }

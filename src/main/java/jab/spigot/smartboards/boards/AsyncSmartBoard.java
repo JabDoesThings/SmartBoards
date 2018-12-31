@@ -1,5 +1,7 @@
 package jab.spigot.smartboards.boards;
 
+import jab.spigot.smartboards.boards.graphics.BoardGraphics;
+import jab.spigot.smartboards.boards.graphics.SimpleBoardGraphics;
 import jab.spigot.smartboards.enums.BoardDirection;
 import jab.spigot.smartboards.events.SmartBoardClickEvent;
 import jab.spigot.smartboards.utils.BoardProfile;
@@ -12,9 +14,11 @@ public class AsyncSmartBoard implements SmartBoard {
   private BoardProfile profile;
 
   private volatile boolean canClick;
+  private BoardGraphics graphics;
 
   public AsyncSmartBoard(@NotNull BoardProfile profile) {
     this.profile = profile;
+    this.graphics = new SimpleBoardGraphics(profile.getWidth(), profile.getHeight());
   }
 
   @Override
@@ -48,6 +52,11 @@ public class AsyncSmartBoard implements SmartBoard {
   public void dispatch() {}
 
   @Override
+  public BoardProfile getProfile() {
+    return this.profile;
+  }
+
+  @Override
   public Location getLocation() {
     return null;
   }
@@ -60,16 +69,6 @@ public class AsyncSmartBoard implements SmartBoard {
   @Override
   public int[] getMapIds() {
     return new int[0];
-  }
-
-  @Override
-  public int getWidth() {
-    return 0;
-  }
-
-  @Override
-  public int getHeight() {
-    return 0;
   }
 
   @Override
@@ -90,5 +89,15 @@ public class AsyncSmartBoard implements SmartBoard {
   @Override
   public void setCanClick(boolean flag) {
     this.canClick = flag;
+  }
+
+  @Override
+  public BoardGraphics getGraphics() {
+    return graphics;
+  }
+
+  @Override
+  public void setGraphics(@NotNull BoardGraphics graphics) {
+    this.graphics = graphics;
   }
 }

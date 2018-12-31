@@ -15,6 +15,11 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * TODO: Document.
+ *
+ * @author Josh
+ */
 public class SmartBoardsMapAdapter extends PacketAdapter {
 
   /** The reflection field for the index of the map packet. */

@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * TODO: Document.
+ *
+ * @author Josh
+ */
 public class CompilerTask {
 
   private final List<Consumer<CompilerTask>> tasks;
@@ -19,6 +24,8 @@ public class CompilerTask {
   private BufferedImage image;
   private volatile boolean complete;
   private boolean runTasksAsync;
+
+  private MapImage result;
 
   public CompilerTask(@NotNull BufferedImage image) {
     this();
@@ -44,7 +51,7 @@ public class CompilerTask {
    * <p>NOTE: Only compiler threads should execute this method.
    */
   public void compile() {
-    // TODO: Write Compile code.
+    result = new MapImage(image);
     // This flag will be used for checks to ensure that no task is compiled twice.
     this.complete = true;
     if (runTasksAsync) {
@@ -104,5 +111,17 @@ public class CompilerTask {
    */
   public void setTasksAsync(boolean flag) {
     this.runTasksAsync = flag;
+  }
+
+  /**
+   * @return Returns the compiled result.
+   * @throws IllegalStateException Thrown if the method is invoked prior to completion of the task.
+   */
+  @NotNull
+  public MapImage getResult() {
+    if (!this.complete) {
+      throw new IllegalStateException("The compiler task is not complete!");
+    }
+    return this.result;
   }
 }
