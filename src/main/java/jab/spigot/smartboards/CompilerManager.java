@@ -32,6 +32,7 @@ public class CompilerManager implements Runnable {
   public CompilerManager(int threadCount) {
     this.threadCount = threadCount;
     this.threads = new Thread[threadCount];
+    this.tasks = new Stack<>();
   }
 
   @Override
@@ -57,10 +58,16 @@ public class CompilerManager implements Runnable {
         threads[index].start();
       }
     }
+    if(PluginSmartBoards.DEBUG) {
+      System.out.println("SmartBoards: Compiler Thread Started.");
+    }
   }
 
   public void stop() {
     stopped = true;
+    if(PluginSmartBoards.DEBUG) {
+      System.out.println("SmartBoards: Compiler Thread Stopped.");
+    }
   }
 
   public CompilerTask getNextTask() {

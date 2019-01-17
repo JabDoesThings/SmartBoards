@@ -7,6 +7,8 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import jab.spigot.smartboards.SmartBoardThread;
 import jab.spigot.smartboards.boards.SmartBoard;
+import jab.spigot.smartboards.utils.PacketUtils;
+import net.minecraft.server.v1_13_R2.PacketPlayOutEntityMetadata;
 import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -14,6 +16,8 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+
+import static com.comphenix.protocol.PacketType.Play.Server.*;
 
 /**
  * TODO: Document.
@@ -34,28 +38,51 @@ public class SmartBoardsMapAdapter extends PacketAdapter {
    * @param plugin The Plug-in instance.
    */
   public SmartBoardsMapAdapter(@NotNull SmartBoardThread thread, @NotNull JavaPlugin plugin) {
-    super(plugin, ListenerPriority.HIGHEST, PacketType.Play.Server.MAP);
+    //    super(
+    //        plugin,
+    //        ListenerPriority.HIGHEST,
+    //        PacketType.Play.Server.MAP,
+    //        PacketType.Play.Server.ENTITY_METADATA);
+    super(
+        plugin,
+        ListenerPriority.HIGHEST,
+        PacketType.Play.Server.ENTITY,
+        ENTITY_METADATA,
+        ENTITY_DESTROY,
+        ENTITY_EFFECT,
+        ENTITY_EQUIPMENT,
+        ENTITY_STATUS,
+        ENTITY_TELEPORT,
+        TILE_ENTITY_DATA);
     this.thread = thread;
   }
 
   @Override
   public void onPacketSending(@NotNull PacketEvent event) {
-    PacketContainer container = event.getPacket();
-    if (container.getHandle() instanceof PacketPlayOutMap) {
-      // Grab the packet.
-      PacketPlayOutMap packet = (PacketPlayOutMap) event.getPacket().getHandle();
-      int index = getMapIndex(packet);
-      // If the packet is not authored as our packet, cancel it.
-      if (event.getPacketType() == PacketType.Play.Server.MAP) {
-        Map<Integer, SmartBoard> mapBoardIds = thread.getRegisteredMapIds();
-        List<PacketPlayOutMap> listPackets = thread.getRegisteredMapPackets();
-        synchronized (thread.lockPackets) {
-          if (!listPackets.contains(packet) && mapBoardIds.containsKey(index)) {
-            event.setCancelled(true);
-          }
-        }
-      }
-    }
+    //    PacketContainer container = event.getPacket();
+    //    if (container.getHandle() instanceof PacketPlayOutMap) {
+    //      // Grab the packet.
+    //      PacketPlayOutMap packet = (PacketPlayOutMap) event.getPacket().getHandle();
+    //      int index = getMapIndex(packet);
+    //      // If the packet is not authored as our packet, cancel it.
+    //      if (event.getPacketType() == PacketType.Play.Server.MAP) {
+    //        Map<Integer, SmartBoard> mapBoardIds = thread.getRegisteredMapIds();
+    //        List<PacketPlayOutMap> listPackets = thread.getRegisteredMapPackets();
+    //        synchronized (thread.lockPackets) {
+    //          if (!listPackets.contains(packet) && mapBoardIds.containsKey(index)) {
+    //            System.out.println("Cancelling Mini-Map packet: " + PacketUtils.getMapId(packet));
+    //            event.setCancelled(true);
+    //          }
+    //        }
+    //      }
+    //    } else if(container.getHandle() instanceof PacketPlayOutEntityMetadata) {
+    //      PacketPlayOutEntityMetadata packet = (PacketPlayOutEntityMetadata)
+    // event.getPacket().getHandle();
+    //      PacketUtils.printEntityMetadataPacket(packet);
+    //    }
+    //    else {
+    System.out.println("PACKET: " + event.getPacket().getHandle().getClass().getSimpleName());
+    //    }
   }
 
   /**

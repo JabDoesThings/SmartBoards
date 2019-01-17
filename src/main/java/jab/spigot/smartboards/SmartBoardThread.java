@@ -27,33 +27,7 @@ public class SmartBoardThread implements Runnable {
 
   public static SmartBoardThread instance;
 
-  private BukkitRunnable runnableSync =
-      new BukkitRunnable() {
-        @Override
-        public void run() {
-          try {
-            SmartBoard[] boards = getLoopBoards();
-            if (boards.length > 0) {
-              synchronized (lockBoardsSync) {
-                updateBoards(boards);
-              }
-              removeFlaggedBoards();
-              synchronized (lockBoardsSync) {
-                renderBoards(boards);
-              }
-              removeFlaggedBoards();
-            }
-          } catch (Exception e) {
-            System.out.println("An exception has occurred in the SmartBoard thread. (sync)");
-            e.printStackTrace();
-          }
-          try {
-            Thread.sleep(SLEEP_TIME);
-          } catch (InterruptedException e) {
-            e.printStackTrace();
-          }
-        }
-      };
+  private SmartBoardSyncRunnable syncRunnable;
 
   /** Store all maps to the thread. */
   private final Map<Integer, SmartBoard> mapBoards;
@@ -67,20 +41,20 @@ public class SmartBoardThread implements Runnable {
   private final List<SmartBoard> listFlaggedBoards;
 
   private SmartBoard[] boardsToLoop;
-  private SmartBoard[] boardsToLoopSync;
 
+  private SmartBoard[] boardsToLoopSync;
   /** Flag to stop the thread on the next tick. */
   private volatile boolean stopped;
 
   private volatile boolean started;
 
   public final Object lockPackets = new Object();
+
   public final Object lockBoards = new Object();
   public final Object lockBoardsSync = new Object();
-
   private SmartBoardsMapAdapter smartSmartBoardsMapAdapter;
-  private SmartBoardsClickAdapter smartBoardsClickAdapter;
 
+  private SmartBoardsClickAdapter smartBoardsClickAdapter;
   private Thread thread;
 
   /** Main constructor. */
@@ -97,7 +71,8 @@ public class SmartBoardThread implements Runnable {
 
   @Override
   public void run() {
-    runnableSync.runTaskTimer(PluginSmartBoards.instance, 0L, 1L);
+    syncRunnable = new SmartBoardSyncRunnable();
+    syncRunnable.runTaskTimer(PluginSmartBoards.instance, 0L, 1L);
     while (!stopped) {
       try {
         SmartBoard[] boards = getLoopBoards();
@@ -121,7 +96,7 @@ public class SmartBoardThread implements Runnable {
         e.printStackTrace();
       }
     }
-    runnableSync.cancel();
+    syncRunnable.cancel();
   }
 
   private void updateBoards(@NotNull SmartBoard[] boards) {
@@ -153,6 +128,11 @@ public class SmartBoardThread implements Runnable {
     // Go through each board that is listed as dirty and render them to their MapImage
     // caches.
     for (SmartBoard board : boards) {
+      // Check the graphics and update it if necessary.
+      BoardGraphics graphics = board.getGraphics();
+      if (graphics.canUpdate()) {
+        graphics.update();
+      }
       if (board.isDirty()) {
         try {
           // Render the board.
@@ -232,6 +212,7 @@ public class SmartBoardThread implements Runnable {
 
   public void addBoard(@NotNull SmartBoard board) {
     if (!isRegistered(board)) {
+      System.out.println("SmartBoards: Adding board to thread: " + board);
       synchronized (mapBoards) {
         // Place the board in the registrar map.
         mapBoards.put(board.getId(), board);
@@ -336,18 +317,23 @@ public class SmartBoardThread implements Runnable {
       this.listApprovedPackets.clear();
       this.boardsToLoop = new SmartBoard[0];
       ProtocolManager protocolManager = PluginSmartBoards.protocolManager;
-      protocolManager.addPacketListener(smartSmartBoardsMapAdapter);
+//      protocolManager.addPacketListener(smartSmartBoardsMapAdapter);
       protocolManager.addPacketListener(smartBoardsClickAdapter);
     }
     this.started = true;
     this.stopped = false;
-
     thread = new Thread(this, THREAD_NAME);
     thread.start();
+    if (PluginSmartBoards.DEBUG) {
+      System.out.println("SmartBoards: Board Thread Started.");
+    }
   }
 
   public void pause() {
     this.stopped = true;
+    if (PluginSmartBoards.DEBUG) {
+      System.out.println("SmartBoards: Board Thread Paused.");
+    }
   }
 
   public void resume() {
@@ -358,6 +344,9 @@ public class SmartBoardThread implements Runnable {
     if (!thread.isAlive() || thread.isInterrupted()) {
       thread.start();
     }
+    if (PluginSmartBoards.DEBUG) {
+      System.out.println("SmartBoards: Board Thread Resumed.");
+    }
   }
 
   public void stop() {
@@ -366,6 +355,9 @@ public class SmartBoardThread implements Runnable {
     ProtocolManager protocolManager = PluginSmartBoards.protocolManager;
     protocolManager.removePacketListener(smartSmartBoardsMapAdapter);
     protocolManager.removePacketListener(smartBoardsClickAdapter);
+    if (PluginSmartBoards.DEBUG) {
+      System.out.println("SmartBoards: Board Thread Stopped.");
+    }
   }
 
   private SmartBoard[] getLoopBoards() {
@@ -389,5 +381,34 @@ public class SmartBoardThread implements Runnable {
   @NotNull
   public List<PacketPlayOutMap> getRegisteredMapPackets() {
     return this.listApprovedPackets;
+  }
+
+  private class SmartBoardSyncRunnable extends BukkitRunnable {
+    @Override
+    public void run() {
+      try {
+        SmartBoard[] boards = boardsToLoopSync;
+        if (boards.length > 0) {
+          //          System.out.println("SmartBoardThread->updateBoards() (sync)");
+          synchronized (lockBoardsSync) {
+            updateBoards(boards);
+          }
+          removeFlaggedBoards();
+          //          System.out.println("SmartBoardThread->renderBoards() (sync)");
+          synchronized (lockBoardsSync) {
+            renderBoards(boards);
+          }
+          removeFlaggedBoards();
+        }
+      } catch (Exception e) {
+        System.out.println("An exception has occurred in the SmartBoard thread. (sync)");
+        e.printStackTrace();
+      }
+      try {
+        Thread.sleep(SLEEP_TIME);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
   }
 }

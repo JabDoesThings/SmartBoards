@@ -9,8 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class TestMapImage {
-
+public class TestFormatConversion {
 
   @Test
   public void test() {
@@ -40,8 +39,11 @@ public class TestMapImage {
     g.fillRect(imageSource.getWidth() - 420, imageSource.getHeight() - 220, 400, 200);
     g.setColor(new Color(0, 255, 0, 127));
     g.fillRect((imageSource.getWidth() / 2) - 200, (imageSource.getHeight() / 2) - 100, 400, 200);
+    g.setColor(Color.BLACK);
+    g.fillRect(0, imageSource.getHeight() - 144, 128, 128);
+    g.setColor(Color.WHITE);
+    g.fillRect(imageSource.getWidth() - 144, 0, 128, 128);
     g.dispose();
     return imageSource;
   }
-
 }

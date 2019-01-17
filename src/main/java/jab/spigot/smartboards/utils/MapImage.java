@@ -3,13 +3,19 @@ package jab.spigot.smartboards.utils;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
-import jab.spigot.smartboards.enums.MapAnchor;
-import jab.spigot.smartboards.enums.ImageScale;
+import jab.spigot.smartboards.PluginSmartBoards;
+import jab.spigot.smartboards.enums.ImageAnchor;
 import jab.spigot.smartboards.exceptions.IllegalDimensionsException;
 import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.MapMeta;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -21,8 +27,10 @@ import org.jetbrains.annotations.NotNull;
  */
 public class MapImage {
 
+  private ItemStack itemStack;
+
   /** The stored raster of map colors for the image. */
-  private byte[] bytes;
+  private final byte[] bytes;
   /** The width in pixels of the image. */
   private int width;
   /** The height in pixels of the image. */
@@ -33,6 +41,7 @@ public class MapImage {
   private boolean immutable;
 
   private PacketPlayOutMap packet;
+  private long update;
 
   /**
    * Image constructor.
@@ -40,10 +49,26 @@ public class MapImage {
    * @param image The BufferedImage to render.
    */
   public MapImage(@NotNull BufferedImage image) {
-    setWidth(image.getWidth());
-    setHeight(image.getHeight());
-    drawImage(image, 0, 0);
+    int bWidth = 0;
+    int bHeight = 0;
+    int sWidth = image.getWidth();
+    int sHeight = image.getHeight();
+    while (sWidth > 0) {
+      sWidth -= 128;
+      bWidth++;
+    }
+    while (sHeight > 0) {
+      sHeight -= 128;
+      bHeight++;
+    }
+    int width = bWidth * 128;
+    int height = bHeight * 128;
+    setWidth(width);
+    setHeight(height);
+    this.bytes = new byte[width * height];
+    draw(image, 0, 0);
     setDirty(true);
+    update = -1L;
   }
 
   /**
@@ -55,7 +80,9 @@ public class MapImage {
   public MapImage(int width, int height) {
     setWidth(width);
     setHeight(height);
+    this.bytes = new byte[width * height];
     fillRect(0, 0, width, height, Color.WHITE);
+    update = -1L;
   }
 
   /**
@@ -68,9 +95,11 @@ public class MapImage {
   public MapImage(int width, int height, @NotNull Color color) {
     setWidth(width);
     setHeight(height);
+    this.bytes = new byte[width * height];
     // Create a blank image.
     fillRect(0, 0, width, height, color);
     setDirty(true);
+    update = -1L;
   }
 
   /**
@@ -82,26 +111,50 @@ public class MapImage {
    * @throws NullPointerException Thrown if the image given is null.
    * @throws IllegalArgumentException Thrown if the image is invalid.
    */
-  public void drawImage(@NotNull BufferedImage image, int offsetX, int offsetY) {
+  public void draw(@NotNull BufferedImage image, int offsetX, int offsetY) {
+    draw(image, offsetX, offsetY, ImageAnchor.TOP_LEFT);
+  }
+
+  public void draw(
+      BufferedImage image, int offsetX, int offsetY, @NotNull ImageAnchor anchor) {
     checkImmutable();
+    int anchorX = 0;
+    int anchorY = 0;
+    switch (anchor) {
+      case TOP_LEFT:
+        break;
+      case TOP_RIGHT:
+        anchorX = width - image.getWidth();
+        break;
+      case BOTTOM_RIGHT:
+        anchorY = height - image.getHeight();
+        break;
+      case BOTTOM_LEFT:
+        anchorX = width - image.getWidth();
+        anchorY = height - image.getHeight();
+        break;
+      case CENTER:
+        anchorX = (width / 2) - (image.getWidth() / 2);
+        anchorY = (height / 2) - (image.getHeight() / 2);
+        break;
+    }
     int width = image.getWidth();
     int height = image.getHeight();
     if (width == 0 || height == 0) {
       throw new IllegalArgumentException(
           "Image is invalid. (width=" + width + ", height=" + height + ")");
     }
-    int size = width * height;
-    bytes = new byte[size];
     int[] pixels = image.getRGB(0, 0, width, height, null, 0, width);
     for (int y = 0; y < image.getHeight(); y++) {
-      // Prevent overflow errors.
-      if (y >= this.height) break;
       for (int x = 0; x < image.getWidth(); x++) {
-        // Prevent overflow errors.
-        if (x >= this.width) break;
-        int dx = x + offsetX;
-        int dy = y + offsetY;
-        this.bytes[getOffset(dx, dy)] = MapUtils.matchColor(pixels[getOffset(x, y, width)]);
+        int dx = anchorX + offsetX + x;
+        int dy = anchorY + offsetY + y;
+        if (dx >= 0 && dx < this.width && dy >= 0 && dy < this.height) {
+          int offset = getOffset(dx, dy);
+          if (offset < bytes.length) {
+            this.bytes[offset] = MapUtils.matchColor(pixels[getOffset(x, y, width)]);
+          }
+        }
       }
     }
     setDirty(true);
@@ -125,43 +178,21 @@ public class MapImage {
     this.dirty = true;
   }
 
-  public void draw(@NotNull MapImage image) {
-    draw(image, 0, 0, 1, MapAnchor.TOP_LEFT, ImageScale.ABSOLUTE);
-  }
-
-  public void draw(@NotNull MapImage image, int x, int y) {
-    draw(image, x, y, 1, MapAnchor.TOP_LEFT, ImageScale.ABSOLUTE);
-  }
-
-  public void draw(@NotNull MapImage image, int x, int y, double scale) {
-    draw(image, x, y, scale, MapAnchor.TOP_LEFT, ImageScale.ABSOLUTE);
-  }
-
-  public void draw(
-      @NotNull MapImage image, int x, int y, double scale, @NotNull MapAnchor mapAnchor) {
-    draw(image, x, y, scale, mapAnchor, ImageScale.ABSOLUTE);
-  }
-
-  public void draw(
-      @NotNull MapImage image,
-      int offsetX,
-      int offsetY,
-      double scale,
-      @NotNull MapAnchor mapAnchor,
-      @NotNull ImageScale imageScale) {
+  public void draw(@NotNull MapImage image, int offsetX, int offsetY) {
     checkImmutable();
     int w = getWidth();
     int h = getHeight();
-    int iw = image.getWidth();
-    int ih = image.getHeight();
-    for (int y = 0; y < ih; y++) {
+    int imageWidth = image.getWidth();
+    int imageHeight = image.getHeight();
+
+    for (int y = 0; y < imageHeight; y++) {
       int ly = y + offsetY;
       if (ly < 0) {
         continue;
       } else if (ly > h - 1) {
         break;
       }
-      for (int x = 0; x < iw; x++) {
+      for (int x = 0; x < imageWidth; x++) {
         int lx = x + offsetX;
         if (lx < 0) {
           continue;
@@ -203,7 +234,27 @@ public class MapImage {
           "Y cannot be greater than image height (" + getHeight() + "): " + y);
     }
     // Return the stored color.
-    return bytes[getOffset(x, y)];
+    int offset = getOffset(x, y);
+    try {
+      return bytes[offset];
+    } catch (Exception e) {
+      System.out.println(
+          "Error: getColor("
+              + x
+              + ", "
+              + y
+              + ") (width: "
+              + width
+              + ", height: "
+              + height
+              + ") (offset: "
+              + offset
+              + ", length: "
+              + bytes.length
+              + ")");
+      e.printStackTrace();
+    }
+    return -1;
   }
 
   /**
@@ -248,6 +299,10 @@ public class MapImage {
     setDirty(true);
   }
 
+  public ItemStack getItemStack() {
+    return this.itemStack;
+  }
+
   public PacketPlayOutMap createPacket(short index) {
     if (isPacketCreated()) {
       throw new IllegalStateException("Packet is already created for MapImage.");
@@ -256,6 +311,12 @@ public class MapImage {
     boolean c = true;
     packet = new PacketPlayOutMap(index, b, c, new ArrayList<>(), bytes, 0, 0, 128, 128);
     PacketUtils.setRawByteArrayForMapPacket(packet, bytes);
+
+    this.itemStack = new ItemStack(Material.FILLED_MAP);
+    MapMeta mapMeta = (MapMeta) itemStack.getItemMeta();
+    mapMeta.setMapId(index);
+    itemStack.setItemMeta(mapMeta);
+
     return packet;
   }
 
@@ -350,8 +411,7 @@ public class MapImage {
    */
   public void setRaster(@NotNull byte[] bytes, int width, int height) {
     checkImmutable();
-    // Set the raster.
-    this.bytes = bytes;
+    System.arraycopy(bytes, 0, this.bytes, 0, this.bytes.length);
     // Set the dimensions too.
     setWidth(width);
     setHeight(height);
@@ -525,5 +585,57 @@ public class MapImage {
 
   public int getPacketId() {
     return PacketUtils.getMapId(getPacket());
+  }
+
+  /**
+   * Checks if the player has the most up-to-date packet data for the MapImage.
+   *
+   * <p>NOTE: Override this method if you want to use packets that are not shared globally for
+   * players. If the original method is used, the method will check the <code>
+   * PluginSmartBoards.mapMapPacketTimes</code> HashMap, which is shared with other default
+   * MapImages.
+   *
+   * @param player The player to test.
+   * @return Returns true if the up-to-date packet for the map has already been sent to the player.
+   */
+  public boolean isSent(@NotNull Player player) {
+    Map<Integer, Long> mapTimes = PluginSmartBoards.mapMapPacketTimes.get(player.getUniqueId());
+    if (mapTimes != null) {
+      int id = getPacketId();
+      Long time = mapTimes.get(id);
+      // If a time has been registered, and the time is greater than the update time (or equal),
+      // then the player has the most up-to-date data for the MapImage.
+      if (time != null && time > getUpdateTime()) {
+        return true;
+      }
+    }
+    // Return false to state that the packet needs to be sent to the player.
+    return false;
+  }
+
+  /**
+   * Sends the stored packet for the MapImage to the player, logging the time sent to the plugin.
+   *
+   * <p>NOTE: Override this method if you want to use packets that are not shared globally for *
+   * players. If the original method is used, the method will store the time sent to the <code>
+   *    * PluginSmartBoards.mapMapPacketTimes</code> HashMap, which is shared with other default *
+   * MapImages.
+   *
+   * @param player The player to send the packet to.
+   */
+  public void send(@NotNull Player player) {
+    UUID playerId = player.getUniqueId();
+    int packetId = getPacketId();
+    // Make sure to let the plug-in know that the packet is sent at the current time.
+    Map<Integer, Long> mapTimes =
+        PluginSmartBoards.mapMapPacketTimes.computeIfAbsent(playerId, k -> new HashMap<>());
+    mapTimes.put(packetId, System.currentTimeMillis());
+    // Send the packet.
+    System.out.println("Sending MapData: " + packetId);
+    ((CraftPlayer) player).getHandle().playerConnection.sendPacket(getPacket());
+  }
+
+  private long getUpdateTime() {
+    return this.update;
   }
 }

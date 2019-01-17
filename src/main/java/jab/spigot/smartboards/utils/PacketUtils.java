@@ -1,20 +1,16 @@
 package jab.spigot.smartboards.utils;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import java.util.UUID;
-import net.minecraft.server.v1_13_R2.BlockPosition;
-import net.minecraft.server.v1_13_R2.EnumDirection;
-import net.minecraft.server.v1_13_R2.EnumHand;
-import net.minecraft.server.v1_13_R2.PacketPlayInBlockDig;
+
+import net.minecraft.server.v1_13_R2.*;
 import net.minecraft.server.v1_13_R2.PacketPlayInBlockDig.EnumPlayerDigType;
-import net.minecraft.server.v1_13_R2.PacketPlayInBlockPlace;
-import net.minecraft.server.v1_13_R2.PacketPlayInUseEntity;
 import net.minecraft.server.v1_13_R2.PacketPlayInUseEntity.EnumEntityUseAction;
-import net.minecraft.server.v1_13_R2.PacketPlayInUseItem;
-import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
-import net.minecraft.server.v1_13_R2.PacketPlayOutSpawnEntity;
-import net.minecraft.server.v1_13_R2.Vec3D;
+import org.bukkit.craftbukkit.v1_13_R2.inventory.CraftItemStack;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import net.minecraft.server.v1_13_R2.DataWatcher.Item;
 
 /**
  * This utility gives additional tools to handle packets being sent to and from the client.
@@ -23,11 +19,38 @@ import org.jetbrains.annotations.NotNull;
  */
 public class PacketUtils {
 
+  private static Field fa;
+  private static Field fb;
+
   /** This field stores the raw byte array that is cloned from one given in the constructor. */
   private static Field fieldMapPacketByteArray;
 
   /** This field stores the index for the mini-map packet. */
   private static Field fieldMapPacketIndex;
+
+  public static void setMapId(
+      int id, PacketPlayOutEntityMetadata packet, DataWatcher dataWatcher, ItemStack itemStack) {
+    setMapId(id, packet, dataWatcher, CraftItemStack.asNMSCopy(itemStack));
+  }
+
+  public static void setMapId(
+      int id,
+      PacketPlayOutEntityMetadata packet,
+      DataWatcher dataWatcher,
+      net.minecraft.server.v1_13_R2.ItemStack itemStack) {
+    //    System.out.println("setMapId(" + packet + ", " + dataWatcher + ", " + itemStack);
+    NBTTagCompound tag = itemStack.getTag();
+    if (tag != null) {
+      //      System.out.println("\tTag: " + tag.toString());
+    }
+    try {
+      dataWatcher.set(DataWatcherRegistry.g.a(6), itemStack);
+      fa.set(packet, id);
+      fb.set(packet, dataWatcher.b());
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    }
+  }
 
   public static int getMapId(@NotNull PacketPlayOutMap packet) {
     int mapId = 0;
@@ -212,7 +235,84 @@ public class PacketUtils {
       // with the packet directly, so when the cache changes, this already changes the map packet.
       fieldMapPacketByteArray = PacketPlayOutMap.class.getDeclaredField("i");
       fieldMapPacketByteArray.setAccessible(true);
+
+      fa = PacketPlayOutEntityMetadata.class.getDeclaredField("a");
+      fb = PacketPlayOutEntityMetadata.class.getDeclaredField("b");
+      fa.setAccessible(true);
+      fb.setAccessible(true);
     } catch (NoSuchFieldException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static int getEntityId(@NotNull PacketPlayOutEntityMetadata packet) {
+    int id = 0;
+    try {
+      id = fa.getInt(packet);
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    }
+    return id;
+  }
+
+  public static void printEntityMetadataPacket(@NotNull PacketPlayOutEntityMetadata packet) {
+    try {
+      Field fEntityId = PacketPlayOutEntityMetadata.class.getDeclaredField("a");
+      Field fListItems = PacketPlayOutEntityMetadata.class.getDeclaredField("b");
+      Field fItem_a = DataWatcher.Item.class.getDeclaredField("a");
+      Field fItem_b = DataWatcher.Item.class.getDeclaredField("b");
+      Field fItem_c = DataWatcher.Item.class.getDeclaredField("c");
+      Field fDataWatcherObject_a = DataWatcherObject.class.getDeclaredField("a");
+      Field fDataWatcherObject_b = DataWatcherObject.class.getDeclaredField("b");
+
+      fEntityId.setAccessible(true);
+      fListItems.setAccessible(true);
+      fItem_a.setAccessible(true);
+      fItem_b.setAccessible(true);
+      fItem_c.setAccessible(true);
+      fDataWatcherObject_a.setAccessible(true);
+      fDataWatcherObject_b.setAccessible(true);
+
+      int entityId = fEntityId.getInt(packet);
+      List<Item> listItems = (List<Item>) fListItems.get(packet);
+      System.out.println("ENTITY_METADATA: " + packet);
+      System.out.println("\tENTITY_ID: " + entityId);
+      if (listItems != null) {
+        System.out.println("\tITEMS: ");
+        for (int i = 0; i < listItems.size(); i++) {
+          Item item = listItems.get(i);
+          DataWatcherObject dataWatcherObject = (DataWatcherObject) fItem_a.get(item);
+
+          System.out.println("\t\t" + i + ":");
+          System.out.println("\t\t\ta (DataWatcherObject): ");
+          System.out.println("\t\t\t\ta: " + fDataWatcherObject_a.getInt(dataWatcherObject));
+          System.out.println(
+              "\t\t\t\tb (DataWatcherSerializer): " + fDataWatcherObject_b.get(dataWatcherObject));
+
+          Object b = fItem_b.get(item);
+          if (b instanceof net.minecraft.server.v1_13_R2.ItemStack) {
+            net.minecraft.server.v1_13_R2.ItemStack itemStack =
+                (net.minecraft.server.v1_13_R2.ItemStack) b;
+
+            NBTTagCompound tagCompound = itemStack.getTag();
+            if (tagCompound != null) {
+              System.out.println(
+                  "\t\t\tb ("
+                      + b.getClass().getSimpleName()
+                      + "): "
+                      + itemStack
+                      + " "
+                      + tagCompound);
+            } else {
+              System.out.println("\t\t\tb (" + b.getClass().getSimpleName() + "): " + itemStack);
+            }
+          }
+
+          System.out.println("\t\t\tb: " + fItem_b.get(item).getClass().getSimpleName());
+          System.out.println("\t\t\tc: " + fItem_c.getBoolean(item));
+        }
+      }
+    } catch (NoSuchFieldException | IllegalAccessException e) {
       e.printStackTrace();
     }
   }

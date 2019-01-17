@@ -27,7 +27,7 @@ public class SequencedBoardGraphics extends BoardGraphics {
    */
   public SequencedBoardGraphics(int width, int height) {
     super(width, height);
-    DEFAULT_FRAME = new ColorBoardFrame(width, height, MapImageUtils.WHITE);
+    DEFAULT_FRAME = new ColorBoardFrame(width, height, MapImageUtils.BLACK);
     frames = new BoardFrame[0];
     frameTimes = new int[0];
   }

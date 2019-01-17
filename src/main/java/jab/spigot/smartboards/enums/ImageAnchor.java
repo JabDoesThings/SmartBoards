@@ -6,7 +6,7 @@ package jab.spigot.smartboards.enums;
  *
  * @author Josh
  */
-public enum MapAnchor {
+public enum ImageAnchor {
   TOP_LEFT,
   TOP_RIGHT,
   BOTTOM_RIGHT,

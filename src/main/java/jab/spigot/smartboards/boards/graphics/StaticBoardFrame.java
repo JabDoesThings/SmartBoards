@@ -16,7 +16,7 @@ public class StaticBoardFrame extends BoardFrame {
    * @param height The height of the board. (in blocks)
    */
   public StaticBoardFrame(int width, int height) {
-    super(width, height);
+    super(width, height, true);
     create();
   }
 

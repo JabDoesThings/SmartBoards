@@ -27,6 +27,7 @@ public class MapUtils {
   public static final byte TRANSPARENT = 0;
   public static final byte LIGHT_GREEN = 4;
   public static final byte LIGHT_BROWN = 8;
+  public static final byte BLACK = 117;
   public static final byte GRAY_1 = 12;
   public static final byte RED = 16;
   public static final byte PALE_BLUE = 20;
@@ -65,17 +66,24 @@ public class MapUtils {
   public static final byte CURSOR_DOT_WHITE = 6;
   public static final byte CURSOR_SQUARE_BLUE = 7;
 
-
   public static void clearCache() {
     mapColorCache.clear();
     mapColorCacheInt.clear();
     mapColorCacheRGB.clear();
-    for (Color color : colors) {
+    Color alpha = new Color(0, 0, 0, 0);
+    int argb = alpha.getRGB();
+    mapColorCacheRGB.put((byte) 0, argb);
+    mapColorCacheInt.put(argb, (byte) 0);
+    mapColorCache.put(alpha, (byte) 0);
+    mapColorCacheRGB.put(toColor(BLACK), Color.BLACK.getRGB());
+    mapColorCacheInt.put(Color.BLACK.getRGB(), toColor(BLACK));
+    mapColorCache.put(Color.BLACK, toColor(BLACK));
+    for (int i = 4; i < colors.length; i++) {
+      Color color = colors[i];
       byte c = matchColor(color);
       int rgb = color.getRGB();
       mapColorCache.put(color, c);
       mapColorCacheInt.put(rgb, c);
-      mapColorCacheRGB.put(c, color.getRGB());
     }
   }
 
@@ -205,11 +213,11 @@ public class MapUtils {
   public static byte getColor(@NotNull Color color) {
     return matchColor(color.getRGB());
   }
+
   private static final int TRANSPARENT_RGB = new Color(0, 0, 0, 0).getRGB();
 
-
   public static int getRGB(byte color) {
-    return colorsRGB[color];
+    return colorsRGB[toIndex(color)];
   }
 
   public static BufferedImage scaleImage(BufferedImage before, int width, int height) {
@@ -290,31 +298,101 @@ public class MapUtils {
     return result;
   }
 
+  /**
+   * @param index The index to convert to a color.
+   * @return Returns the byte color value of an index.
+   */
+  public static byte toColor(int index) {
+    return (byte) (index < 128 ? index : -129 + (index - 127));
+  }
+
+  /**
+   * @param color The byte color value to convert to a index.
+   * @return Returns the index of a byte color.
+   */
+  public static int toIndex(byte color) {
+    return color < 0 ? 256 + (color) : color;
+  }
+
+  public static void main(String[] args) {
+
+    Color black = new Color(0, 0, 0);
+    Color alpha = new Color(0, 0, 0, 0);
+    int blackARGB = black.getRGB();
+    int alphaARGB = alpha.getRGB();
+    int[] blackARGBSplit = splitARGB(black.getRGB());
+    int[] alphaARGBSplit = splitARGB(alpha.getRGB());
+
+    System.out.println(
+        "BLACK: " + black.getRGB()); // + "#" + Integer.toHexString(black.getRGB()).substring(2));
+    System.out.println(
+        "\t["
+            + blackARGBSplit[0]
+            + ", "
+            + blackARGBSplit[1]
+            + ", "
+            + blackARGBSplit[2]
+            + ", "
+            + blackARGBSplit[3]
+            + "]");
+
+    System.out.println(
+        "ALPHA: " + alpha.getRGB()); // + "#" + Integer.toHexString(alpha.getRGB()).substring(2));
+    System.out.println(
+        "\t["
+            + alphaARGBSplit[0]
+            + ", "
+            + alphaARGBSplit[1]
+            + ", "
+            + alphaARGBSplit[2]
+            + ", "
+            + alphaARGBSplit[3]
+            + "]");
+
+    //    for (int index = 0; index < 256; index++) {
+    //      byte color = toColor(index);
+    //      int index2 = toIndex(color);
+    //      System.out.println("index: " + index + "\tcolor: " + color + "\tindex2: " + index2);
+    //    }
+  }
+
+  public static int[] splitARGB(int argb) {
+    return new int[] {(argb >> 24) & 0xFF, (argb >> 16) & 0xFF, (argb >> 8) & 0xFF, (argb) & 0xFF};
+  }
+
+  public static int removeAlphaChannel(int argb) {
+    int[] split = splitARGB(argb);
+    int rgb = 255;
+    rgb = (rgb << 8) + split[1];
+    rgb = (rgb << 8) + split[2];
+    rgb = (rgb << 8) + split[3];
+    return rgb;
+  }
+
   public static byte matchColor(int argb) {
-    int a = (argb >> 24) & 0xFF;
-    // Everything below 128 is the same byte color.
-    if (a < 128) return 0;
-    int r = (argb >> 16) & 0xFF;
-    int g = (argb >> 8) & 0xFF;
-    int b = (argb) & 0xFF;
-    // Only match colors based on RGB.
-    int rgb = r;
-    rgb = (rgb << 8) + g;
-    rgb = (rgb << 8) + b;
+    int[] split = splitARGB(argb);
+    int rgb = 0; // (Pure alpha)
+    // Only match non-alpha colors based on RGB.
+    if (split[0] > 0) {
+      rgb = removeAlphaChannel(argb);
+    }
+    // Return transparent if true alpha.
+    if (rgb == 0) return 0;
     synchronized (mapColorCacheInt) {
       // Check if the color is already in the cache.
       if (mapColorCacheInt.containsKey(rgb)) {
         return mapColorCacheInt.get(rgb);
       }
       int index = 0;
-      double best = -1;
+      double best = Double.NaN;
       for (int i = 4; i < colors.length; i++) {
-        double distance = getDistance(r, g, b, colorsShort[i]);
-        if (distance < best || best == -1) {
+        double distance = getDistance(split[1], split[2], split[3], colorsShort[i]);
+        if (distance < best || Double.isNaN(best)) {
           best = distance;
           index = i;
         }
       }
+      System.out.println("index: " + index);
       // Minecraft has 143 colors, some of which have negative byte
       // representations
       byte value = (byte) (index < 128 ? index : -129 + (index - 127));
@@ -385,11 +463,12 @@ public class MapUtils {
     else if (c > Byte.MIN_VALUE) c = Byte.MAX_VALUE;
     return (byte) c;
   }
+
   public static final short[][] colorsShort = {
     {0, 0, 0, 0},
-    {0, 0, 0},
-    {0, 0, 0},
-    {0, 0, 0},
+    {0, 0, 0, 0},
+    {0, 0, 0, 0},
+    {0, 0, 0, 0},
     {89, 125, 39},
     {109, 153, 48},
     {127, 178, 56},
@@ -598,7 +677,8 @@ public class MapUtils {
 
   static {
     colors = new Color[colorsShort.length];
-    for (int index = 0; index < colorsShort.length; index++) {
+    colors[0] = colors[1] = colors[2] = colors[3] = new Color(0, 0, 0, 0);
+    for (int index = 4; index < colorsShort.length; index++) {
       short[] rgba = colorsShort[index];
       if (rgba.length == 4) {
         colors[index] = new Color(rgba[0], rgba[1], rgba[2], rgba[3]);
@@ -607,7 +687,8 @@ public class MapUtils {
       }
     }
     colorsRGB = new int[colors.length];
-    for (int index = 0; index < colors.length; index++) {
+    //    colorsRGB[0] = colorsRGB[1] = colorsRGB[2] = colorsRGB[3] = Integer.MIN_VALUE;
+    for (int index = 4; index < colors.length; index++) {
       colorsRGB[index] = colors[index].getRGB();
     }
     clearCache();

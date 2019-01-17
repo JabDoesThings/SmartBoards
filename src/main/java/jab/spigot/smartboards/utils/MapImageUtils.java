@@ -52,30 +52,35 @@ public class MapImageUtils {
   static {
     WHITE = new MapImage(128, 128, Color.WHITE);
     BLACK = new MapImage(128, 128, Color.BLACK);
-    WHITE.createPacket((short) -32000);
-    BLACK.createPacket((short) -32001);
+    WHITE.createPacket((short) 100);
+    BLACK.createPacket((short) 101);
     WHITE.setImmutable();
     BLACK.setImmutable();
-    STATIC_COLORS = new byte[]{
-        MapUtils.WHITE,
-        MapUtils.LIGHT_GRAY,
-        MapUtils.GRAY_1,
-        MapUtils.GRAY_2,
-        MapUtils.DARK_GRAY,
-        0 /* BLACK */
-    };
-    STATIC =
-        new MapImage[]{
-            createStaticMap(128, 128, -32100, STATIC_COLORS),
-            createStaticMap(128, 128, -32101, STATIC_COLORS),
-            createStaticMap(128, 128, -32102, STATIC_COLORS),
-            createStaticMap(128, 128, -32103, STATIC_COLORS),
-            createStaticMap(128, 128, -32104, STATIC_COLORS),
-            createStaticMap(128, 128, -32105, STATIC_COLORS),
-            createStaticMap(128, 128, -32106, STATIC_COLORS),
-            createStaticMap(128, 128, -32107, STATIC_COLORS),
-            createStaticMap(128, 128, -32108, STATIC_COLORS),
-            createStaticMap(128, 128, -32109, STATIC_COLORS)
+    STATIC_COLORS =
+        new byte[] {
+          MapUtils.WHITE,
+          MapUtils.LIGHT_GRAY,
+          MapUtils.GRAY_1,
+          MapUtils.GRAY_2,
+          MapUtils.DARK_GRAY,
+          MapUtils.BLACK
         };
+    STATIC =
+        new MapImage[] {
+          createStaticMap(128, 128, 200, STATIC_COLORS),
+          createStaticMap(128, 128, 201, STATIC_COLORS),
+          createStaticMap(128, 128, 202, STATIC_COLORS),
+          createStaticMap(128, 128, 203, STATIC_COLORS),
+          createStaticMap(128, 128, 204, STATIC_COLORS),
+          createStaticMap(128, 128, 205, STATIC_COLORS),
+          createStaticMap(128, 128, 206, STATIC_COLORS),
+          createStaticMap(128, 128, 207, STATIC_COLORS),
+          createStaticMap(128, 128, 208, STATIC_COLORS),
+          createStaticMap(128, 128, 209, STATIC_COLORS)
+        };
+  }
+
+  public static MapImage[] getStaticImages() {
+    return STATIC;
   }
 }

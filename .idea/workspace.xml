@@ -1,37 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/TransitionEffects.java" line="391" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="94ef03be-2378-4c63-bec8-e1bddef75ce6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardGraphics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SequencedBoardGraphics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SimpleBoardGraphics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardGraphics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/ImageScale.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImageUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/PacketUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestMapImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Josh.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Josh.xml" afterDir="false" />
+    <list default="true" id="94ef03be-2378-4c63-bec8-e1bddef75ce6" name="Default Changelist" comment="Major commit update.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SyncStaticBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/examples/GalleryStaticBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/AnimationEffect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ScaleEffect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/TimeEffect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/TransitionEffects.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/NMSUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/Distortion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/GifSequenceWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/RotationTransformExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestTransition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mapImage_dest.png" beforeDir="false" afterPath="$PROJECT_DIR$/mapImage_dest.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mapImage_source.png" beforeDir="false" afterPath="$PROJECT_DIR$/mapImage_source.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/CompilerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/CompilerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/PluginSmartBoards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/PluginSmartBoards.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/SmartBoardThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/SmartBoardThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SmartBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SmartBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SyncSmartBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SyncSmartBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/BoardClick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/BoardClick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/MapAnchor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/MapAnchor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/MapScale.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/AlreadyCompiledException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/AlreadyCompiledException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/AlreadyRegisteredException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/AlreadyRegisteredException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/IllegalDimensionsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/IllegalDimensionsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SequencedBoardGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SequencedBoardGraphics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardGraphics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/MapAnchor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/ImageAnchor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsMapAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsMapAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/BoardProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/BoardProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/CompilerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/CompilerTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImageUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImageUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/PacketUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/PacketUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestMapImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestFormatConversion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/CompilerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/CompilerManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/PluginSmartBoards.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/PluginSmartBoards.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/SmartBoardThread$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/SmartBoardThread$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/SmartBoardThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/SmartBoardThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/AsyncSmartBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/AsyncSmartBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/SmartBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/SmartBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/SyncSmartBoard$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/SyncSmartBoard$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/SyncSmartBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/SyncSmartBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/BoardColors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/BoardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/BoardFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/SequencedBoardGraphics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/SequencedBoardGraphics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/SimpleBoardGraphics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/SimpleBoardGraphics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/StaticBoardGraphics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/boards/graphics/StaticBoardGraphics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/enums/BoardDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/enums/BoardDirection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/enums/MapAnchor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/enums/MapScale.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/events/SmartBoardClickEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/events/SmartBoardClickEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/events/SmartBoardEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/events/SmartBoardEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/events/SmartBoardPlayerEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/events/SmartBoardPlayerEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/exceptions/AlreadyCompiledException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/exceptions/AlreadyCompiledException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/exceptions/AlreadyRegisteredException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/exceptions/AlreadyRegisteredException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/exceptions/IllegalDimensionsException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/exceptions/IllegalDimensionsException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/protocol/SmartBoardsClickAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/protocol/SmartBoardsClickAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/protocol/SmartBoardsMapAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/protocol/SmartBoardsMapAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/BoardAxis.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/BoardAxis.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/BoardProfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/BoardProfile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/CompilerTask$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/CompilerTask$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/CompilerTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/CompilerTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/MapImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/MapImage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/MapUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/MapUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/PacketUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/PacketUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/SmartBoardSearch.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/SmartBoardSearch.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/UVUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jab/spigot/smartboards/utils/UVUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/jab/spigot/smartboards/test/TestMapImage.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -41,42 +83,68 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/RotationTransformExample.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="-1000">
+                    <caret line="61" column="24" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="24" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="889984506">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="1" />
-          <entry key="java" value="97" />
+          <entry key="class" value="17" />
+          <entry key="java" value="167" />
+          <entry key="xml" value="3" />
+          <entry key="yml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="97" />
+          <entry key="CLASS" value="17" />
+          <entry key="JAVA" value="167" />
+          <entry key="XML" value="3" />
+          <entry key="YAML" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="32" />
-          <entry key="java" value="32973" />
-          <entry key="txt" value="146" />
-          <entry key="xml" value="116" />
+          <entry key="dummy" value="37" />
+          <entry key="java" value="60027" />
+          <entry key="txt" value="166" />
+          <entry key="xml" value="133" />
+          <entry key="yml" value="66" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="32973" />
-          <entry key="PLAIN_TEXT" value="178" />
-          <entry key="XML" value="116" />
+          <entry key="JAVA" value="60027" />
+          <entry key="PLAIN_TEXT" value="203" />
+          <entry key="XML" value="133" />
+          <entry key="YAML" value="66" />
         </counts>
       </usages-collector>
     </session>
@@ -84,36 +152,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/CompilerTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9820">
-              <caret line="526" column="23" lean-forward="true" selection-start-line="526" selection-start-column="23" selection-end-line="526" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#13060#13061#0" expanded="true" />
-                <element signature="e#13091#13092#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImageUtils.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/PluginSmartBoards.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="7" selection-start-line="7" selection-end-line="11" selection-end-column="3" />
+              <caret line="61" column="33" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,19 +164,32 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/PacketUtils.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/TransitionEffects.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            <state relative-caret-position="-190">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#267#312#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/SmartBoardSearch.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/AnimationEffect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+            <state relative-caret-position="320">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestTransition.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="91" column="54" selection-start-line="91" selection-start-column="54" selection-end-line="91" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -143,58 +198,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/UVUtil.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/Distortion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="220" column="5" lean-forward="true" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="270">
+              <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/CompilerManager.java">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="53">
+              <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/BoardAxis.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
-              <caret line="104" column="32" lean-forward="true" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="360">
+              <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapUtils.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="596" column="4" selection-start-line="596" selection-start-column="4" selection-end-line="596" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/BoardProfile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1460">
-              <caret line="77" column="10" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="320">
+              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -205,6 +248,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -217,7 +261,25 @@
       <find>getRGB</find>
       <find>matchColor</find>
       <find>MAX</find>
+      <find>isDi</find>
+      <find>protocol</find>
+      <find>sendMeta</find>
+      <find>creat</find>
+      <find>25, 25, 25</find>
+      <find>map</find>
+      <find>applyTo</find>
+      <find>send</find>
+      <find>createP</find>
+      <find>Setting</find>
+      <find>setMapId</find>
+      <find>println</find>
+      <find>draw(</find>
+      <find>getColor</find>
+      <find>main</find>
     </findStrings>
+    <dirStrings>
+      <dir>M:\Workspace\Minecraft\Projects\SmartBoards\src\main\java</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -225,44 +287,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/events/BoardPlayerEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/events/BoardEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/events/SmartBoardPlayerEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/events/SmartBoardEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/BoardSearch.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/BoardThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/BoardDirection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsClickAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/SmartBoard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/UVUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/SmartBoardSearch.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/BoardAxis.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/CompilerThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/MiniMapAnchor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/MiniMapScale.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MiniMapUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MiniMapImage.java" />
         <option value="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test.java" />
-        <option value="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestMapImage.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/BoardProfile.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardFrame.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/MapColors.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BasicBoardGraphics.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SimpleBoardGraphics.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardGraphics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/PluginSmartBoards.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SequencedBoardGraphics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/SmartBoardThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardGraphics.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/BoardClick.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SmartBoard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardColors.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/MapImageUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SyncSmartBoard.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/MapAnchor.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/MapScale.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/ImageScale.java" />
@@ -270,18 +305,55 @@
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/AlreadyCompiledException.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/AlreadyRegisteredException.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/IllegalDimensionsException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsMapAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/CompilerTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImageUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/PacketUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/CompilerManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SyncStaticBoard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SequencedBoardGraphics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/NMSUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/PacketUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsMapAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/SmartBoardThread.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SyncSmartBoard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SmartBoard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImageUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardGraphics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/ImageAnchor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/examples/GalleryStaticBoard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapUtils.java" />
+        <option value="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestMapImage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestFormatConversion.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SlideEffect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/AnimationEffect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.java" />
+        <option value="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/GifSequenceWriter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/TimeEffect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ScaleEffect.java" />
+        <option value="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestTransition.java" />
+        <option value="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/RotationTransformExample.java" />
+        <option value="$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/Distortion.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/PluginSmartBoards.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/TransitionEffects.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand />
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="SmartBoards" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="SmartBoards" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
       <select />
     </treeState>
   </component>
@@ -297,7 +369,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -343,6 +417,14 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="boards" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
@@ -396,6 +478,13 @@
               <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
               <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -412,19 +501,24 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546247081883" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547729828667" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="M:\Workspace\Minecraft\Projects\SmartBoards\src\test\java\jab\spigot\smartboards\test" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="jab.spigot.smartboards.protocol" />
     </key>
@@ -441,8 +535,34 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="TestMapImage.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Distortion">
+    <configuration name="Distortion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.Distortion" />
+      <module name="SmartBoards" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jab.spigot.smartboards.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RotationTransformExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.RotationTransformExample" />
+      <module name="SmartBoards" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jab.spigot.smartboards.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestTransition.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SmartBoards" />
       <extension name="coverage">
         <pattern>
@@ -451,16 +571,59 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="jab.spigot.smartboards.test" />
-      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.TestMapImage" />
-      <option name="METHOD_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.TestTransition" />
+      <option name="METHOD_NAME" value="test1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestTransition.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SmartBoards" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jab.spigot.smartboards.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="jab.spigot.smartboards.test" />
+      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.TestTransition" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestTransition.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SmartBoards" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jab.spigot.smartboards.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="jab.spigot.smartboards.test" />
+      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.TestTransition" />
+      <option name="METHOD_NAME" value="test3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.TestTransition.test1" />
+      <item itemvalue="JUnit.TestTransition.test2" />
+      <item itemvalue="JUnit.TestTransition.test3" />
+      <item itemvalue="Application.Distortion" />
+      <item itemvalue="Application.RotationTransformExample" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestMapImage.test" />
+        <item itemvalue="Application.Distortion" />
+        <item itemvalue="Application.RotationTransformExample" />
+        <item itemvalue="JUnit.TestTransition.test3" />
+        <item itemvalue="JUnit.TestTransition.test2" />
+        <item itemvalue="JUnit.TestTransition.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -478,42 +641,41 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 17m 23s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test2 - 2019.01.17 at 05h 31m 58s.xml">
+      <configuration name="TestTransition.test2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 22m 05s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test2 - 2019.01.17 at 05h 32m 51s.xml">
+      <configuration name="TestTransition.test2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 31m 59s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test2 - 2019.01.17 at 05h 34m 25s.xml">
+      <configuration name="TestTransition.test2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 33m 02s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test2 - 2019.01.17 at 05h 35m 08s.xml">
+      <configuration name="TestTransition.test2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 36m 18s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test2 - 2019.01.17 at 05h 36m 01s.xml">
+      <configuration name="TestTransition.test2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 37m 02s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test2 - 2019.01.17 at 05h 41m 21s.xml">
+      <configuration name="TestTransition.test2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 42m 01s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test3 - 2019.01.17 at 06h 09m 03s.xml">
+      <configuration name="TestTransition.test3" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 42m 19s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test3 - 2019.01.17 at 06h 10m 47s.xml">
+      <configuration name="TestTransition.test3" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 56m 15s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test3 - 2019.01.17 at 06h 11m 10s.xml">
+      <configuration name="TestTransition.test3" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMapImage_test - 2018.12.28 at 15h 56m 58s.xml">
-      <configuration name="TestMapImage.test" configurationId="JUnit" />
+    <history-entry file="TestTransition_test3 - 2019.01.17 at 06h 11m 46s.xml">
+      <configuration name="TestTransition.test3" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18550107" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19189766" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -523,7 +685,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.329718" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -538,323 +700,111 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Maven Projects" order="7" visible="true" weight="0.18656716" />
+      <window_info active="true" anchor="right" id="Maven Projects" order="7" visible="true" weight="0.18656716" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Major commit update." />
+    <option name="LAST_COMMIT_MESSAGE" value="Major commit update." />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/net/minecraft/server/v1_13_R2/PacketPlayOutMap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestMapImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/image/BufferedImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="1057" selection-start-line="1057" selection-end-line="1057" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="147" column="19" selection-start-line="147" selection-start-column="19" selection-end-line="147" selection-end-column="19" />
-          <folding>
-            <element signature="e#5748#5749#0" expanded="true" />
-            <element signature="e#5784#5785#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1025#1026#0" expanded="true" />
-            <element signature="e#1053#1054#0" expanded="true" />
-            <element signature="e#1116#1117#0" expanded="true" />
-            <element signature="e#1143#1144#0" expanded="true" />
-            <element signature="e#1239#1240#0" expanded="true" />
-            <element signature="e#1267#1268#0" expanded="true" />
-            <element signature="e#1189#1190#0" expanded="true" />
-            <element signature="e#1215#1216#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SimpleBoardGraphics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="18" column="74" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="74" />
-          <folding>
-            <element signature="e#662#663#0" expanded="true" />
-            <element signature="e#694#695#0" expanded="true" />
-          </folding>
+          <caret line="19" column="64" lean-forward="true" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardGraphics.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/comphenix/protocol/ProtocolLib/4.4.0/ProtocolLib-4.4.0.jar!/com/comphenix/protocol/ProtocolManager.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="35" column="3" lean-forward="true" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
-          <folding>
-            <element signature="e#532#533#0" expanded="true" />
-            <element signature="e#559#560#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#713#714#0" expanded="true" />
-            <element signature="e#810#811#0" expanded="true" />
-            <element signature="e#837#838#0" expanded="true" />
-            <element signature="e#792#793#0" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
-            <element signature="e#617#618#0" expanded="true" />
-            <element signature="e#644#645#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/PluginSmartBoards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="36" column="36" lean-forward="true" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/SmartBoardThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="711">
-          <caret line="147" column="47" lean-forward="true" selection-start-line="147" selection-start-column="47" selection-end-line="147" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#851#1765#0" expanded="true" />
-            <element signature="e#1764#1765#0" expanded="true" />
-            <element signature="e#11395#11396#0" expanded="true" />
-            <element signature="e#11424#11425#0" expanded="true" />
-            <element signature="e#11972#11973#0" expanded="true" />
-            <element signature="e#12006#12007#0" expanded="true" />
-            <element signature="e#12064#12065#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
-            <element signature="e#12159#12160#0" expanded="true" />
-            <element signature="e#12212#12213#0" expanded="true" />
-            <element signature="e#12282#12283#0" expanded="true" />
-            <element signature="e#12315#12316#0" expanded="true" />
-            <element signature="e#12387#12388#0" expanded="true" />
-            <element signature="e#12428#12429#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/SequencedBoardGraphics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-466">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="e#1414#1415#0" expanded="true" />
-            <element signature="e#1481#1482#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="430">
+          <caret line="29" column="74" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardGraphics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="100" column="29" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1040#1041#0" expanded="true" />
-            <element signature="e#1069#1070#0" expanded="true" />
-            <element signature="e#1664#1665#0" expanded="true" />
-            <element signature="e#1685#1686#0" expanded="true" />
-            <element signature="e#1950#1951#0" expanded="true" />
-            <element signature="e#1983#1984#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="24" column="41" lean-forward="true" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SmartBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1180">
-          <caret line="86" column="10" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SyncSmartBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="75" column="2" lean-forward="true" selection-start-line="75" selection-start-column="2" selection-end-line="75" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5684#5685#0" expanded="true" />
-            <element signature="e#5709#5710#0" expanded="true" />
-            <element signature="e#5783#5784#0" expanded="true" />
-            <element signature="e#5817#5818#0" expanded="true" />
-            <element signature="e#5861#5862#0" expanded="true" />
-            <element signature="e#5883#5884#0" expanded="true" />
-            <element signature="e#5925#5926#0" expanded="true" />
-            <element signature="e#5947#5948#0" expanded="true" />
-            <element signature="e#6091#6092#0" expanded="true" />
-            <element signature="e#6120#6121#0" expanded="true" />
-            <element signature="e#6167#6168#0" expanded="true" />
-            <element signature="e#6188#6189#0" expanded="true" />
-            <element signature="e#6242#6243#0" expanded="true" />
-            <element signature="e#6263#6264#0" expanded="true" />
-            <element signature="e#6305#6306#0" expanded="true" />
-            <element signature="e#6332#6333#0" expanded="true" />
-            <element signature="e#6368#6369#0" expanded="true" />
-            <element signature="e#6392#6393#0" expanded="true" />
-            <element signature="e#6434#6435#0" expanded="true" />
-            <element signature="e#6456#6457#0" expanded="true" />
-            <element signature="e#6499#6500#0" expanded="true" />
-            <element signature="e#6529#6530#0" expanded="true" />
-            <element signature="e#6584#6585#0" expanded="true" />
-            <element signature="e#6614#6615#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/MapAnchor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/BoardDirection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/BoardClick.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/ImageScale.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/events/SmartBoardClickEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="614">
-          <caret line="127" selection-start-line="127" selection-end-line="127" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/events/SmartBoardEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/events/SmartBoardPlayerEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/AlreadyCompiledException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" selection-start-line="4" selection-end-line="8" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/AlreadyRegisteredException.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13-R0.1-SNAPSHOT/spigot-api-1.13-R0.1-20180826.040111-146.jar!/org/bukkit/inventory/meta/MapMeta.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/exceptions/IllegalDimensionsException.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/net/minecraft/server/v1_13_R2/NBTTagCompound.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="330" column="16" selection-start-line="330" selection-start-column="16" selection-end-line="330" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/org/bukkit/craftbukkit/v1_13_R2/inventory/CraftMetaMap.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/org/bukkit/craftbukkit/v1_13_R2/inventory/CraftMetaItem.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21380">
+          <caret line="1189" column="15" selection-start-line="1189" selection-start-column="15" selection-end-line="1189" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/org/bukkit/craftbukkit/v1_13_R2/inventory/CraftItemStack.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9300">
+          <caret line="501" column="19" selection-start-line="501" selection-start-column="19" selection-end-line="501" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/net/minecraft/server/v1_13_R2/PacketPlayOutEntityMetadata.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsMapAdapter.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/net/minecraft/server/v1_13_R2/DataWatcherSerializer.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="80">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/net/minecraft/server/v1_13_R2/DataWatcherRegistry.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/net/minecraft/server/v1_13_R2/DataWatcherObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/NMSUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsClickAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
+        <state relative-caret-position="553">
           <caret line="75" column="44" selection-start-line="75" selection-start-column="44" selection-end-line="75" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -862,59 +812,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/BoardAxis.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/net/minecraft/server/v1_13_R2/ItemStack.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="104" column="32" lean-forward="true" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
+        <state relative-caret-position="2960">
+          <caret line="275" column="63" selection-start-line="275" selection-start-column="59" selection-end-line="275" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SyncSmartBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="151" column="27" selection-start-line="151" selection-start-column="27" selection-end-line="151" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/BoardProfile.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.13.2/CraftBukkit-1.13.2.Jar!/net/minecraft/server/v1_13_R2/DataWatcher.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1460">
-          <caret line="77" column="10" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="291">
+          <caret line="116" column="18" selection-start-line="116" selection-start-column="18" selection-end-line="116" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/CompilerTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsMapAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9820">
-          <caret line="526" column="23" lean-forward="true" selection-start-line="526" selection-start-column="23" selection-end-line="526" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#13060#13061#0" expanded="true" />
-            <element signature="e#13091#13092#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="596" column="4" selection-start-line="596" selection-start-column="4" selection-end-line="596" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImageUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" selection-start-line="7" selection-end-line="11" selection-end-column="3" />
+        <state relative-caret-position="400">
+          <caret line="49" column="6" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -923,38 +848,304 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/PacketUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/SmartBoardSearch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+        <state relative-caret-position="390">
+          <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/UVUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/SmartBoardThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="220" column="5" lean-forward="true" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
+        <state relative-caret-position="73">
+          <caret line="320" column="26" selection-start-line="320" selection-start-column="26" selection-end-line="320" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/CompilerManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/examples/GalleryStaticBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="940">
+          <caret line="61" column="76" selection-start-line="61" selection-start-column="76" selection-end-line="61" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/ImageAnchor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardGraphics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="63" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SmartBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2940">
+          <caret line="172" column="3" selection-start-line="161" selection-start-column="2" selection-end-line="172" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/Color.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="394" selection-start-line="394" selection-end-line="394" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestFormatConversion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-310">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/BoardFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-740">
+          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2973#2974#0" expanded="true" />
+            <element signature="e#3001#3002#0" expanded="true" />
+            <element signature="e#3095#3096#0" expanded="true" />
+            <element signature="e#3122#3123#0" expanded="true" />
+            <element signature="e#3218#3219#0" expanded="true" />
+            <element signature="e#3246#3247#0" expanded="true" />
+            <element signature="e#3353#3354#0" expanded="true" />
+            <element signature="e#3379#3380#0" expanded="true" />
+            <element signature="e#3785#3786#0" expanded="true" />
+            <element signature="e#3828#3829#0" expanded="true" />
+            <element signature="e#4294#4295#0" expanded="true" />
+            <element signature="e#4340#4341#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="378" column="26" selection-start-line="378" selection-start-column="26" selection-end-line="378" selection-end-column="26" />
+          <folding>
+            <element signature="e#7288#7289#0" expanded="true" />
+            <element signature="e#7330#7331#0" expanded="true" />
+            <element signature="e#10253#10254#0" expanded="true" />
+            <element signature="e#10321#10322#0" expanded="true" />
+            <element signature="e#10486#10487#0" expanded="true" />
+            <element signature="e#10536#10537#0" expanded="true" />
+            <element signature="e#13951#13952#0" expanded="true" />
+            <element signature="e#13998#13999#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImageUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="78" column="37" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/utils/MapImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="113" column="18" selection-start-line="113" selection-start-column="18" selection-end-line="113" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/Effect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/SyncStaticBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/image/BufferedImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="842" column="15" selection-start-line="842" selection-start-column="15" selection-end-line="842" selection-end-column="15" />
+          <folding>
+            <element signature="e#34806#34807#0" expanded="true" />
+            <element signature="e#34838#34839#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/GifSequenceWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="59" column="62" selection-start-line="59" selection-start-column="62" selection-end-line="59" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#5858#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/TimeEffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/StaticBoardFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ColorBoardFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/ScaleEffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/Graphics2D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="1029" column="25" selection-start-line="1029" selection-start-column="25" selection-end-line="1029" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/javafx/application/PlatformImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="466" column="23" selection-start-line="466" selection-start-column="23" selection-end-line="466" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/application/Platform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="116" column="22" lean-forward="true" selection-start-line="116" selection-start-column="22" selection-end-line="116" selection-end-column="22" />
+          <folding>
+            <element signature="e#4036#4037#0" expanded="true" />
+            <element signature="e#4071#4072#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="5418" column="22" selection-start-line="5418" selection-start-column="22" selection-end-line="5418" selection-end-column="22" />
+          <folding>
+            <element signature="e#232916#232917#0" expanded="true" />
+            <element signature="e#232965#232966#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/RotationTransformExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1000">
+          <caret line="61" column="24" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/PluginSmartBoards.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="61" column="33" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/Distortion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/jab/spigot/smartboards/test/TestTransition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="91" column="54" selection-start-line="91" selection-start-column="54" selection-end-line="91" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/enums/ImageScale.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/TransitionEffects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-190">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#267#312#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jab/spigot/smartboards/boards/graphics/AnimationEffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
         </state>
       </provider>
     </entry>

@@ -15,7 +15,7 @@ public class StaticBoardGraphics extends SequencedBoardGraphics {
 
   private void create() {
     for (int index = 0; index < 3; index++) {
-      addFrame(new StaticBoardFrame(getWidth(), getHeight()), 20);
+      addFrame(new StaticBoardFrame(getWidth(), getHeight()), 2);
     }
   }
 }

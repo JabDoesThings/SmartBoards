@@ -10,12 +10,12 @@ public class ColorBoardFrame extends BoardFrame {
    * @param height The height of the colored board frame.
    */
   public ColorBoardFrame(int width, int height) {
-    super(width, height);
+    super(width, height, true);
     create(MapImageUtils.WHITE);
   }
 
   public ColorBoardFrame(int width, int height, MapImage color) {
-    super(width, height);
+    super(width, height, true);
     create(color);
   }
 

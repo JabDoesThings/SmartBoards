@@ -1,7 +1,11 @@
 package jab.spigot.smartboards.boards.graphics;
 
+import jab.spigot.smartboards.PluginSmartBoards;
 import jab.spigot.smartboards.utils.MapImage;
 import org.jetbrains.annotations.NotNull;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * This class handles rendered MapImages for BoardGraphics instances.
@@ -23,7 +27,7 @@ public class BoardFrame {
    * @param startingMapIndex The mini-map index to increment for each mini-map.
    */
   public BoardFrame(int width, int height, int startingMapIndex) {
-    this(width, height);
+    this(width, height, false);
     create(startingMapIndex);
   }
 
@@ -32,12 +36,41 @@ public class BoardFrame {
    *
    * @param width The frame width. (in blocks)
    * @param height The frame height. (in blocks)
+   * @param generateMapIndexes Set to true to generate map indexes. Set to false to manually assign
+   *     them.<br>
+   *     NOTE: This constructor does not invoke '<code>create(int startingMapIndex)</code> if this
+   *     paramater is set to false. This method must be invoked to use the frame.
    */
-  public BoardFrame(int width, int height) {
+  public BoardFrame(int width, int height, boolean generateMapIndexes) {
     this.width = width;
     this.height = height;
     this.size = width * height;
     this.frames = new MapImage[size];
+    if (generateMapIndexes) {
+      create(PluginSmartBoards.generateMapIndex(size));
+    }
+  }
+
+  public BoardFrame(@NotNull BufferedImage image) {
+    int bWidth = 0;
+    int bHeight = 0;
+    int sWidth = image.getWidth();
+    int sHeight = image.getHeight();
+    while (sWidth > 0) {
+      sWidth -= 128;
+      bWidth++;
+    }
+    while (sHeight > 0) {
+      sHeight -= 128;
+      bHeight++;
+    }
+    width = bWidth * 128;
+    height = bHeight * 128;
+    this.size = width * height;
+    this.frames = new MapImage[size];
+    int startingMapIndex = PluginSmartBoards.generateMapIndex(size);
+    create(startingMapIndex);
+    draw(image);
   }
 
   /**
@@ -49,6 +82,29 @@ public class BoardFrame {
     for (int index = 0; index < size; index++) {
       frames[index] = new MapImage(128, 128);
       frames[index].createPacket((short) startingMapIndex++);
+    }
+  }
+
+  public void draw(@NotNull MapImage image) {
+    int imageWidth = image.getWidth();
+    int imageHeight = image.getHeight();
+    for (int y = 0; y < height; y++) {
+      int offsetY = -imageHeight + ((y + 1) * 128);
+      for (int x = 0; x < width; x++) {
+        int offsetX = x * -128;
+        frames[getIndex(x, y)].draw(image, offsetX, offsetY);
+      }
+    }
+  }
+
+  public void draw(@NotNull BufferedImage image) {
+    int imageHeight = image.getHeight();
+    for (int y = 0; y < height; y++) {
+      int offsetY = -imageHeight + ((y + 1) * 128);
+      for (int x = 0; x < width; x++) {
+        int offsetX = x * -128;
+        frames[getIndex(x, y)].draw(image, offsetX, offsetY);
+      }
     }
   }
 
@@ -71,5 +127,66 @@ public class BoardFrame {
   /** @return Returns the amount of mini-map frames used for the board frame. */
   public int getSize() {
     return this.size;
+  }
+
+  /**
+   * This is the formula for one-dimensional arrays composed of unique indexes of 2-dimensional
+   * coordinates: <br>
+   * index = (y + width) + (width - 1) + x
+   *
+   * @param x The x coordinate relative to the board's left side.
+   * @param y The y coordinate relative to the board's top side.
+   * @return Returns the array index for the given coordinates.
+   */
+  int getIndex(int x, int y) {
+    return getIndex(x, y, getWidth());
+  }
+
+  /**
+   * This is the formula for one-dimensional arrays composed of unique indexes of 2-dimensional
+   * coordinates: <br>
+   * index = (y + width) + (width - 1) + x
+   *
+   * @param x The x coordinate relative to the board's left side.
+   * @param y The y coordinate relative to the board's top side.
+   * @param width The width of the board.
+   * @return Returns the array index for the given coordinates.
+   */
+  static int getIndex(int x, int y, int width) {
+    return (y * width) + (width - 1) - x;
+  }
+
+  /** @return Returns a BufferedImage of the frame. */
+  @NotNull
+  public BufferedImage toBufferedImage() {
+    int iw = getWidth() * 128;
+    int ih = getHeight() * 128;
+    BufferedImage image = new BufferedImage(iw, ih, BufferedImage.TYPE_4BYTE_ABGR);
+    Graphics2D g = (Graphics2D) image.getGraphics();
+    g.clearRect(0, 0, iw, ih);
+    // Draw all frames.
+    for (int y = 0; y < getHeight(); y++) {
+      for (int x = 0; x < getWidth(); x++) {
+        g.drawImage(getFrame(x, y).toBufferedImage(), x * 128, y * 128, null);
+      }
+    }
+    g.dispose();
+    return image;
+  }
+
+  /**
+   * @param x The x coordinate on the frame.
+   * @param y The y coordinate on the frame.
+   * @return Returns the MapImage at the specified coordinate on the frame.
+   */
+  @NotNull
+  private MapImage getFrame(int x, int y) {
+    if (x < 0 || x > width) {
+      throw new IndexOutOfBoundsException("Invalid X coordinate: " + x);
+    }
+    if (y < 0 || y > height) {
+      throw new IndexOutOfBoundsException("Invalid Y coordinate: " + y);
+    }
+    return frames[getIndex(x, y)];
   }
 }

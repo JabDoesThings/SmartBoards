@@ -7,12 +7,17 @@ import jab.spigot.smartboards.events.SmartBoardClickEvent;
 import jab.spigot.smartboards.utils.BoardProfile;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Collection;
+import java.util.List;
 
 /** @author Josh */
 public interface SmartBoard {
@@ -37,8 +42,8 @@ public interface SmartBoard {
       chunk.load(true);
     }
     // Attempt to find the ItemFrame. (If it already exists)
-    Entity[] entities = chunk.getEntities();
-    if (entities.length > 0) {
+    Collection<Entity> entities = world.getNearbyEntities(location, 0.5, 0.5, 0.5);
+    if (entities.size() > 0) {
       for (Entity entity : entities) {
         if (entity instanceof ItemFrame && entity.getLocation().equals(location)) {
           itemFrame = (ItemFrame) entity;
@@ -49,6 +54,29 @@ public interface SmartBoard {
     // If the ItemFrame does not exist, create on in the location given.
     if (itemFrame == null) {
       itemFrame = (ItemFrame) world.spawnEntity(location, EntityType.ITEM_FRAME);
+    }
+    return itemFrame;
+  }
+
+  @NotNull
+  default ItemFrame createItemFrame(
+      Collection<ItemFrame> itemFrames,
+      World world,
+      int x,
+      int y,
+      int z,
+      BoardDirection direction) {
+    ItemFrame itemFrame = null;
+    for (ItemFrame frame : itemFrames) {
+      Location location = frame.getLocation();
+      if (location.getBlockX() == x && location.getBlockY() == y && location.getBlockZ() == z) {
+        itemFrame = frame;
+        break;
+      }
+    }
+    if (itemFrame == null) {
+      itemFrame = world.spawn(new Location(world, x, y, z), ItemFrame.class);
+      itemFrame.setFacingDirection(direction.getFacingDirection());
     }
     return itemFrame;
   }
