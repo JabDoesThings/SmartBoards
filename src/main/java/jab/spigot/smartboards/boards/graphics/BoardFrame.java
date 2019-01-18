@@ -64,11 +64,20 @@ public class BoardFrame {
       sHeight -= 128;
       bHeight++;
     }
-    width = bWidth * 128;
-    height = bHeight * 128;
+    width = bWidth;
+    height = bHeight;
     this.size = width * height;
     this.frames = new MapImage[size];
     int startingMapIndex = PluginSmartBoards.generateMapIndex(size);
+    System.out.println(
+        "width: "
+            + width
+            + " height: "
+            + height
+            + " size: "
+            + size
+            + " starting: "
+            + startingMapIndex);
     create(startingMapIndex);
     draw(image);
   }

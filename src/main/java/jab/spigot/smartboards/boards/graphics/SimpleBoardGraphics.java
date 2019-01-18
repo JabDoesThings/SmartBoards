@@ -1,6 +1,6 @@
 package jab.spigot.smartboards.boards.graphics;
 
-import jab.spigot.smartboards.utils.MapImageUtils;
+import jab.spigot.smartboards.utils.MapImage;
 import org.jetbrains.annotations.Nullable;
 
 public class SimpleBoardGraphics extends BoardGraphics {
@@ -17,7 +17,7 @@ public class SimpleBoardGraphics extends BoardGraphics {
    */
   public SimpleBoardGraphics(int width, int height) {
     super(width, height);
-    DEFAULT_FRAME = new ColorBoardFrame(width, height, MapImageUtils.WHITE);
+    DEFAULT_FRAME = new ColorBoardFrame(width, height, MapImage.WHITE);
     boardFrame = DEFAULT_FRAME;
   }
 

@@ -2,20 +2,16 @@ package jab.spigot.smartboards.utils;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import jab.spigot.smartboards.PluginSmartBoards;
-import jab.spigot.smartboards.enums.ImageAnchor;
+import jab.spigot.smartboards.SmartBoardThread;
+import jab.spigot.smartboards.enums.AnchorFlag;
 import jab.spigot.smartboards.exceptions.IllegalDimensionsException;
 import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.MapMeta;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -27,7 +23,12 @@ import org.jetbrains.annotations.NotNull;
  */
 public class MapImage {
 
-  private ItemStack itemStack;
+  public static final MapImage[] STATIC;
+  public static final MapImage WHITE;
+  public static final MapImage BLACK;
+  public static final Random random = new Random();
+
+  private static byte[] STATIC_COLORS;
 
   /** The stored raster of map colors for the image. */
   private final byte[] bytes;
@@ -112,11 +113,10 @@ public class MapImage {
    * @throws IllegalArgumentException Thrown if the image is invalid.
    */
   public void draw(@NotNull BufferedImage image, int offsetX, int offsetY) {
-    draw(image, offsetX, offsetY, ImageAnchor.TOP_LEFT);
+    draw(image, offsetX, offsetY, AnchorFlag.TOP_LEFT);
   }
 
-  public void draw(
-      BufferedImage image, int offsetX, int offsetY, @NotNull ImageAnchor anchor) {
+  public void draw(BufferedImage image, int offsetX, int offsetY, @NotNull AnchorFlag anchor) {
     checkImmutable();
     int anchorX = 0;
     int anchorY = 0;
@@ -299,10 +299,6 @@ public class MapImage {
     setDirty(true);
   }
 
-  public ItemStack getItemStack() {
-    return this.itemStack;
-  }
-
   public PacketPlayOutMap createPacket(short index) {
     if (isPacketCreated()) {
       throw new IllegalStateException("Packet is already created for MapImage.");
@@ -311,13 +307,13 @@ public class MapImage {
     boolean c = true;
     packet = new PacketPlayOutMap(index, b, c, new ArrayList<>(), bytes, 0, 0, 128, 128);
     PacketUtils.setRawByteArrayForMapPacket(packet, bytes);
-
-    this.itemStack = new ItemStack(Material.FILLED_MAP);
-    MapMeta mapMeta = (MapMeta) itemStack.getItemMeta();
-    mapMeta.setMapId(index);
-    itemStack.setItemMeta(mapMeta);
-
+    SmartBoardThread.instance.addPacket(packet);
     return packet;
+  }
+
+  public void dispose() {
+    SmartBoardThread.instance.removePacket(packet);
+    packet = null;
   }
 
   /**
@@ -631,11 +627,74 @@ public class MapImage {
         PluginSmartBoards.mapMapPacketTimes.computeIfAbsent(playerId, k -> new HashMap<>());
     mapTimes.put(packetId, System.currentTimeMillis());
     // Send the packet.
-    System.out.println("Sending MapData: " + packetId);
     ((CraftPlayer) player).getHandle().playerConnection.sendPacket(getPacket());
   }
 
   private long getUpdateTime() {
     return this.update;
+  }
+
+  /**
+   * Generates a MapImage that is random gray-scale shades.
+   *
+   * @param width The width of the image. (in pixels)
+   * @param height The height of the image. (in pixels)
+   * @param mapIndex The map-index to assign to the image.
+   * @param colors The color palette to populate the image.
+   * @return Returns the generated MapImage.
+   */
+  @NotNull
+  public static MapImage createStaticMap(int width, int height, int mapIndex, byte[] colors) {
+    MapImage mapImage = new MapImage(width, height);
+    mapImage.createPacket((short) mapIndex);
+    int size = width * height;
+    byte[] raster = new byte[size];
+    for (int index = 0; index < size; index++) {
+      raster[index] = colors[random.nextInt(colors.length)];
+    }
+    mapImage.setRaster(raster, 128, 128);
+    mapImage.setImmutable();
+    return mapImage;
+  }
+
+  /** @return Returns a random generated static MapImage. */
+  @NotNull
+  public static MapImage getStaticImage() {
+    return STATIC[random.nextInt(STATIC.length)];
+  }
+
+  public static MapImage[] getStaticImages() {
+    return STATIC;
+  }
+
+  static {
+    WHITE = new MapImage(128, 128, Color.WHITE);
+    BLACK = new MapImage(128, 128, Color.BLACK);
+    WHITE.createPacket((short) 100);
+    BLACK.createPacket((short) 101);
+    WHITE.setImmutable();
+    BLACK.setImmutable();
+    STATIC_COLORS =
+        new byte[] {
+          MapUtils.WHITE,
+          MapUtils.LIGHT_GRAY,
+          MapUtils.GRAY_1,
+          MapUtils.GRAY_2,
+          MapUtils.DARK_GRAY,
+          MapUtils.BLACK
+        };
+    STATIC =
+        new MapImage[] {
+          createStaticMap(128, 128, 200, STATIC_COLORS),
+          createStaticMap(128, 128, 201, STATIC_COLORS),
+          createStaticMap(128, 128, 202, STATIC_COLORS),
+          createStaticMap(128, 128, 203, STATIC_COLORS),
+          createStaticMap(128, 128, 204, STATIC_COLORS),
+          createStaticMap(128, 128, 205, STATIC_COLORS),
+          createStaticMap(128, 128, 206, STATIC_COLORS),
+          createStaticMap(128, 128, 207, STATIC_COLORS),
+          createStaticMap(128, 128, 208, STATIC_COLORS),
+          createStaticMap(128, 128, 209, STATIC_COLORS)
+        };
   }
 }

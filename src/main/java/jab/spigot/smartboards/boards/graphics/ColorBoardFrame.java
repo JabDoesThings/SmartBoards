@@ -1,7 +1,6 @@
 package jab.spigot.smartboards.boards.graphics;
 
 import jab.spigot.smartboards.utils.MapImage;
-import jab.spigot.smartboards.utils.MapImageUtils;
 
 public class ColorBoardFrame extends BoardFrame {
 
@@ -11,7 +10,7 @@ public class ColorBoardFrame extends BoardFrame {
    */
   public ColorBoardFrame(int width, int height) {
     super(width, height, true);
-    create(MapImageUtils.WHITE);
+    create(MapImage.WHITE);
   }
 
   public ColorBoardFrame(int width, int height, MapImage color) {

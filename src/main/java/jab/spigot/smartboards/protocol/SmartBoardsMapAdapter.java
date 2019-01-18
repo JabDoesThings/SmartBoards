@@ -38,51 +38,48 @@ public class SmartBoardsMapAdapter extends PacketAdapter {
    * @param plugin The Plug-in instance.
    */
   public SmartBoardsMapAdapter(@NotNull SmartBoardThread thread, @NotNull JavaPlugin plugin) {
-    //    super(
-    //        plugin,
-    //        ListenerPriority.HIGHEST,
-    //        PacketType.Play.Server.MAP,
-    //        PacketType.Play.Server.ENTITY_METADATA);
     super(
         plugin,
         ListenerPriority.HIGHEST,
-        PacketType.Play.Server.ENTITY,
-        ENTITY_METADATA,
-        ENTITY_DESTROY,
-        ENTITY_EFFECT,
-        ENTITY_EQUIPMENT,
-        ENTITY_STATUS,
-        ENTITY_TELEPORT,
-        TILE_ENTITY_DATA);
+        PacketType.Play.Server.MAP,
+        PacketType.Play.Server.ENTITY_METADATA);
     this.thread = thread;
   }
 
   @Override
   public void onPacketSending(@NotNull PacketEvent event) {
-    //    PacketContainer container = event.getPacket();
-    //    if (container.getHandle() instanceof PacketPlayOutMap) {
-    //      // Grab the packet.
-    //      PacketPlayOutMap packet = (PacketPlayOutMap) event.getPacket().getHandle();
-    //      int index = getMapIndex(packet);
-    //      // If the packet is not authored as our packet, cancel it.
-    //      if (event.getPacketType() == PacketType.Play.Server.MAP) {
-    //        Map<Integer, SmartBoard> mapBoardIds = thread.getRegisteredMapIds();
-    //        List<PacketPlayOutMap> listPackets = thread.getRegisteredMapPackets();
-    //        synchronized (thread.lockPackets) {
-    //          if (!listPackets.contains(packet) && mapBoardIds.containsKey(index)) {
-    //            System.out.println("Cancelling Mini-Map packet: " + PacketUtils.getMapId(packet));
-    //            event.setCancelled(true);
-    //          }
-    //        }
-    //      }
-    //    } else if(container.getHandle() instanceof PacketPlayOutEntityMetadata) {
-    //      PacketPlayOutEntityMetadata packet = (PacketPlayOutEntityMetadata)
-    // event.getPacket().getHandle();
-    //      PacketUtils.printEntityMetadataPacket(packet);
-    //    }
-    //    else {
-    System.out.println("PACKET: " + event.getPacket().getHandle().getClass().getSimpleName());
-    //    }
+    PacketContainer container = event.getPacket();
+    if (container.getHandle() instanceof PacketPlayOutMap) {
+      //      // Grab the packet.
+      PacketPlayOutMap packet = (PacketPlayOutMap) event.getPacket().getHandle();
+      int index = getMapIndex(packet);
+      //      // If the packet is not authored as our packet, cancel it.
+      Map<Integer, PacketPlayOutMap> map = SmartBoardThread.instance.getRegisteredMapPackets();
+      synchronized (thread.lockPackets) {
+        if (map.containsKey(index)) {
+          PacketPlayOutMap compare = map.get(index);
+          if (!compare.equals(packet)) {
+            //            System.out.println("Cancelling Mini-Map packet: " + index);
+            event.setCancelled(true);
+          }
+        }
+      }
+    } else if (container.getHandle() instanceof PacketPlayOutEntityMetadata) {
+      PacketPlayOutEntityMetadata packet =
+          (PacketPlayOutEntityMetadata) event.getPacket().getHandle();
+      int entityId = PacketUtils.getEntityId(packet);
+      Map<Integer, PacketPlayOutEntityMetadata> map = thread.getRegisteredMetaPackets();
+      synchronized (thread.lockPackets) {
+        if (map.containsKey(entityId)) {
+          PacketPlayOutEntityMetadata compare = map.get(entityId);
+          if (!compare.equals(packet)) {
+            //            System.out.println("Cancelling Metadata packet.");
+            //            PacketUtils.printEntityMetadataPacket(packet);
+            event.setCancelled(true);
+          }
+        }
+      }
+    }
   }
 
   /**

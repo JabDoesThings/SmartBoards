@@ -54,8 +54,8 @@ public class GifSequenceWriter {
 
     graphicsControlExtensionNode.setAttribute("disposalMethod", "none");
     graphicsControlExtensionNode.setAttribute("userInputFlag", "FALSE");
-    graphicsControlExtensionNode.setAttribute("transparentColorFlag", "TRUE");
-    graphicsControlExtensionNode.setAttribute("colorResolution", "256");
+    graphicsControlExtensionNode.setAttribute("transparentColorFlag", "FALSE");
+    //    graphicsControlExtensionNode.setAttribute("colorResolution", "256");
     graphicsControlExtensionNode.setAttribute(
         "delayTime", Integer.toString(timeBetweenFramesMS / 10));
     graphicsControlExtensionNode.setAttribute("transparentColorIndex", "0");

@@ -5,8 +5,10 @@ import jab.spigot.smartboards.boards.SmartBoard;
 import jab.spigot.smartboards.boards.graphics.BoardGraphics;
 import jab.spigot.smartboards.protocol.SmartBoardsMapAdapter;
 import jab.spigot.smartboards.protocol.SmartBoardsClickAdapter;
+import jab.spigot.smartboards.utils.PacketUtils;
 import jab.spigot.smartboards.utils.SmartBoardSearch;
 import jab.spigot.smartboards.utils.UVUtil;
+import net.minecraft.server.v1_13_R2.PacketPlayOutEntityMetadata;
 import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -35,8 +37,44 @@ public class SmartBoardThread implements Runnable {
   /** Key: Mini-Map ID, Value: Board using the ID. */
   private final Map<Integer, SmartBoard> mapBoardIds;
 
+  private final Map<Integer, PacketPlayOutMap> mapMapPackets;
+
   /** This is a list of pre-approved packets registered by smartboards. */
   private final List<PacketPlayOutMap> listApprovedPackets;
+
+  private Map<Integer, PacketPlayOutEntityMetadata> mapMetaPackets;
+
+  public void addPacket(PacketPlayOutEntityMetadata packet, int entityId) {
+    synchronized (lockPackets) {
+      mapMetaPackets.put(entityId, packet);
+    }
+  }
+
+  public void removePacket(PacketPlayOutEntityMetadata packet) {
+    synchronized (lockPackets) {
+      int entityId = PacketUtils.getEntityId(packet);
+      mapMetaPackets.remove(entityId);
+    }
+  }
+
+  public void removePacket(int entityId) {
+    synchronized (lockPackets) {
+      mapMetaPackets.remove(entityId);
+    }
+  }
+
+  public void addPacket(PacketPlayOutMap packet) {
+    synchronized (lockPackets) {
+      int id = PacketUtils.getMapId(packet);
+      mapMapPackets.put(id, packet);
+    }
+  }
+
+  public void removePacket(PacketPlayOutMap packet) {
+    synchronized (lockPackets) {
+      mapMapPackets.remove(PacketUtils.getMapId(packet));
+    }
+  }
 
   private final List<SmartBoard> listFlaggedBoards;
 
@@ -59,6 +97,8 @@ public class SmartBoardThread implements Runnable {
 
   /** Main constructor. */
   SmartBoardThread() {
+    this.mapMapPackets = new HashMap<>();
+    this.mapMetaPackets = new HashMap<>();
     this.mapBoards = new HashMap<>();
     this.mapBoardIds = new HashMap<>();
     this.listApprovedPackets = new ArrayList<>();
@@ -317,7 +357,7 @@ public class SmartBoardThread implements Runnable {
       this.listApprovedPackets.clear();
       this.boardsToLoop = new SmartBoard[0];
       ProtocolManager protocolManager = PluginSmartBoards.protocolManager;
-//      protocolManager.addPacketListener(smartSmartBoardsMapAdapter);
+      protocolManager.addPacketListener(smartSmartBoardsMapAdapter);
       protocolManager.addPacketListener(smartBoardsClickAdapter);
     }
     this.started = true;
@@ -379,8 +419,12 @@ public class SmartBoardThread implements Runnable {
   }
 
   @NotNull
-  public List<PacketPlayOutMap> getRegisteredMapPackets() {
-    return this.listApprovedPackets;
+  public Map<Integer, PacketPlayOutMap> getRegisteredMapPackets() {
+    return this.mapMapPackets;
+  }
+
+  public Map<Integer, PacketPlayOutEntityMetadata> getRegisteredMetaPackets() {
+    return this.mapMetaPackets;
   }
 
   private class SmartBoardSyncRunnable extends BukkitRunnable {

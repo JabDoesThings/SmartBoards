@@ -1,6 +1,6 @@
 package jab.spigot.smartboards.boards.graphics;
 
-import jab.spigot.smartboards.utils.MapImageUtils;
+import jab.spigot.smartboards.utils.MapImage;
 
 /**
  * This BoardFrame creates a frame based on randomly selected static MapImages.
@@ -22,7 +22,7 @@ public class StaticBoardFrame extends BoardFrame {
 
   private void create() {
     for (int index = 0; index < getSize(); index++) {
-      frames[index] = MapImageUtils.getStaticImage();
+      frames[index] = MapImage.getStaticImage();
     }
   }
 }

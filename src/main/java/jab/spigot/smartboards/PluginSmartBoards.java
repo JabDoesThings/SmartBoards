@@ -6,8 +6,6 @@ import jab.spigot.smartboards.boards.examples.GalleryStaticBoard;
 import jab.spigot.smartboards.boards.graphics.TransitionEffects;
 import jab.spigot.smartboards.enums.BoardDirection;
 import jab.spigot.smartboards.utils.BoardProfile;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -40,7 +38,7 @@ public class PluginSmartBoards extends JavaPlugin implements Listener {
   private static int THREAD_COUNT = 1;
   private GalleryStaticBoard board;
 
-  private static int CURRENT_MAP_ID = 15000;
+  private static int CURRENT_MAP_ID = 300;
 
   public static int generateMapIndex() {
     return generateMapIndex(1);
@@ -72,7 +70,7 @@ public class PluginSmartBoards extends JavaPlugin implements Listener {
 
     World world = Bukkit.getWorlds().get(0);
     Location location = new Location(world, 180, 70, 61);
-    board = new GalleryStaticBoard(new BoardProfile(location, BoardDirection.SOUTH, 16, 9));
+    board = new GalleryStaticBoard(new BoardProfile(location, BoardDirection.SOUTH, 8, 6));
     board.create();
   }
 
@@ -91,7 +89,7 @@ public class PluginSmartBoards extends JavaPlugin implements Listener {
       @Override
       public void run() {
         System.out.println("ADD");
-        //        for (MapImage image : MapImageUtils.getStaticImages()) {
+        //        for (MapImage image : ImageUtils.getStaticImages()) {
         //          connection.sendPacket(image.getPacket());
         //        }
         board.addPlayer(player);

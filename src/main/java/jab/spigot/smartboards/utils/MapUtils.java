@@ -392,7 +392,6 @@ public class MapUtils {
           index = i;
         }
       }
-      System.out.println("index: " + index);
       // Minecraft has 143 colors, some of which have negative byte
       // representations
       byte value = (byte) (index < 128 ? index : -129 + (index - 127));

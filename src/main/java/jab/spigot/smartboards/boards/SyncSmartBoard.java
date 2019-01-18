@@ -38,10 +38,12 @@ import static org.bukkit.Material.*;
 public class SyncSmartBoard implements SmartBoard {
 
   private final int id;
+  private final DataWatcherObject<net.minecraft.server.v1_13_R2.ItemStack> e;
+  private final DataWatcherObject<Integer> f;
 
   private ItemFrame[] frames;
   private Location[] frameLocations;
-  private net.minecraft.server.v1_13_R2.ItemStack[] itemStacks;
+  private ItemStack[] stacks;
   private BoardProfile profile;
   private BoardGraphics graphics;
 
@@ -63,6 +65,8 @@ public class SyncSmartBoard implements SmartBoard {
     this.players = new ArrayList<>();
     this.graphics = new SimpleBoardGraphics(profile.getWidth(), profile.getHeight());
     int size = profile.getWidth() * profile.getHeight();
+    e = DataWatcher.a(EntityItemFrame.class, DataWatcherRegistry.g);
+    f = DataWatcher.a(EntityItemFrame.class, DataWatcherRegistry.b);
   }
 
   /** Creates the board's ItemFrames, as well as registers the board to the SmartBoardThread. */
@@ -77,9 +81,9 @@ public class SyncSmartBoard implements SmartBoard {
     this.frames = new ItemFrame[size];
     this.datawatchers = new DataWatcher[size];
     this.metadata = new PacketPlayOutEntityMetadata[size];
-    itemStacks = new net.minecraft.server.v1_13_R2.ItemStack[size];
+    stacks = new ItemStack[size];
     for (int index = 0; index < size; index++) {
-      itemStacks[index] = CraftItemStack.asNMSCopy(new ItemStack(FILLED_MAP));
+      stacks[index] = new ItemStack(FILLED_MAP);
     }
 
     Collection<ItemFrame> itemFrames = profile.getWorld().getEntitiesByClass(ItemFrame.class);
@@ -124,6 +128,9 @@ public class SyncSmartBoard implements SmartBoard {
       }
       frames = null;
     }
+    for (ItemFrame frame : frames) {
+      SmartBoardThread.instance.removePacket(frame.getEntityId());
+    }
     SmartBoardThread.instance.removeBoard(this);
   }
 
@@ -137,8 +144,8 @@ public class SyncSmartBoard implements SmartBoard {
         //        EntityItemFrame entityItemFrame = ((CraftItemFrame) frames[index]).getHandle();
         //        datawatchers[index] = entityItemFrame.getDataWatcher();
         //        datawatchers[index].set(DataWatcherRegistry.b.a(7), 0);
-
         metadata[index] = new PacketPlayOutEntityMetadata();
+        SmartBoardThread.instance.addPacket(metadata[index], frames[index].getEntityId());
       }
     }
   }
@@ -150,12 +157,12 @@ public class SyncSmartBoard implements SmartBoard {
       for (int x = lx; x < lx + getWidth(); x++) {
         index = getIndex(x - lx, y - ly);
         frames[index] = createItemFrame(itemFrames, world, x, y, lz, BoardDirection.SOUTH);
-        EntityItemFrame entityItemFrame = ((CraftItemFrame) frames[index]).getHandle();
+        //        EntityItemFrame entityItemFrame = ((CraftItemFrame) frames[index]).getHandle();
         //        datawatchers[index] = entityItemFrame.getDataWatcher();
         //        datawatchers[index].set(DataWatcherRegistry.b.a(7), 0);
-        entityItemFrame.getDataWatcher().set(DataWatcherRegistry.b.a(7), 0);
-
+        int entityId = frames[index].getEntityId();
         metadata[index] = new PacketPlayOutEntityMetadata();
+        SmartBoardThread.instance.addPacket(metadata[index], frames[index].getEntityId());
       }
     }
   }
@@ -171,6 +178,7 @@ public class SyncSmartBoard implements SmartBoard {
         //        datawatchers[index] = entityItemFrame.getDataWatcher();
         //        datawatchers[index].set(DataWatcherRegistry.b.a(7), 0);
         metadata[index] = new PacketPlayOutEntityMetadata();
+        SmartBoardThread.instance.addPacket(metadata[index], frames[index].getEntityId());
       }
     }
   }
@@ -186,6 +194,7 @@ public class SyncSmartBoard implements SmartBoard {
         //        datawatchers[index] = entityItemFrame.getDataWatcher();
         //        datawatchers[index].set(DataWatcherRegistry.b.a(7), 0);
         metadata[index] = new PacketPlayOutEntityMetadata();
+        SmartBoardThread.instance.addPacket(metadata[index], frames[index].getEntityId());
       }
     }
   }
@@ -204,16 +213,21 @@ public class SyncSmartBoard implements SmartBoard {
     for (int y = 0; y < getHeight(); y++) {
       for (int x = 0; x < getWidth(); x++) {
         int index = getIndex(x, y);
+
         ItemStack itemStack = new ItemStack(FILLED_MAP);
         MapMeta mapMeta = (MapMeta) itemStack.getItemMeta();
         mapMeta.setMapId(frames[index].getPacketId());
         itemStack.setItemMeta(mapMeta);
-        //        NMSUtils.setMapId(itemStacks[index], frames[index].getPacketId());
+
         DataWatcher dataWatcher =
             ((CraftItemFrame) this.frames[index]).getHandle().getDataWatcher();
+        //        DataWatcher dataWatcher1 =
+        //            new DataWatcher(((CraftItemFrame) this.frames[index]).getHandle());
+        //        dataWatcher1.register(e, CraftItemStack.asNMSCopy(itemStack));
+        //        dataWatcher1.register(f, 0);
+
         PacketUtils.setMapId(
             this.frames[index].getEntityId(), metadata[index], dataWatcher, itemStack);
-        //        this.frames[index].setItem(new ItemStack(mats[mIndex]));
       }
     }
     mIndex++;
@@ -269,17 +283,16 @@ public class SyncSmartBoard implements SmartBoard {
   }
 
   public void sendToPlayer(Player player) {
-    //    System.out.println("Sending to player: " + player.getName());
     PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
-    for (int index = 0; index < metadata.length; index++) {
-      sendMetadata(player, index);
-    }
     BoardFrame boardFrame = graphics.getFrame();
     MapImage[] frames = boardFrame.getFrames();
     for (MapImage frame : frames) {
       if (!frame.isSent(player)) {
         frame.send(player);
       }
+    }
+    for (int index = 0; index < metadata.length; index++) {
+      sendMetadata(player, index);
     }
   }
 

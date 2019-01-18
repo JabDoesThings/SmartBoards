@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class TestFormatConversion {
 
-  @Test
+  //  @Test
   public void test() {
     BufferedImage source = createSource();
     try {

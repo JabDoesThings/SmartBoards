@@ -1,7 +1,9 @@
 package jab.spigot.smartboards.boards.graphics;
 
-import jab.spigot.smartboards.utils.MapImageUtils;
+import jab.spigot.smartboards.utils.MapImage;
 import org.jetbrains.annotations.NotNull;
+
+import java.awt.image.BufferedImage;
 
 /**
  * This class handles sequenced frames for board graphics.
@@ -27,7 +29,7 @@ public class SequencedBoardGraphics extends BoardGraphics {
    */
   public SequencedBoardGraphics(int width, int height) {
     super(width, height);
-    DEFAULT_FRAME = new ColorBoardFrame(width, height, MapImageUtils.BLACK);
+    DEFAULT_FRAME = new ColorBoardFrame(width, height, MapImage.BLACK);
     frames = new BoardFrame[0];
     frameTimes = new int[0];
   }
@@ -52,6 +54,22 @@ public class SequencedBoardGraphics extends BoardGraphics {
   }
 
   public void addFrame(@NotNull BoardFrame frame, int time) {
+    if (frame.getWidth() != getWidth()) {
+      throw new IllegalArgumentException(
+          "Width of the frame does not match the graphics object: (frame: "
+              + frame.getWidth()
+              + " graphics: "
+              + getWidth()
+              + ")");
+    }
+    if (frame.getHeight() != getHeight()) {
+      throw new IllegalArgumentException(
+          "Height of the frame does not match the graphics object: (frame: "
+              + frame.getHeight()
+              + " graphics: "
+              + getHeight()
+              + ")");
+    }
     synchronized (lock) {
       // Add the frame.
       BoardFrame[] framesNew = new BoardFrame[frames.length + 1];
@@ -69,5 +87,18 @@ public class SequencedBoardGraphics extends BoardGraphics {
   @Override
   public BoardFrame getFrame() {
     return frames.length != 0 ? frames[index] : DEFAULT_FRAME;
+  }
+
+  public void addImageAsFrame(@NotNull BufferedImage frame, int time) {
+    addFrame(new BoardFrame(frame), time);
+  }
+
+  public void addImagesAsFrames(@NotNull BufferedImage[] frames, int time) {
+    if (frames.length == 0) {
+      return;
+    }
+    for (BufferedImage frame : frames) {
+      addFrame(new BoardFrame(frame), time);
+    }
   }
 }

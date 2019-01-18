@@ -66,6 +66,11 @@ public interface SmartBoard {
       int y,
       int z,
       BoardDirection direction) {
+    Location loc = new Location(world, x, y, z);
+    Chunk chunk = loc.getChunk();
+    if (!chunk.isLoaded()) {
+      chunk.load();
+    }
     ItemFrame itemFrame = null;
     for (ItemFrame frame : itemFrames) {
       Location location = frame.getLocation();

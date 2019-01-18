@@ -2,11 +2,11 @@ package jab.spigot.smartboards.boards.examples;
 
 import jab.spigot.smartboards.PluginSmartBoards;
 import jab.spigot.smartboards.boards.SyncSmartBoard;
-import jab.spigot.smartboards.boards.graphics.BoardFrame;
-import jab.spigot.smartboards.boards.graphics.SequencedBoardGraphics;
-import jab.spigot.smartboards.enums.ImageAnchor;
+import jab.spigot.smartboards.boards.graphics.*;
+import jab.spigot.smartboards.enums.AnchorFlag;
+import jab.spigot.smartboards.enums.ScaleFlag;
 import jab.spigot.smartboards.utils.BoardProfile;
-import jab.spigot.smartboards.utils.MapImage;
+import jab.spigot.smartboards.utils.ImageUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,42 +31,64 @@ public class GalleryStaticBoard extends SyncSmartBoard {
   private void load() {
     JavaPlugin plugin = PluginSmartBoards.instance;
     File directory = new File(plugin.getDataFolder(), "images");
-    BufferedImage[] images = new BufferedImage[10];
+    BufferedImage[] images = new BufferedImage[3];
     try {
       images[0] = ImageIO.read(new File(directory, "image_0.jpg"));
       images[1] = ImageIO.read(new File(directory, "image_1.jpg"));
-      images[2] = ImageIO.read(new File(directory, "image_2.jpg"));
-      images[3] = ImageIO.read(new File(directory, "image_3.jpg"));
-      images[4] = ImageIO.read(new File(directory, "image_4.jpg"));
-      images[5] = ImageIO.read(new File(directory, "image_5.jpg"));
-      images[6] = ImageIO.read(new File(directory, "image_6.jpg"));
-      images[7] = ImageIO.read(new File(directory, "image_7.jpg"));
-      images[8] = ImageIO.read(new File(directory, "image_8.jpg"));
-      images[9] = ImageIO.read(new File(directory, "image_9.jpg"));
+      images[2] = ImageIO.read(new File(directory, "image_9.jpg"));
     } catch (IOException e) {
       e.printStackTrace();
     }
 
+    BufferedImage[] formattedImages = new BufferedImage[images.length];
+    for (int index = 0; index < images.length; index++) {
+      formattedImages[index] =
+          ImageUtils.formatImage(
+              images[index],
+              getWidth(),
+              getHeight(),
+              Color.BLACK,
+              AnchorFlag.CENTER,
+              ScaleFlag.FIT_Y_NEAREST);
+    }
+
+    BufferedImage[] transition1 =
+        TransitionEffects.createTransition(
+            formattedImages[0],
+            formattedImages[1],
+            20,
+            TimeEffect.EASE_IN,
+            ScaleEffect.SHRINK,
+            AnimationEffect.NONE);
+
+    BufferedImage[] transition2 =
+        TransitionEffects.createTransition(
+            formattedImages[1],
+            formattedImages[2],
+            20,
+            TimeEffect.EASE_IN,
+            ScaleEffect.GROW,
+            AnimationEffect.FALL_DOWN);
+
+    BufferedImage[] transition3 =
+        TransitionEffects.createTransition(
+            formattedImages[2],
+            formattedImages[0],
+            20,
+            TimeEffect.LINEAR,
+            ScaleEffect.NONE,
+            AnimationEffect.SPIN_TOP_LEFT_CW);
+
     SequencedBoardGraphics graphics = new SequencedBoardGraphics(getWidth(), getHeight());
 
-    int width = getWidth();
-    int height = getHeight();
-    int size = width * height;
-
-    int starting_index = 1000;
-
-    MapImage[] mapImages = new MapImage[10];
-    BoardFrame[] frames = new BoardFrame[10];
-    for (int index = 0; index < 10; index++) {
-      System.out.println("Creating MapImage(" + index + ")...");
-      mapImages[index] = new MapImage(width * 128, height * 128, Color.BLACK);
-      mapImages[index].draw(images[index], 0, 0, ImageAnchor.CENTER);
-
-      System.out.println("Creating BoardFrame(" + index + ")...");
-      frames[index] = new BoardFrame(width, height, starting_index += size);
-      frames[index].draw(mapImages[index]);
-      graphics.addFrame(frames[index], 100);
-    }
+    int ticksFrame = 100; /* 5 Seconds */
+    int ticksTransition = 1; /* 1/20 Seconds */
+    graphics.addImageAsFrame(formattedImages[0], ticksFrame);
+    graphics.addImagesAsFrames(transition1, ticksTransition);
+    graphics.addImageAsFrame(formattedImages[1], ticksFrame);
+    graphics.addImagesAsFrames(transition2, ticksTransition);
+    graphics.addImageAsFrame(formattedImages[2], ticksFrame);
+    graphics.addImagesAsFrames(transition3, ticksTransition);
 
     setGraphics(graphics);
   }
