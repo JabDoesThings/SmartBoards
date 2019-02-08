@@ -1,18 +1,15 @@
 package jab.spigot.smartboards;
 
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
 import jab.smartboards.commons.SmartBoards;
 import jab.smartboards.commons.board.SyncSmartBoard;
 import jab.spigot.smartboards.boards.examples.GalleryStaticBoard;
 import jab.spigot.smartboards.boards.graphics.TransitionEffects;
 import jab.spigot.smartboards.boards.menu.MenuAssets;
 import jab.compiler.CompilerManager;
-import jab.smartboards.commons.SmartBoardThread;
 import jab.smartboards.commons.board.BoardDirection;
 import jab.smartboards.commons.board.BoardProfile;
-import jab.spigot.smartboards.protocol.SmartBoardsClickAdapter;
-import jab.spigot.smartboards.protocol.SmartBoardsMapAdapter;
+import jab.smartboards.commons.SmartBoardsClickAdapter;
+import jab.smartboards.commons.SmartBoardsMapAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -54,11 +51,14 @@ public class PluginSmartBoards extends JavaPlugin implements Listener {
     MenuAssets.load(false);
     getServer().getPluginManager().registerEvents(this, this);
     // Create and start the main thread for processing smartboards.
-    SmartBoardThread.instance = new SmartBoardThread(this);
-    CompilerManager.instance = new CompilerManager(this, 1);
-    SmartBoardThread.instance.start();
-    CompilerManager.instance.start();
-    enableProtocolAdapters();
+    //    SmartBoardThread.instance = new SmartBoardThread(this);
+    //    CompilerManager.instance = new CompilerManager(this, 1);
+    //    SmartBoardThread.instance.start();
+    //    CompilerManager.instance.start();
+
+    SmartBoards.start(this);
+
+    SmartBoards.registerPacketAdapters(this);
     World world = Bukkit.getWorlds().get(0);
     Location location = new Location(world, 180, 70, 61);
     board = new GalleryStaticBoard(new BoardProfile(location, BoardDirection.SOUTH, 4, 3));
@@ -67,9 +67,9 @@ public class PluginSmartBoards extends JavaPlugin implements Listener {
 
   @Override
   public void onDisable() {
-    disableProtocolAdapters();
+    SmartBoards.stop();
+    SmartBoards.unregisterPacketAdapters();
     TransitionEffects.disableJavaFX();
-    SmartBoardThread.instance.stop();
     CompilerManager.instance.stop();
   }
 
@@ -106,20 +106,5 @@ public class PluginSmartBoards extends JavaPlugin implements Listener {
   @EventHandler
   public void on(HangingBreakEvent event) {
     event.setCancelled(true);
-  }
-
-  public void enableProtocolAdapters() {
-    this.smartSmartBoardsMapAdapter = new SmartBoardsMapAdapter(this);
-    this.smartBoardsClickAdapter = new SmartBoardsClickAdapter(this);
-    SmartBoards.protocolManager = ProtocolLibrary.getProtocolManager();
-    ProtocolManager protocolManager = SmartBoards.protocolManager;
-    protocolManager.addPacketListener(smartSmartBoardsMapAdapter);
-    protocolManager.addPacketListener(smartBoardsClickAdapter);
-  }
-
-  public void disableProtocolAdapters() {
-    ProtocolManager protocolManager = SmartBoards.protocolManager;
-    protocolManager.removePacketListener(smartSmartBoardsMapAdapter);
-    protocolManager.removePacketListener(smartBoardsClickAdapter);
   }
 }

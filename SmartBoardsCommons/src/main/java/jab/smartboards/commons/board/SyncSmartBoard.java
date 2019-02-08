@@ -1,6 +1,6 @@
 package jab.smartboards.commons.board;
 
-import jab.smartboards.commons.SmartBoardThread;
+import jab.smartboards.commons.SmartBoards;
 import jab.smartboards.commons.board.graphics.BoardFrame;
 import jab.smartboards.commons.board.graphics.BoardGraphics;
 import jab.smartboards.commons.board.graphics.SimpleBoardGraphics;
@@ -107,7 +107,7 @@ public class SyncSmartBoard implements SmartBoard {
     //          frames[index].getEntityId(), metadata[index], datawatchers[index],
     // itemStacks[index]);
     //    }
-    SmartBoardThread.instance.addBoard(this);
+    //    SmartBoards.addBoard(this);
     setDirty(true);
   }
 
@@ -126,9 +126,9 @@ public class SyncSmartBoard implements SmartBoard {
       frames = null;
     }
     for (ItemFrame frame : frames) {
-      SmartBoardThread.instance.removePacket(frame.getEntityId());
+      SmartBoards.removePacket(frame.getEntityId());
     }
-    SmartBoardThread.instance.removeBoard(this);
+    //    SmartBoards.removeBoard(this);
   }
 
   protected void createNorth(int lx, int ly, int lz, Collection<ItemFrame> itemFrames) {
@@ -143,7 +143,7 @@ public class SyncSmartBoard implements SmartBoard {
         //        datawatchers[index] = entityItemFrame.getDataWatcher();
         //        datawatchers[index].set(DataWatcherRegistry.b.a(7), 0);
         metadata[index] = new PacketPlayOutEntityMetadata();
-        SmartBoardThread.instance.addPacket(metadata[index], frames[index].getEntityId());
+        SmartBoards.addPacket(metadata[index], frames[index].getEntityId());
       }
     }
   }
@@ -161,7 +161,7 @@ public class SyncSmartBoard implements SmartBoard {
         //        datawatchers[index].set(DataWatcherRegistry.b.a(7), 0);
         int entityId = frames[index].getEntityId();
         metadata[index] = new PacketPlayOutEntityMetadata();
-        SmartBoardThread.instance.addPacket(metadata[index], frames[index].getEntityId());
+        SmartBoards.addPacket(metadata[index], frames[index].getEntityId());
       }
     }
   }
@@ -178,7 +178,7 @@ public class SyncSmartBoard implements SmartBoard {
         //        datawatchers[index] = entityItemFrame.getDataWatcher();
         //        datawatchers[index].set(DataWatcherRegistry.b.a(7), 0);
         metadata[index] = new PacketPlayOutEntityMetadata();
-        SmartBoardThread.instance.addPacket(metadata[index], frames[index].getEntityId());
+        SmartBoards.addPacket(metadata[index], frames[index].getEntityId());
       }
     }
   }
@@ -195,7 +195,7 @@ public class SyncSmartBoard implements SmartBoard {
         //        datawatchers[index] = entityItemFrame.getDataWatcher();
         //        datawatchers[index].set(DataWatcherRegistry.b.a(7), 0);
         metadata[index] = new PacketPlayOutEntityMetadata();
-        SmartBoardThread.instance.addPacket(metadata[index], frames[index].getEntityId());
+        SmartBoards.addPacket(metadata[index], frames[index].getEntityId());
       }
     }
   }

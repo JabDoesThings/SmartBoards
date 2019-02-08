@@ -1,11 +1,10 @@
-package jab.spigot.smartboards.protocol;
+package jab.smartboards.commons;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
-import jab.smartboards.commons.SmartBoardThread;
 import jab.smartboards.commons.board.SmartBoard;
 import jab.smartboards.commons.board.BoardClick;
 import jab.smartboards.commons.events.SmartBoardClickEvent;
@@ -16,7 +15,7 @@ import net.minecraft.server.v1_13_R2.PacketPlayInUseEntity;
 import net.minecraft.server.v1_13_R2.PacketPlayInUseItem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -31,7 +30,7 @@ public class SmartBoardsClickAdapter extends PacketAdapter {
    *
    * @param plugin The Plug-in instance.
    */
-  public SmartBoardsClickAdapter(@NotNull JavaPlugin plugin) {
+  public SmartBoardsClickAdapter(@NotNull Plugin plugin) {
     super(
         plugin,
         ListenerPriority.HIGHEST,
@@ -67,7 +66,7 @@ public class SmartBoardsClickAdapter extends PacketAdapter {
 
   private boolean handleBlockDig(@NotNull Player player, @NotNull PacketPlayInBlockDig packet) {
     // Grab all the boards the Player is looking at.
-    SmartBoardSearch search = SmartBoardThread.instance.getBoardAndUVLookedAt(player, 12);
+    SmartBoardSearch search = SmartBoards.getBoardAndUVLookedAt(player, 12);
     // Make sure the Player is looking at a Board to continue.
     if (search == null) {
       return false;
@@ -100,7 +99,7 @@ public class SmartBoardsClickAdapter extends PacketAdapter {
 
   private boolean handleBlockPlace(@NotNull Player player, @NotNull PacketPlayInBlockPlace packet) {
     // Grab all the boards the Player is looking at.
-    SmartBoardSearch search = SmartBoardThread.instance.getBoardAndUVLookedAt(player, 12);
+    SmartBoardSearch search = SmartBoards.getBoardAndUVLookedAt(player, 12);
     // Make sure the Player is looking at a Board to continue.
     if (search == null) {
       return false;
@@ -129,7 +128,7 @@ public class SmartBoardsClickAdapter extends PacketAdapter {
       return false;
     }
     // Grab all the boards the Player is looking at.
-    SmartBoardSearch search = SmartBoardThread.instance.getBoardAndUVLookedAt(player, 12);
+    SmartBoardSearch search = SmartBoards.getBoardAndUVLookedAt(player, 12);
     // Make sure the Player is looking at a Board to continue.
     if (search == null) {
       System.out.println("RETURN: Search is null.");
@@ -155,7 +154,7 @@ public class SmartBoardsClickAdapter extends PacketAdapter {
 
   private boolean handleUseItem(@NotNull Player player, @NotNull PacketPlayInUseItem packet) {
     // Grab all the boards the Player is looking at.
-    SmartBoardSearch search = SmartBoardThread.instance.getBoardAndUVLookedAt(player, 12);
+    SmartBoardSearch search = SmartBoards.getBoardAndUVLookedAt(player, 12);
     // Make sure the Player is looking at a Board to continue.
     if (search == null) {
       return false;

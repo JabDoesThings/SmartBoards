@@ -1,5 +1,4 @@
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\boards\examples\GalleryStaticBoard.java
-M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\protocol\SmartBoardsClickAdapter.java
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\boards\SyncStaticBoard.java
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\boards\graphics\TransitionEffects.java
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\boards\menu\BasicSmartMenu.java
@@ -11,7 +10,6 @@ M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\boards\examples\ExampleSmartMenu.java
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\boards\graphics\ScaleEffect.java
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\utils\NMSUtils.java
-M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\protocol\SmartBoardsMapAdapter.java
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\boards\graphics\AnimationEffect.java
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\boards\menu\MenuFrame.java
 M:\Workspace\Minecraft\Projects\SmartBoards\SmartBoardsPlugin\src\main\java\jab\spigot\smartboards\boards\AsyncSmartBoard.java

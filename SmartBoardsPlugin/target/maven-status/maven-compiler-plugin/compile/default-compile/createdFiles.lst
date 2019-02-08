@@ -1,5 +1,4 @@
 jab\spigot\smartboards\boards\graphics\TimeEffect.class
-jab\spigot\smartboards\protocol\SmartBoardsMapAdapter.class
 jab\spigot\smartboards\utils\NMSUtils.class
 jab\spigot\smartboards\boards\graphics\TransitionEffects.class
 jab\spigot\smartboards\PluginSmartBoards.class
@@ -17,5 +16,4 @@ jab\spigot\smartboards\boards\menu\MenuFrame.class
 jab\spigot\smartboards\boards\graphics\AnimationEffect.class
 jab\spigot\smartboards\MapImageCompilerTask.class
 jab\spigot\smartboards\boards\SyncStaticBoard.class
-jab\spigot\smartboards\protocol\SmartBoardsClickAdapter.class
 jab\spigot\smartboards\boards\menu\MenuAssets.class

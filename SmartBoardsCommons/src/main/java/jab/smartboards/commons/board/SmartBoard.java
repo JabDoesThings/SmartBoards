@@ -1,8 +1,8 @@
 package jab.smartboards.commons.board;
 
+import jab.smartboards.commons.SmartBoards;
 import jab.smartboards.commons.board.graphics.BoardGraphics;
 import jab.smartboards.commons.events.SmartBoardClickEvent;
-import jab.smartboards.commons.SmartBoardThread;
 import jab.smartboards.commons.utils.BoardSizable;
 import org.bukkit.*;
 import org.bukkit.entity.*;
@@ -90,7 +90,7 @@ public interface SmartBoard extends BoardSizable {
 
   /** @return Returns the next unique ID for new SmartBoards. */
   default int getNewId() {
-    return SmartBoardThread.NEXT_ID++;
+    return SmartBoards.NEXT_ID++;
   }
 
   /** NOTE: This method is only fired for async SmartBoards. */

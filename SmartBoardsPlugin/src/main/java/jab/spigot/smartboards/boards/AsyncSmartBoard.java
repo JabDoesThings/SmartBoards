@@ -7,6 +7,7 @@ import jab.smartboards.commons.board.BoardDirection;
 import jab.smartboards.commons.events.SmartBoardClickEvent;
 import jab.smartboards.commons.board.BoardProfile;
 import org.bukkit.Location;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,7 +33,7 @@ public class AsyncSmartBoard implements SmartBoard {
   public void onClick(SmartBoardClickEvent eventToPass) {}
 
   @Override
-  public boolean isLookingAt(Player player, int maxDistance) {
+  public boolean isLookingAt(LivingEntity player, int maxDistance) {
     return false;
   }
 

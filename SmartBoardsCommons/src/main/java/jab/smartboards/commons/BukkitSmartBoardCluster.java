@@ -12,6 +12,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public class BukkitSmartBoardCluster extends SmartBoardCluster {
 
+  /** The default sleep time used for synchronized clusters. (1 tick = 1/20th of a second) */
+  private static final int DEFAULT_PERIOD_TICKS = 1;
+
   private final Plugin plugin;
   private final int periodTicks;
 
@@ -19,7 +22,7 @@ public class BukkitSmartBoardCluster extends SmartBoardCluster {
   private BukkitRunnable runnable;
 
   /**
-   * Main constructor.
+   * Full constructor.
    *
    * @param plugin The plugin to associate with the internal BukkitRunnable used to update the
    *     cluster.
@@ -28,6 +31,19 @@ public class BukkitSmartBoardCluster extends SmartBoardCluster {
   public BukkitSmartBoardCluster(@NotNull Plugin plugin, int periodTicks) {
     this.plugin = plugin;
     this.periodTicks = periodTicks;
+  }
+
+  /**
+   * Basic constructor.
+   *
+   * <p>NOTE: This constructor uses <code>DEFAULT_PERIOD_TICKS</code> for the period of ticks to
+   * wait until updating the cluster.
+   *
+   * @param plugin The plugin to associate with the internal BukkitRunnable used to update the *
+   *     cluster.
+   */
+  public BukkitSmartBoardCluster(@NotNull Plugin plugin) {
+    this(plugin, DEFAULT_PERIOD_TICKS);
   }
 
   @Override

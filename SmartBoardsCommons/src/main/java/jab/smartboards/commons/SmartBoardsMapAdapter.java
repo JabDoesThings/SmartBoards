@@ -1,15 +1,14 @@
-package jab.spigot.smartboards.protocol;
+package jab.smartboards.commons;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
-import jab.smartboards.commons.SmartBoardThread;
 import jab.smartboards.commons.utils.PacketUtils;
 import net.minecraft.server.v1_13_R2.PacketPlayOutEntityMetadata;
 import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
@@ -30,7 +29,7 @@ public class SmartBoardsMapAdapter extends PacketAdapter {
    *
    * @param plugin The Plug-in instance.
    */
-  public SmartBoardsMapAdapter(@NotNull JavaPlugin plugin) {
+  public SmartBoardsMapAdapter(@NotNull Plugin plugin) {
     super(
         plugin,
         ListenerPriority.HIGHEST,
@@ -46,8 +45,8 @@ public class SmartBoardsMapAdapter extends PacketAdapter {
       PacketPlayOutMap packet = (PacketPlayOutMap) event.getPacket().getHandle();
       int index = getMapIndex(packet);
       //      // If the packet is not authored as our packet, cancel it.
-      Map<Integer, PacketPlayOutMap> map = SmartBoardThread.instance.getRegisteredMapPackets();
-      synchronized (SmartBoardThread.lockPackets) {
+      Map<Integer, PacketPlayOutMap> map = SmartBoards.getRegisteredMapPackets();
+      synchronized (SmartBoards.lockPackets) {
         if (map.containsKey(index)) {
           PacketPlayOutMap compare = map.get(index);
           if (!compare.equals(packet)) {
@@ -60,9 +59,8 @@ public class SmartBoardsMapAdapter extends PacketAdapter {
       PacketPlayOutEntityMetadata packet =
           (PacketPlayOutEntityMetadata) event.getPacket().getHandle();
       int entityId = PacketUtils.getEntityId(packet);
-      Map<Integer, PacketPlayOutEntityMetadata> map =
-          SmartBoardThread.instance.getRegisteredMetaPackets();
-      synchronized (SmartBoardThread.lockPackets) {
+      Map<Integer, PacketPlayOutEntityMetadata> map = SmartBoards.getRegisteredMetaPackets();
+      synchronized (SmartBoards.lockPackets) {
         if (map.containsKey(entityId)) {
           PacketPlayOutEntityMetadata compare = map.get(entityId);
           if (!compare.equals(packet)) {

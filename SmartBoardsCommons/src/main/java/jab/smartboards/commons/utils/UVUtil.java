@@ -3,7 +3,7 @@ package jab.smartboards.commons.utils;
 import jab.smartboards.commons.board.SmartBoard;
 import jab.smartboards.commons.board.BoardDirection;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -21,7 +21,7 @@ public class UVUtil {
   private static final int timesMax = 64;
 
   @Nullable
-  public static double[] calculateUV(@NotNull SmartBoard board, @NotNull Player player) {
+  public static double[] calculateUV(@NotNull SmartBoard board, @NotNull LivingEntity player) {
     BoardDirection dir = board.getDirection();
     double[] blockUV;
     switch (dir) {
@@ -42,7 +42,7 @@ public class UVUtil {
   }
 
   @Nullable
-  private static double[] calculateNorth(@NotNull Player player, @NotNull SmartBoard board) {
+  private static double[] calculateNorth(@NotNull LivingEntity player, @NotNull SmartBoard board) {
     // Define the surface of the frame in 3D space.
     double bz = ((double) board.getLocation().getBlockZ()) + 15.0 / 16.0;
     // Grab the vectors for the location of the player and where the player is looking.
@@ -91,7 +91,7 @@ public class UVUtil {
   }
 
   @Nullable
-  private static double[] calculateSouth(@NotNull Player player, @NotNull SmartBoard board) {
+  private static double[] calculateSouth(@NotNull LivingEntity player, @NotNull SmartBoard board) {
     // Define the surface of the frame in 3D space.
     double bz = ((double) board.getLocation().getBlockZ()) + 0.0625;
     // Grab the vectors for the location of the player and where the player is looking.
@@ -140,7 +140,7 @@ public class UVUtil {
   }
 
   @Nullable
-  private static double[] calculateEast(@NotNull Player player, @NotNull SmartBoard board) {
+  private static double[] calculateEast(@NotNull LivingEntity player, @NotNull SmartBoard board) {
     // Define the surface of the frame in 3D space.
     double bx = ((double) board.getLocation().getBlockX()) + 0.0625;
     // Grab the vectors for the location of the player and where the player is looking.
@@ -189,7 +189,7 @@ public class UVUtil {
   }
 
   @Nullable
-  private static double[] calculateWest(@NotNull Player player, @NotNull SmartBoard board) {
+  private static double[] calculateWest(@NotNull LivingEntity player, @NotNull SmartBoard board) {
     // Define the surface of the frame in 3D space.
     double bx = ((double) board.getLocation().getBlockX()) + 15.0 / 16.0;
     // Grab the vectors for the location of the player and where the player is looking.

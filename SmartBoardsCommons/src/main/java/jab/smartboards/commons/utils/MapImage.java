@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
-import jab.smartboards.commons.SmartBoardThread;
 import jab.smartboards.commons.SmartBoards;
 import jab.smartboards.commons.throwables.IllegalDimensionsException;
 import net.minecraft.server.v1_13_R2.PacketPlayOutMap;
@@ -322,12 +321,12 @@ public class MapImage {
     boolean c = true;
     packet = new PacketPlayOutMap(index, b, c, new ArrayList<>(), bytes, 0, 0, 128, 128);
     PacketUtils.setRawByteArrayForMapPacket(packet, bytes);
-    SmartBoardThread.addPacket(packet);
+    SmartBoards.addPacket(packet);
     return packet;
   }
 
   public void dispose() {
-    SmartBoardThread.removePacket(packet);
+    SmartBoards.removePacket(packet);
     packet = null;
   }
 
