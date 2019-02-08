@@ -15,6 +15,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * TODO: Document.
+ *
+ * @author Josh
+ */
 public class SmartBoards {
 
   private static final Map<Integer, PacketPlayOutMap> mapMapPackets = new HashMap<>();
@@ -24,41 +29,16 @@ public class SmartBoards {
   private static final List<PacketPlayOutMap> listApprovedPackets = new ArrayList<>();
 
   private static final List<SmartBoardCluster> listRegisteredClusters = new ArrayList<>();
-
-  public static final Object lockPackets = new Object();
-  public static ProtocolManager protocolManager;
-  private static int CURRENT_MAP_ID = 300;
+  private static ProtocolManager protocolManager;
+  static final Object lockPackets = new Object();
   public static int NEXT_ID = 0;
-  private static int THREAD_COUNT = 1;
+  private static int CURRENT_MAP_ID = 300;
   public static boolean DEBUG = true;
 
   private static BukkitSmartBoardCluster syncCluster;
   private static ThreadSmartBoardCluster asyncCluster;
   private static SmartBoardsMapAdapter smartSmartBoardsMapAdapter;
   private static SmartBoardsClickAdapter smartBoardsClickAdapter;
-
-  public static void registerCluster(@NotNull SmartBoardCluster cluster) {
-    listRegisteredClusters.add(cluster);
-  }
-
-  public static void unregisterCluster(@NotNull SmartBoardCluster cluster) {
-    listRegisteredClusters.remove(cluster);
-  }
-
-  public static void registerPacketAdapters(Plugin plugin) {
-    smartSmartBoardsMapAdapter = new SmartBoardsMapAdapter(plugin);
-    smartBoardsClickAdapter = new SmartBoardsClickAdapter(plugin);
-    SmartBoards.protocolManager = ProtocolLibrary.getProtocolManager();
-    ProtocolManager protocolManager = SmartBoards.protocolManager;
-    protocolManager.addPacketListener(smartSmartBoardsMapAdapter);
-    protocolManager.addPacketListener(smartBoardsClickAdapter);
-  }
-
-  public static void unregisterPacketAdapters() {
-    ProtocolManager protocolManager = SmartBoards.protocolManager;
-    protocolManager.removePacketListener(smartSmartBoardsMapAdapter);
-    protocolManager.removePacketListener(smartBoardsClickAdapter);
-  }
 
   public static void start(@Nullable Plugin plugin) {
     if (plugin != null) {
@@ -87,6 +67,60 @@ public class SmartBoards {
     if (asyncCluster != null && asyncCluster.isRunning()) {
       asyncCluster.stop();
       unregisterCluster(asyncCluster);
+    }
+  }
+
+  public static void registerPacketAdapters(Plugin plugin) {
+    smartSmartBoardsMapAdapter = new SmartBoardsMapAdapter(plugin);
+    smartBoardsClickAdapter = new SmartBoardsClickAdapter(plugin);
+    SmartBoards.protocolManager = ProtocolLibrary.getProtocolManager();
+    ProtocolManager protocolManager = SmartBoards.protocolManager;
+    protocolManager.addPacketListener(smartSmartBoardsMapAdapter);
+    protocolManager.addPacketListener(smartBoardsClickAdapter);
+  }
+
+  public static void unregisterPacketAdapters() {
+    ProtocolManager protocolManager = SmartBoards.protocolManager;
+    protocolManager.removePacketListener(smartSmartBoardsMapAdapter);
+    protocolManager.removePacketListener(smartBoardsClickAdapter);
+  }
+
+  public static void registerCluster(@NotNull SmartBoardCluster cluster) {
+    listRegisteredClusters.add(cluster);
+  }
+
+  public static void unregisterCluster(@NotNull SmartBoardCluster cluster) {
+    listRegisteredClusters.remove(cluster);
+  }
+
+  public static void addBoard(@NotNull SmartBoard board) {
+    if (board.isAsync()) {
+      asyncCluster.addBoard(board);
+    } else {
+      // If the synchronized cluster is active, add the board to the cluster.
+      if (syncCluster != null) {
+        syncCluster.addBoard(board);
+      }
+      // If the synchronized cluster is not active, then add the board to the a-synchronous cluster.
+      else {
+        asyncCluster.addBoard(board);
+      }
+    }
+  }
+
+  public static void removeBoard(@NotNull SmartBoard board) {
+    if (board.isAsync()) {
+      asyncCluster.removeBoard(board);
+    } else {
+      // If the synchronized cluster is active, remove the board from the cluster.
+      if (syncCluster != null) {
+        syncCluster.removeBoard(board);
+      }
+      // If the synchronized cluster is not active, then remove the board from the a-synchronous
+      // cluster.
+      else {
+        asyncCluster.removeBoard(board);
+      }
     }
   }
 
@@ -190,36 +224,5 @@ public class SmartBoards {
   @NotNull
   public static Map<Integer, PacketPlayOutEntityMetadata> getRegisteredMetaPackets() {
     return mapMetaPackets;
-  }
-
-  public static void addBoard(@NotNull SmartBoard board) {
-    if (board.isAsync()) {
-      asyncCluster.addBoard(board);
-    } else {
-      // If the synchronized cluster is active, add the board to the cluster.
-      if (syncCluster != null) {
-        syncCluster.addBoard(board);
-      }
-      // If the synchronized cluster is not active, then add the board to the a-synchronous cluster.
-      else {
-        asyncCluster.addBoard(board);
-      }
-    }
-  }
-
-  public static void removeBoard(@NotNull SmartBoard board) {
-    if (board.isAsync()) {
-      asyncCluster.removeBoard(board);
-    } else {
-      // If the synchronized cluster is active, remove the board from the cluster.
-      if (syncCluster != null) {
-        syncCluster.removeBoard(board);
-      }
-      // If the synchronized cluster is not active, then remove the board from the a-synchronous
-      // cluster.
-      else {
-        asyncCluster.removeBoard(board);
-      }
-    }
   }
 }
