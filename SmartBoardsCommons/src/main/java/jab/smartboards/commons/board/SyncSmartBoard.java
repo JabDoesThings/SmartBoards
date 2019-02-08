@@ -242,7 +242,7 @@ public class SyncSmartBoard implements SmartBoard {
   public void onClick(SmartBoardClickEvent event) {}
 
   @Override
-  public boolean isLookingAt(Player player, int maxDistance) {
+  public boolean isLookingAt(org.bukkit.entity.LivingEntity player, int maxDistance) {
     boolean returned = false;
     World world = player.getWorld();
     // Make sure the player is in the same world.

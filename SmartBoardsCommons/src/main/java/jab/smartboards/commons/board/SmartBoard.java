@@ -5,10 +5,7 @@ import jab.smartboards.commons.events.SmartBoardClickEvent;
 import jab.smartboards.commons.SmartBoardThread;
 import jab.smartboards.commons.utils.BoardSizable;
 import org.bukkit.*;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.ItemFrame;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -110,7 +107,7 @@ public interface SmartBoard extends BoardSizable {
    * @param maxDistance The maximum distance a ray can be cast. (In blocks)
    * @return Returns true if the smartboard is looked at by the player.
    */
-  boolean isLookingAt(Player player, int maxDistance);
+  boolean isLookingAt(LivingEntity player, int maxDistance);
 
   @NotNull
   BoardGraphics getGraphics();
