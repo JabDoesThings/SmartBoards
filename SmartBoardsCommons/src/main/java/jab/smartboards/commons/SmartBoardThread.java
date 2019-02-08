@@ -82,7 +82,7 @@ public class SmartBoardThread implements Runnable {
   private SmartBoard[] boardsToLoop;
 
   private SmartBoard[] boardsToLoopSync;
-  /** Flag to stop the thread on the next tick. */
+  /** Flag to onStop the thread on the next tick. */
   private volatile boolean stopped;
 
   private volatile boolean started;

@@ -19,9 +19,8 @@ import java.util.*;
  *
  * @author Josh
  */
-public class SmartBoardCluster implements Runnable {
+public abstract class SmartBoardCluster implements Runnable {
 
-  private final List<SmartBoard> listFlaggedBoards;
   private final Object lockBoards = new Object();
 
   private final Map<Integer, PacketPlayOutEntityMetadata> mapMetaPackets;
@@ -31,8 +30,11 @@ public class SmartBoardCluster implements Runnable {
   /** Key: Mini-Map ID, Value: Board using the ID. */
   private final Map<Integer, SmartBoard> mapBoardIds;
 
+  private final List<SmartBoard> listFlaggedBoards;
+
   private SmartBoard[] boardsToLoop;
   private int size;
+  private volatile boolean running;
 
   /** Main constructor. */
   public SmartBoardCluster() {
@@ -58,9 +60,52 @@ public class SmartBoardCluster implements Runnable {
         removeFlaggedBoards();
       }
     } catch (Exception e) {
-      System.out.println("An exception has occurred in the SmartBoard thread. (async)");
+      System.err.println(
+          "An exception has occurred while updating the "
+              + getClass().getSimpleName()
+              + "'s update loop.");
       e.printStackTrace();
     }
+  }
+
+  /**
+   * Starts the cluster's update loop.
+   *
+   * @throws IllegalStateException Thrown if the method is invoked when the cluster's update loop is
+   *     already running.
+   */
+  public void start() {
+    // Make sure the loop is not already running.
+    if (running) {
+      throw new IllegalStateException("The Cluster is already running and cannot be started.");
+    }
+    try {
+      onStart();
+    } catch (Exception e) {
+      System.err.println("Failed to start the " + getClass().getSimpleName() + ".");
+      e.printStackTrace();
+    }
+    running = true;
+  }
+
+  /**
+   * Stops the cluster's update loop.
+   *
+   * @throws IllegalStateException Thrown if the method is invoked when the cluster's update loop is
+   *     not running.
+   */
+  public void stop() {
+    // Make sure the loop is actually running.
+    if (!running) {
+      throw new IllegalStateException("The Cluster is not running and cannot be stopped.");
+    }
+    try {
+      onStop();
+    } catch (Exception e) {
+      System.err.println("Failed to stop the " + getClass().getSimpleName() + ".");
+      e.printStackTrace();
+    }
+    running = false;
   }
 
   protected void updateBoards(@NotNull SmartBoard[] boards) {
@@ -84,7 +129,6 @@ public class SmartBoardCluster implements Runnable {
           }
         }
       }
-      BoardGraphics graphics = board.getGraphics();
     }
   }
 
@@ -309,4 +353,15 @@ public class SmartBoardCluster implements Runnable {
   public int size() {
     return this.size;
   }
+
+  /** @return Returns true if the cluster's update loop is running. */
+  public boolean isRunning() {
+    return this.running;
+  }
+
+  /** Starts the cluster update loop. */
+  public abstract void onStart();
+
+  /** Stops the cluster's update loop. */
+  public abstract void onStop();
 }
