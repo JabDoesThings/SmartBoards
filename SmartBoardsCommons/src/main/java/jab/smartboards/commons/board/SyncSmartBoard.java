@@ -1,5 +1,6 @@
 package jab.smartboards.commons.board;
 
+import jab.smartboards.commons.SmartBoardCluster;
 import jab.smartboards.commons.SmartBoards;
 import jab.smartboards.commons.board.graphics.BoardFrame;
 import jab.smartboards.commons.board.graphics.BoardGraphics;
@@ -49,6 +50,7 @@ public class SyncSmartBoard implements SmartBoard {
   private List<Player> players;
   private DataWatcher[] datawatchers;
   private PacketPlayOutEntityMetadata[] metadata;
+  private SmartBoardCluster cluster;
 
   /**
    * Main constructor.
@@ -375,5 +377,16 @@ public class SyncSmartBoard implements SmartBoard {
   @Override
   public void setCanClick(boolean flag) {
     this.canClick = flag;
+  }
+
+  @Override
+  public SmartBoardCluster getCluster() {
+    return this.cluster;
+  }
+
+  @Override
+  public void setCluster(SmartBoardCluster cluster) {
+    checkCluster(cluster);
+    this.cluster = cluster;
   }
 }

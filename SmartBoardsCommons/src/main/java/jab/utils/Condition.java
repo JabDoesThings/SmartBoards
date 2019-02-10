@@ -1,4 +1,4 @@
-package jab.smartboards.commons.board;
+package jab.utils;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

@@ -2,7 +2,184 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94ef03be-2378-4c63-bec8-e1bddef75ce6" name="Default Changelist" comment="Major commit update.">
-      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoards.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoards.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/BoardVariables.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/BoardCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/ConditionType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/NumberCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/utils/Condition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/BoardPropertiesTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/project/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/project/BoardProject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/project/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SmartBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SmartBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SyncSmartBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SyncSmartBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/SmartBoardsCommons.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/compiler/AlreadyCompiledException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/compiler/CompilerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/compiler/CompilerTask$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/compiler/CompilerTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/BukkitSmartBoardCluster$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/BukkitSmartBoardCluster.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/SmartBoardCluster.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/SmartBoards.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/SmartBoardsClickAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/SmartBoardsMapAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/ThreadSmartBoardCluster.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/BoardAxis.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/BoardClick$Type.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/BoardClick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/BoardDirection$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/BoardDirection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/BoardProfile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/SmartBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/SmartBoardSearch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/SyncSmartBoard$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/SyncSmartBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/graphics/BoardFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/graphics/BoardGraphics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/graphics/ColorBoardFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/graphics/PaintFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/graphics/SequencedBoardGraphics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/graphics/SimpleBoardGraphics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/graphics/StaticBoardFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/graphics/StaticBoardGraphics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/menu/MenuBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/menu/MenuElement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/menu/SmartMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/menu/adapter/AdaptableObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/menu/adapter/ClickAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/menu/adapter/LoopAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/menu/adapter/RenderAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/board/menu/adapter/UpdateAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/events/MenuClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/events/SmartBoardClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/events/SmartBoardEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/events/SmartBoardPlayerEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/throwables/AlreadyRegisteredException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/throwables/BoardSizeException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/throwables/IllegalDimensionsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/throwables/LoopCycleException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/AnchorFlag.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/BoardSizable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/ImageUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/MapImage$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/MapImage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/MapUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/PacketUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/ScaleFlag.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/UVUtil$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/jab/smartboards/commons/utils/UVUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/net/jodah/typetools/TypeResolver$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/net/jodah/typetools/TypeResolver$Unknown.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/classes/net/jodah/typetools/TypeResolver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsCommons/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/FrameViewerTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/FrameEditorTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/SmartBoardsEditor.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/SmartBoardsEditor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/SmartBoardsEditor-1.0-SNAPSHOT-shaded.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/SmartBoardsEditor.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/classes/jab/spigot/smartboards/editor/FrameList$ListRenderer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/classes/jab/spigot/smartboards/editor/FrameList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/classes/jab/spigot/smartboards/editor/FrameViewerTab.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/classes/jab/spigot/smartboards/editor/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/classes/jab/spigot/smartboards/editor/SmartBoardFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/classes/jab/spigot/smartboards/editor/SmartBoardPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/classes/jab/spigot/smartboards/editor/SmartBoardsEditor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/classes/jab/spigot/smartboards/editor/Window.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsEditor/target/original-SmartBoardsEditor.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/SmartBoards.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/barrier.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/arrow_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/arrow_left_hover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/arrow_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/arrow_right_hover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/button_book.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/button_book_hover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/button_lock_locked.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/button_lock_locked_disabled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/button_lock_locked_hover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/button_lock_unlocked.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/button_lock_unlocked_disabled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/button_lock_unlocked_hover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/mail.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/buttons/mail_hover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu1_B.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu1_BL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu1_BR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu1_L.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu1_R.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu1_T.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu1_TL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu1_TR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu2_B.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu2_BL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu2_BR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu2_L.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu2_T.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu2_TL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu2_TR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/frames/menu_R.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/menu_textbar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/menu_textbar_disabled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/menu_textbar_hover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/recipe_tab.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/slots/menu2_slot_grey1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/slots/menu2_slot_grey2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/slots/menu2_slot_red1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/slots/menu2_slot_red2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/slots/toolbar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/slots/toolbar_extra_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/gui/slots/toolbar_extra_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/MapImageCompilerTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/PluginSmartBoards$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/PluginSmartBoards.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/AsyncSmartBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/SyncStaticBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/examples/ExampleMenuBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/examples/ExampleSmartMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/examples/GalleryStaticBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/examples/PaintBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/graphics/AnimationEffect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/graphics/ScaleEffect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/graphics/TimeEffect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/graphics/TransitionEffects$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/graphics/TransitionEffects.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/menu/BasicSmartMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/menu/FrameType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/menu/MenuAssets.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/boards/menu/MenuFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/jab/spigot/smartboards/utils/NMSUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/classes/plugin.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/original-SmartBoards.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/Distortion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/GifSequenceWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/RotationTransformExample$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/RotationTransformExample$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/RotationTransformExample$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/RotationTransformExample$PersistentButtonToggleGroup$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/RotationTransformExample$PersistentButtonToggleGroup$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/RotationTransformExample$PersistentButtonToggleGroup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/RotationTransformExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/TestFormatConversion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/TestImageUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartBoardsPlugin/target/test-classes/jab/spigot/smartboards/test/TestTransition.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -34,7 +211,8 @@
         <counts>
           <entry key="class" value="26" />
           <entry key="form" value="1" />
-          <entry key="java" value="503" />
+          <entry key="gitignore" value="1" />
+          <entry key="java" value="526" />
           <entry key="xml" value="14" />
           <entry key="yml" value="4" />
         </counts>
@@ -43,15 +221,17 @@
         <counts>
           <entry key="CLASS" value="26" />
           <entry key="GUI_DESIGNER_FORM" value="1" />
-          <entry key="JAVA" value="503" />
+          <entry key="JAVA" value="526" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="14" />
           <entry key="YAML" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="68" />
-          <entry key="java" value="119419" />
+          <entry key="dummy" value="74" />
+          <entry key="gitignore" value="13" />
+          <entry key="java" value="131679" />
           <entry key="txt" value="166" />
           <entry key="xml" value="237" />
           <entry key="yml" value="66" />
@@ -59,8 +239,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="119419" />
-          <entry key="PLAIN_TEXT" value="234" />
+          <entry key="JAVA" value="131679" />
+          <entry key="PLAIN_TEXT" value="253" />
           <entry key="XML" value="237" />
           <entry key="YAML" value="66" />
         </counts>
@@ -70,69 +250,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoardThread.java">
+        <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/utils/Condition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1181">
-              <caret line="247" column="27" selection-start-line="247" selection-start-column="27" selection-end-line="247" selection-end-column="27" />
+            <state relative-caret-position="720">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoards.java">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3252#3253#0" expanded="true" />
-                <element signature="e#3297#3298#0" expanded="true" />
-                <element signature="e#3375#3376#0" expanded="true" />
-                <element signature="e#3423#3424#0" expanded="true" />
-                <element signature="e#4420#4421#0" expanded="true" />
-                <element signature="e#4456#4457#0" expanded="true" />
-                <element signature="e#4646#4647#0" expanded="true" />
-                <element signature="e#4704#4705#0" expanded="true" />
-                <element signature="e#4764#4765#0" expanded="true" />
-                <element signature="e#4808#4809#0" expanded="true" />
-                <element signature="e#7366#7367#0" expanded="true" />
-                <element signature="e#7396#7397#0" expanded="true" />
-                <element signature="e#7495#7496#0" expanded="true" />
-                <element signature="e#7526#7527#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SyncSmartBoard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6312">
-              <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoardsMapAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/PluginSmartBoards.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1400">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state>
+              <caret column="1" selection-start-column="1" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -191,24 +324,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboard/editor/Window.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboard/editor/FrameViewerTab.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboard/editor/SmartBoardPanel.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboard/editor/SmartBoardFrame.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/FrameViewerTab.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/pom.xml" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/spigot/smartboards/commons/utils/MapImage.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/spigot/smartboards/commons/CompilerManager.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/spigot/smartboards/commons/throwables/LoopCycleException.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/spigot/smartboards/commons/board/BoardProfile.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/spigot/smartboards/commons/board/SmartBoard.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/spigot/smartboards/commons/SmartBoardThread.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/events/MenuClickEvent.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/compiler/AlreadyCompiledException.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/compiler/CompilerTask.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsMapAdapter.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/protocol/SmartBoardsClickAdapter.java" />
         <option value="$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/MapImageCompilerTask.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/menu/MenuBoard.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/menu/adapter/AdaptableObject.java" />
@@ -232,16 +347,34 @@
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoardCluster.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/ThreadSmartBoardCluster.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/BukkitSmartBoardCluster.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoardThread.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SmartBoard.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/utils/MapImage.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoardsMapAdapter.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/utils/UVUtil.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoardsClickAdapter.java" />
-        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SyncSmartBoard.java" />
         <option value="$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/PluginSmartBoards.java" />
         <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoards.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/Window.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/BoardPropertiesTab.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/project/BoardProject.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/project/ProjectFrame.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/utils/SwitchCondition.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/events/SwitchCondition.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SwitchCondition.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/FrameSiwtchCondition.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/CustomCondition.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/IntegerCondition.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/Condition.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/BoardConstants.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/FrameSwitchCondition.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/ConditionType.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/BoardVariables.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/BoardCondition.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SyncSmartBoard.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SmartBoard.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java" />
+        <option value="$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/NumberCondition.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -332,15 +465,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
-              <item name="SmartBoardsCommons" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="commons" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -355,60 +479,6 @@
             <path>
               <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
               <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
-              <item name="SmartBoardsCommons" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="graphics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
-              <item name="SmartBoardsCommons" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
-              <item name="SmartBoardsCommons" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="adapter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
-              <item name="SmartBoardsCommons" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
-              <item name="SmartBoardsCommons" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="throwables" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
-              <item name="SmartBoardsCommons" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
               <item name="SmartBoardsEditor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -416,6 +486,39 @@
               <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
               <item name="SmartBoardsEditor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
+              <item name="SmartBoardsEditor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
+              <item name="SmartBoardsEditor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
+              <item name="SmartBoardsEditor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="editor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
+              <item name="SmartBoardsEditor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
@@ -454,6 +557,15 @@
             </path>
             <path>
               <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartBoards" type="462c0819:PsiDirectoryNode" />
+              <item name="SmartBoardsPlugin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartBoards" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -464,7 +576,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="266" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549628479563" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549766745437" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../swarm" />
   </component>
@@ -490,6 +602,7 @@
       <recent name="M:\Workspace\Minecraft\Projects\SmartBoards\src\test\java\jab\spigot\smartboards\test" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="jab.spigot.smartboards.editor" />
       <recent name="jab.spigot.smartboards.boards.menu2" />
       <recent name="jab.spigot.smartboards.boards.examples" />
       <recent name="jab.spigot.smartboards.protocol" />
@@ -507,26 +620,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Distortion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.Distortion" />
-      <module name="SmartBoards" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="jab.spigot.smartboards.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboard.editor.Main" />
+      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.editor.Main" />
       <module name="SmartBoardsEditor" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="jab.spigot.smartboard.editor.*" />
+          <option name="PATTERN" value="jab.spigot.smartboards.editor.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -534,65 +634,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RotationTransformExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.RotationTransformExample" />
-      <module name="SmartBoards" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="jab.spigot.smartboards.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestImageUtils.testScaling" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SmartBoards" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="jab.spigot.smartboards.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="jab.spigot.smartboards.test" />
-      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.TestImageUtils" />
-      <option name="METHOD_NAME" value="testScaling" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestTransition.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SmartBoards" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="jab.spigot.smartboards.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="jab.spigot.smartboards.test" />
-      <option name="MAIN_CLASS_NAME" value="jab.spigot.smartboards.test.TestTransition" />
-      <option name="METHOD_NAME" value="test2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="JUnit.TestTransition.test2" />
-      <item itemvalue="Application.Distortion" />
-      <item itemvalue="Application.RotationTransformExample" />
-      <item itemvalue="JUnit.TestImageUtils.testScaling" />
-      <item itemvalue="Application.Main" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.TestImageUtils.testScaling" />
-        <item itemvalue="JUnit.TestTransition.test2" />
-        <item itemvalue="Application.Distortion" />
-        <item itemvalue="Application.RotationTransformExample" />
       </list>
     </recent_temporary>
   </component>
@@ -645,7 +689,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21375267" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21375267" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -653,14 +697,14 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49733475" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49307036" visible="true" weight="0.33188722" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4968017" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49200428" visible="true" weight="0.33188722" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50692964" side_tool="true" visible="true" weight="0.33188722" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5079957" side_tool="true" visible="true" weight="0.33188722" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4978678" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -670,7 +714,7 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info active="true" anchor="right" id="Maven Projects" order="7" visible="true" weight="0.18123667" />
+      <window_info anchor="right" id="Maven Projects" order="7" visible="true" weight="0.18123667" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -681,99 +725,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Major commit update." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/events/SmartBoardClickEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/events/MenuClickEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/events/SmartBoardEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/events/SmartBoardPlayerEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/throwables/AlreadyRegisteredException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/throwables/BoardSizeException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/throwables/IllegalDimensionsException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/utils/BoardSizable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/utils/ImageUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/throwables/LoopCycleException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/utils/AnchorFlag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/utils/MapUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/utils/PacketUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1014,27 +965,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/utils/MapImage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="323" column="15" selection-start-line="323" selection-start-column="15" selection-end-line="323" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SmartBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="92" column="22" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1058,10 +992,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SyncSmartBoard.java">
+    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoards.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6312">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+        <state relative-caret-position="-2252">
+          <caret line="93" column="3" lean-forward="true" selection-start-line="93" selection-start-column="3" selection-end-line="93" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3252#3253#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
+            <element signature="e#3375#3376#0" expanded="true" />
+            <element signature="e#3423#3424#0" expanded="true" />
+            <element signature="e#4420#4421#0" expanded="true" />
+            <element signature="e#4456#4457#0" expanded="true" />
+            <element signature="e#4646#4647#0" expanded="true" />
+            <element signature="e#4704#4705#0" expanded="true" />
+            <element signature="e#4764#4765#0" expanded="true" />
+            <element signature="e#4808#4809#0" expanded="true" />
+            <element signature="e#7366#7367#0" expanded="true" />
+            <element signature="e#7396#7397#0" expanded="true" />
+            <element signature="e#7495#7496#0" expanded="true" />
+            <element signature="e#7526#7527#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1092,27 +1043,185 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/SmartBoards.java">
+    <entry file="file://$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/Window.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+          <caret line="41" column="36" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3252#3253#0" expanded="true" />
-            <element signature="e#3297#3298#0" expanded="true" />
-            <element signature="e#3375#3376#0" expanded="true" />
-            <element signature="e#3423#3424#0" expanded="true" />
-            <element signature="e#4420#4421#0" expanded="true" />
-            <element signature="e#4456#4457#0" expanded="true" />
-            <element signature="e#4646#4647#0" expanded="true" />
-            <element signature="e#4704#4705#0" expanded="true" />
-            <element signature="e#4764#4765#0" expanded="true" />
-            <element signature="e#4808#4809#0" expanded="true" />
-            <element signature="e#7366#7367#0" expanded="true" />
-            <element signature="e#7396#7397#0" expanded="true" />
-            <element signature="e#7495#7496#0" expanded="true" />
-            <element signature="e#7526#7527#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/BoardPropertiesTab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#210#211#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#324#325#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/project/Frame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/project/BoardProject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+          <folding>
+            <element signature="e#440#441#0" expanded="true" />
+            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#276#277#0" expanded="true" />
+            <element signature="e#297#298#0" expanded="true" />
+            <element signature="e#340#341#0" expanded="true" />
+            <element signature="e#366#367#0" expanded="true" />
+            <element signature="e#1235#1236#0" expanded="true" />
+            <element signature="e#1258#1259#0" expanded="true" />
+            <element signature="e#1305#1306#0" expanded="true" />
+            <element signature="e#1335#1336#0" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
+            <element signature="e#1391#1392#0" expanded="true" />
+            <element signature="e#1435#1436#0" expanded="true" />
+            <element signature="e#1467#1468#0" expanded="true" />
+            <element signature="e#1528#1529#0" expanded="true" />
+            <element signature="e#1556#1557#0" expanded="true" />
+            <element signature="e#1624#1625#0" expanded="true" />
+            <element signature="e#1664#1665#0" expanded="true" />
+            <element signature="e#1707#1708#0" expanded="true" />
+            <element signature="e#1733#1734#0" expanded="true" />
+            <element signature="e#1797#1798#0" expanded="true" />
+            <element signature="e#1833#1834#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/ConditionType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/BoardVariables.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="83" column="10" selection-start-line="83" selection-start-column="10" selection-end-line="83" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+            <element signature="e#1716#1717#0" expanded="true" />
+            <element signature="e#1755#1756#0" expanded="true" />
+            <element signature="e#5631#5632#0" expanded="true" />
+            <element signature="e#5652#5653#0" expanded="true" />
+            <element signature="e#3664#3665#0" expanded="true" />
+            <element signature="e#3736#3737#0" expanded="true" />
+            <element signature="e#3912#3913#0" expanded="true" />
+            <element signature="e#3985#3986#0" expanded="true" />
+            <element signature="e#4887#4888#0" expanded="true" />
+            <element signature="e#4959#4960#0" expanded="true" />
+            <element signature="e#5373#5374#0" expanded="true" />
+            <element signature="e#5445#5446#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/BoardCondition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1797#1798#0" expanded="true" />
+            <element signature="e#1823#1824#0" expanded="true" />
+            <element signature="e#1862#1863#0" expanded="true" />
+            <element signature="e#1887#1888#0" expanded="true" />
+            <element signature="e#1928#1929#0" expanded="true" />
+            <element signature="e#1955#1956#0" expanded="true" />
+            <element signature="e#2158#2159#0" expanded="true" />
+            <element signature="e#2184#2185#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SmartBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsEditor/src/main/java/jab/spigot/smartboards/editor/project/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsPlugin/src/main/java/jab/spigot/smartboards/boards/AsyncSmartBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1101">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding>
+            <element signature="e#2011#2012#0" expanded="true" />
+            <element signature="e#2032#2033#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/SyncSmartBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6980">
+          <caret line="378" column="18" selection-start-line="378" selection-start-column="18" selection-end-line="378" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12497#12498#0" expanded="true" />
+            <element signature="e#12518#12519#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/smartboards/commons/board/NumberCondition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SmartBoardsCommons/src/main/java/jab/utils/Condition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
         </state>
       </provider>
     </entry>

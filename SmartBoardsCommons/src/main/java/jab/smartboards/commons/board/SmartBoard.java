@@ -1,5 +1,6 @@
 package jab.smartboards.commons.board;
 
+import jab.smartboards.commons.SmartBoardCluster;
 import jab.smartboards.commons.SmartBoards;
 import jab.smartboards.commons.board.graphics.BoardGraphics;
 import jab.smartboards.commons.events.SmartBoardClickEvent;
@@ -181,5 +182,30 @@ public interface SmartBoard extends BoardSizable {
    */
   static int getIndex(int x, int y, int width) {
     return (y * width) + (width - 1) - x;
+  }
+
+  SmartBoardCluster getCluster();
+
+  void setCluster(SmartBoardCluster cluster);
+
+  /**
+   * Checks to make sure that API implementations do not try to assign a board to more than one
+   * SmartBoardCluster.
+   *
+   * @param clusterToSet The cluster to set that needs to be checked against the current set
+   *     cluster.
+   * @throws IllegalStateException Thrown if a cluster is set for the board, and the cluster to set
+   *     is also not null.
+   */
+  default void checkCluster(SmartBoardCluster clusterToSet) {
+    SmartBoardCluster cluster = getCluster();
+    if (cluster != null && clusterToSet != null) {
+      throw new IllegalStateException(
+          "The "
+              + getClass().getSimpleName()
+              + " is already registered to a cluster. ("
+              + cluster
+              + ")");
+    }
   }
 }

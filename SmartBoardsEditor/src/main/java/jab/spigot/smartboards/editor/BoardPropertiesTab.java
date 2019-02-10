@@ -1,7 +1,19 @@
 package jab.spigot.smartboards.editor;
 
-import java.awt.*;
+import org.jetbrains.annotations.NotNull;
 
-public class BoardPropertiesTab extends Component {
-  public BoardPropertiesTab(Window window) {}
+import javax.swing.*;
+
+public class BoardPropertiesTab extends JPanel {
+
+  private final Window window;
+
+  public BoardPropertiesTab(@NotNull Window window) {
+    this.window = window;
+  }
+
+  @NotNull
+  public Window getWindow() {
+    return this.window;
+  }
 }

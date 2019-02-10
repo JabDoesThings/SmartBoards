@@ -1,72 +1,92 @@
 package jab.smartboards.commons.board;
 
+import jab.smartboards.commons.BoardVariables;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * TODO: Document.
  *
  * @author Josh
  */
-public class FrameSwitchCondition {
+public class BoardCondition {
 
-  private static final Map<String, Condition> mapCustomVariables = new HashMap<>();
-
-  public static Condition getVariable(@NotNull String key) {
-    return mapCustomVariables.get(key);
-  }
-
-  public static void setVariable(@NotNull String key, @Nullable Object value) {
-    // If null is passed, the variable should be removed.
-    if (value == null) {
-      mapCustomVariables.remove(key);
-    }
-    // If the value is numeric, store it as a number.
-    if (value instanceof Number) {
-      mapCustomVariables.put(key, new NumberCondition(key, (Number) value));
-    }
-  }
-
-  private SwitchCondition condition;
-  private String value;
-  private boolean active;
+  private final BoardVariables variables;
+  private final String key;
+  private final Object value;
+  private ConditionType type;
+  private Long timeValue;
+  private Double numberValue;
   private long timeActivated;
-  private long timeValue = -1;
+  private boolean activated;
 
   /**
    * Main constructor.
    *
-   * @param condition The condition to check.
+   * @param type The type of condition to check.
    * @param value The value to compare with the condition.
    */
-  public FrameSwitchCondition(@NotNull SwitchCondition condition, @NotNull String value) {
-    this.condition = condition;
+  public BoardCondition(
+      BoardVariables variables,
+      @NotNull ConditionType type,
+      @NotNull String key,
+      @NotNull String value) {
+    this.variables = variables;
+    this.type = type;
+    this.key = key;
     this.value = value;
-  }
-
-  public void activate() {
-    this.timeActivated = System.currentTimeMillis();
-  }
-
-  public void deactivate() {
-    this.timeActivated = -1L;
-  }
-
-  public boolean poll() {
-    long delta = System.currentTimeMillis() - timeActivated;
-    if (condition.isTimed()) {
-      return condition.poll(timeValue, delta);
+    // If the type checks for time, convert the value and store it.
+    if (type.isTimeCheck()) {
+      timeValue = Long.parseLong(value);
+    }
+    // If the type checks a value, conver the value and store it.
+    else if (type.isValueCheck()) {
+      numberValue = Double.parseDouble(value);
     }
   }
 
-  public SwitchCondition getCondition() {
-    return this.condition;
+  /** Activates the check. */
+  public void activate() {
+    this.timeActivated = System.currentTimeMillis();
+    this.activated = true;
   }
 
-  public String getValue() {
+  /** Deactivates the check. */
+  public void deactivate() {
+    this.timeActivated = -1L;
+    this.activated = false;
+  }
+
+  /** @return Returns true if the poll check passes the condition set. */
+  public boolean poll() {
+    long delta = System.currentTimeMillis() - timeActivated;
+    if (type.isTimeCheck()) {
+      return type.poll(timeValue, delta);
+    } else if (type.isValueCheck()) {
+      return variables.isNumber(key)
+          && type.pollValue(numberValue, variables.getNumber(key).doubleValue());
+    } else if (type.isCustom()) {
+      return value.equals(variables.get(key));
+    }
+    return false;
+  }
+
+  @NotNull
+  public ConditionType getType() {
+    return this.type;
+  }
+
+  @NotNull
+  public String getKey() {
+    return this.key;
+  }
+
+  @NotNull
+  public Object getValue() {
     return this.value;
+  }
+
+  /** @return Returns true if the condition is active and being polled. */
+  public boolean isActivated() {
+    return this.activated;
   }
 }

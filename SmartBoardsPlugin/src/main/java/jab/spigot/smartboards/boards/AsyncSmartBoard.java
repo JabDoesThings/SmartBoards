@@ -1,5 +1,6 @@
 package jab.spigot.smartboards.boards;
 
+import jab.smartboards.commons.SmartBoardCluster;
 import jab.smartboards.commons.board.graphics.BoardGraphics;
 import jab.smartboards.commons.board.graphics.SimpleBoardGraphics;
 import jab.smartboards.commons.board.SmartBoard;
@@ -8,7 +9,6 @@ import jab.smartboards.commons.events.SmartBoardClickEvent;
 import jab.smartboards.commons.board.BoardProfile;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class AsyncSmartBoard implements SmartBoard {
@@ -17,6 +17,7 @@ public class AsyncSmartBoard implements SmartBoard {
 
   private volatile boolean canClick;
   private BoardGraphics graphics;
+  private SmartBoardCluster cluster;
 
   public AsyncSmartBoard(@NotNull BoardProfile profile) {
     this.profile = profile;
@@ -91,6 +92,17 @@ public class AsyncSmartBoard implements SmartBoard {
   @Override
   public void setCanClick(boolean flag) {
     this.canClick = flag;
+  }
+
+  @Override
+  public SmartBoardCluster getCluster() {
+    return this.cluster;
+  }
+
+  @Override
+  public void setCluster(SmartBoardCluster cluster) {
+    checkCluster(cluster);
+    this.cluster = cluster;
   }
 
   @Override

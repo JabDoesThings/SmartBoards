@@ -7,14 +7,14 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import java.awt.*;
 
-public class FrameViewerTab extends JPanel {
+public class FrameEditorTab extends JPanel {
 
   private final Window window;
 
   private FrameList list;
   private SmartBoardPanel panelBoard;
 
-  public FrameViewerTab(@NotNull Window window) {
+  public FrameEditorTab(@NotNull Window window) {
     this.window = window;
     GridLayoutManager layout = new GridLayoutManager(2, 1);
     setLayout(layout);
