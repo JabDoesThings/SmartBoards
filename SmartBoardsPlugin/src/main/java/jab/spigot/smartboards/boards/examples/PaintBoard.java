@@ -1,10 +1,10 @@
 package jab.spigot.smartboards.boards.examples;
 
-import jab.spigot.smartboards.boards.SyncStaticBoard;
+import jab.smartboards.commons.board.BoardProfile;
 import jab.smartboards.commons.board.graphics.PaintFrame;
 import jab.smartboards.commons.board.graphics.SimpleBoardGraphics;
 import jab.smartboards.commons.events.SmartBoardClickEvent;
-import jab.smartboards.commons.board.BoardProfile;
+import jab.spigot.smartboards.boards.SyncStaticBoard;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -54,8 +54,8 @@ public class PaintBoard extends SyncStaticBoard {
     }
 
     if (lastClicked.containsKey(playerId)) {
-      long delta = time - lastClicked.get(playerId);
-      System.out.println("DELTA: " + delta);
+      //      long delta = time - lastClicked.get(playerId);
+      //      System.out.println("DELTA: " + delta);
       //      if (delta <= 400) {
       line = true;
       //      }
@@ -67,9 +67,10 @@ public class PaintBoard extends SyncStaticBoard {
       frame.drawLine(lxy[0], lxy[1], x, y, Color.RED);
       getGraphics().setDirty(true);
       setDirty(true);
-    } else {
-      //      frame.drawCircle(x, y, Color.RED);
     }
+    //    else {
+    //      frame.drawCircle(x, y, Color.RED);
+    //    }
 
     lastXY.put(playerId, new int[] {x, y});
     lastClicked.put(playerId, time);

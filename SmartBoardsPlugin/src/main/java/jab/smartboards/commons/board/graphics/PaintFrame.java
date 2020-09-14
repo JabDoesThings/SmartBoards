@@ -18,9 +18,10 @@ public class PaintFrame extends BoardFrame {
    */
   @Override
   protected void create(int startingMapIndex) {
-    Color transparent = new Color(0, 0, 0, 0);
+//    Color backgroundColor = new Color(0, 0, 0, 255);
+        Color backgroundColor = new Color(0, 0, 0, 0);
     for (int index = 0; index < getSize(); index++) {
-      frames[index] = new MapImage(128, 128, transparent);
+      frames[index] = new MapImage(128, 128, backgroundColor);
       frames[index].setDynamic(true);
       frames[index].createPacket((short) startingMapIndex++);
     }
