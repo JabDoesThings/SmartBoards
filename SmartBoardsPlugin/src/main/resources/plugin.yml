@@ -1,5 +1,6 @@
 main: jab.spigot.smartboards.PluginSmartBoards
 name: SmartBoards
 version: 1.0
+depend: [ProtocolLib]
 api-version: 1.13
 author: Jab

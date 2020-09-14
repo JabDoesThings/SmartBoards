@@ -114,4 +114,9 @@ public class AsyncSmartBoard implements SmartBoard {
   public void setGraphics(@NotNull BoardGraphics graphics) {
     this.graphics = graphics;
   }
+
+  @Override
+  public boolean keepChunksLoaded() {
+    return this.profile.keepChunksLoaded();
+  }
 }

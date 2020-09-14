@@ -1,6 +1,6 @@
 package jab.spigot.smartboards.utils;
 
-import net.minecraft.server.v1_13_R2.NBTTagCompound;
+import net.minecraft.server.v1_16_R2.NBTTagCompound;
 
 /**
  * TODO: Document.
@@ -18,13 +18,14 @@ public class NMSUtils {
    * @param itemStack The native ItemStack to modify.
    * @param mapIndex The index to set.
    */
-  public static void setMapId(net.minecraft.server.v1_13_R2.ItemStack itemStack, int mapIndex) {
+  public static void setMapId(net.minecraft.server.v1_16_R2.ItemStack itemStack, int mapIndex) {
     NBTTagCompound tag = itemStack.getTag();
     if (tag == null) {
       tag = new NBTTagCompound();
     }
     tag.setInt("map", mapIndex);
     itemStack.setTag(tag);
-    itemStack.convertStack();
+    // 1.13.2
+    //    itemStack.convertStack();
   }
 }

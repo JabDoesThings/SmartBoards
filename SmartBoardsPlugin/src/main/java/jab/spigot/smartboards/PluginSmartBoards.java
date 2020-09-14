@@ -1,17 +1,18 @@
 package jab.spigot.smartboards;
 
+import jab.compiler.CompilerManager;
 import jab.smartboards.commons.SmartBoards;
+import jab.smartboards.commons.SmartBoardsClickAdapter;
+import jab.smartboards.commons.SmartBoardsMapAdapter;
+import jab.smartboards.commons.board.BoardDirection;
+import jab.smartboards.commons.board.BoardProfile;
 import jab.smartboards.commons.board.SyncSmartBoard;
 import jab.spigot.smartboards.boards.examples.GalleryStaticBoard;
 import jab.spigot.smartboards.boards.graphics.TransitionEffects;
 import jab.spigot.smartboards.boards.menu.MenuAssets;
-import jab.compiler.CompilerManager;
-import jab.smartboards.commons.board.BoardDirection;
-import jab.smartboards.commons.board.BoardProfile;
-import jab.smartboards.commons.SmartBoardsClickAdapter;
-import jab.smartboards.commons.SmartBoardsMapAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemFrame;
@@ -25,6 +26,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -50,26 +52,39 @@ public class PluginSmartBoards extends JavaPlugin implements Listener {
     TransitionEffects.enableJavaFX();
     MenuAssets.load(false);
     getServer().getPluginManager().registerEvents(this, this);
-    // Create and start the main thread for processing smartboards.
-    //    SmartBoardThread.instance = new SmartBoardThread(this);
-    //    CompilerManager.instance = new CompilerManager(this, 1);
-    //    SmartBoardThread.instance.start();
-    //    CompilerManager.instance.start();
-
     SmartBoards.start(this);
-
     SmartBoards.registerPacketAdapters(this);
-    World world = Bukkit.getWorlds().get(0);
-    Location location = new Location(world, 180, 70, 61);
-    board = new GalleryStaticBoard(new BoardProfile(location, BoardDirection.SOUTH, 4, 3));
+
+    CompilerManager.instance = new CompilerManager(this, 2);
+    CompilerManager.instance.start();
+
+    World world = Objects.requireNonNull(Bukkit.getWorld("world"));
+    Location location = new Location(world, 180, 90, 61);
+
+    int width = 8;
+    int height = 6;
+    int z = 61;
+    for (int y = location.getBlockY(); y < location.getBlockY() + height; y++) {
+      for (int x = location.getBlockX(); x < location.getBlockX() + width; x++) {
+        world.getBlockAt(x, y, z - 1).setType(Material.STONE);
+        world.getBlockAt(x, y, z).setType(Material.AIR);
+      }
+    }
+
+    board =
+        new GalleryStaticBoard(
+            new BoardProfile(location, BoardDirection.SOUTH, width, height, true));
     board.create();
+
+    for (Player player : Bukkit.getOnlinePlayers()) {
+      board.addPlayer(player);
+    }
   }
 
   @Override
   public void onDisable() {
     SmartBoards.stop();
     SmartBoards.unregisterPacketAdapters();
-    TransitionEffects.disableJavaFX();
     CompilerManager.instance.stop();
   }
 
@@ -78,20 +93,26 @@ public class PluginSmartBoards extends JavaPlugin implements Listener {
     Player player = event.getPlayer();
     UUID playerId = player.getUniqueId();
     SmartBoards.createCache(playerId);
+    // NOTE: Add after the player A little bit after enters the game.
+    //   If you don't, the map packets will be ignored when sent.
     new BukkitRunnable() {
       @Override
       public void run() {
-        board.addPlayer(player);
+        if (board != null) {
+          board.addPlayer(player);
+        }
       }
     }.runTaskLater(this, 30L);
   }
 
   @EventHandler
   public void on(PlayerQuitEvent event) {
-    Player player = event.getPlayer();
-    UUID playerId = player.getUniqueId();
-    SmartBoards.removeCache(playerId);
-    board.removePlayer(player);
+    if (board != null) {
+      Player player = event.getPlayer();
+      UUID playerId = player.getUniqueId();
+      SmartBoards.removeCache(playerId);
+      board.removePlayer(player);
+    }
   }
 
   @EventHandler

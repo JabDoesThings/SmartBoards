@@ -1,7 +1,8 @@
 package jab.spigot.smartboards.boards.menu;
 
-import jab.spigot.smartboards.PluginSmartBoards;
 import jab.smartboards.commons.utils.MapImage;
+import jab.spigot.smartboards.PluginSmartBoards;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import javax.imageio.ImageIO;
@@ -12,73 +13,86 @@ import java.util.Map;
 
 public class MenuAssets {
 
-  private static File assetsFolder;
+  private static File guiFolder;
 
   private static Map<String, MapImage> mapAssets;
   private static boolean loaded;
 
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   public static void load(boolean force) {
     if (loaded && !force) {
       return;
     }
-    assetsFolder =
-        new File(PluginSmartBoards.instance.getDataFolder(), "images" + File.separator + "gui");
+
+    JavaPlugin plugin = PluginSmartBoards.instance;
+    File dir = plugin.getDataFolder();
+    if (!dir.exists()) {
+      dir.mkdirs();
+    }
+
+    File dirImages = new File(dir, "images");
+    if (!dirImages.exists()) {
+      dirImages.mkdirs();
+    }
+
+    File dirGui = new File(dirImages, "gui");
+    if (!dirGui.exists()) {
+      dirGui.mkdirs();
+    }
+
+    File dirGuiButtons = new File(dirGui, "buttons");
+    if (!dirGuiButtons.exists()) {
+      dirGuiButtons.mkdirs();
+    }
+
+    File dirGuiFrames = new File(dirGui, "frames");
+    if (!dirGuiFrames.exists()) {
+      dirGuiFrames.mkdirs();
+    }
+
+    File dirGuiSlots = new File(dirGui, "slots");
+    if (!dirGuiSlots.exists()) {
+      dirGuiSlots.mkdirs();
+    }
+
+    guiFolder = dirGui;
+
     mapAssets = new HashMap<>();
+    String s = File.separator;
+    String rootGui = "images" + s + "gui";
     try {
-      // Frame 1
-      loadAsset("frames" + File.separator + "frame1_l.png");
-      loadAsset("frames" + File.separator + "frame1_r.png");
-      loadAsset("frames" + File.separator + "frame1_b.png");
-      loadAsset("frames" + File.separator + "frame1_bl.png");
-      loadAsset("frames" + File.separator + "frame1_br.png");
-      loadAsset("frames" + File.separator + "frame1_bl.png");
-      loadAsset("frames" + File.separator + "frame1_br.png");
-      loadAsset("frames" + File.separator + "frame1_t.png");
-      loadAsset("frames" + File.separator + "frame1_tl.png");
-      loadAsset("frames" + File.separator + "frame1_tr.png");
-      // Frame 2
-      loadAsset("frames" + File.separator + "frame2_l.png");
-      loadAsset("frames" + File.separator + "frame2_r.png");
-      loadAsset("frames" + File.separator + "frame2_b.png");
-      loadAsset("frames" + File.separator + "frame2_bl.png");
-      loadAsset("frames" + File.separator + "frame2_br.png");
-      loadAsset("frames" + File.separator + "frame2_bl.png");
-      loadAsset("frames" + File.separator + "frame2_br.png");
-      loadAsset("frames" + File.separator + "frame2_t.png");
-      loadAsset("frames" + File.separator + "frame2_tl.png");
-      loadAsset("frames" + File.separator + "frame2_tr.png");
       // Arrow Buttons
-      loadAsset("buttons" + File.separator + "arrow_left.png");
-      loadAsset("buttons" + File.separator + "arrow_right.png");
-      loadAsset("buttons" + File.separator + "arrow_left_hover.png");
-      loadAsset("buttons" + File.separator + "arrow_right_hover.png");
+      loadAsset(rootGui + s + "buttons" + s + "arrow_left.png");
+      loadAsset(rootGui + s + "buttons" + s + "arrow_right.png");
+      loadAsset(rootGui + s + "buttons" + s + "arrow_left_hover.png");
+      loadAsset(rootGui + s + "buttons" + s + "arrow_right_hover.png");
       // Lock button
-      loadAsset("buttons" + File.separator + "button_lock_locked.png");
-      loadAsset("buttons" + File.separator + "button_lock_unlocked.png");
-      loadAsset("buttons" + File.separator + "button_lock_locked_hover.png");
-      loadAsset("buttons" + File.separator + "button_lock_unlocked_hover.png");
-      loadAsset("buttons" + File.separator + "button_lock_locked_disabled.png");
-      loadAsset("buttons" + File.separator + "button_lock_unlocked_disabled.png");
+      loadAsset(rootGui + s + "buttons" + s + "button_lock_locked.png");
+      loadAsset(rootGui + s + "buttons" + s + "button_lock_unlocked.png");
+      loadAsset(rootGui + s + "buttons" + s + "button_lock_locked_hover.png");
+      loadAsset(rootGui + s + "buttons" + s + "button_lock_unlocked_hover.png");
+      loadAsset(rootGui + s + "buttons" + s + "button_lock_locked_disabled.png");
+      loadAsset(rootGui + s + "buttons" + s + "button_lock_unlocked_disabled.png");
       // Misc Buttons
-      loadAsset("buttons" + File.separator + "button.png");
-      loadAsset("buttons" + File.separator + "button_book.png");
-      loadAsset("buttons" + File.separator + "button_book_hover.png");
-      loadAsset("buttons" + File.separator + "mail.png");
-      loadAsset("buttons" + File.separator + "mail_hover.png");
+      loadAsset(rootGui + s + "buttons" + s + "button.png");
+      loadAsset(rootGui + s + "buttons" + s + "button_book.png");
+      loadAsset(rootGui + s + "buttons" + s + "button_book_hover.png");
+      loadAsset(rootGui + s + "buttons" + s + "mail.png");
+      loadAsset(rootGui + s + "buttons" + s + "mail_hover.png");
       // Slots
-      loadAsset("slots" + File.separator + "menu2_slot_grey1.png");
-      loadAsset("slots" + File.separator + "menu2_slot_grey2.png");
-      loadAsset("slots" + File.separator + "menu2_slot_red1.png");
-      loadAsset("slots" + File.separator + "menu2_slot_red2.png");
-      loadAsset("slots" + File.separator + "toolbar.png");
-      loadAsset("slots" + File.separator + "toolbar_extra1.png");
-      loadAsset("slots" + File.separator + "toolbar_extra2.png");
+      loadAsset(rootGui + s + "slots" + s + "menu2_slot_grey1.png");
+      loadAsset(rootGui + s + "slots" + s + "menu2_slot_grey2.png");
+      loadAsset(rootGui + s + "slots" + s + "menu2_slot_red1.png");
+      loadAsset(rootGui + s + "slots" + s + "menu2_slot_red2.png");
+      loadAsset(rootGui + s + "slots" + s + "toolbar.png");
+      loadAsset(rootGui + s + "slots" + s + "toolbar_extra_1.png");
+      loadAsset(rootGui + s + "slots" + s + "toolbar_extra_2.png");
       // Misc
-      loadAsset("barrier.png");
-      loadAsset("menu_textbar.png");
-      loadAsset("menu_textbar_disabled.png");
-      loadAsset("menu_textbar_hover.png");
-      loadAsset("recipe_tab.png");
+      loadAsset(rootGui + s + "barrier.png");
+      loadAsset(rootGui + s + "menu_textbar.png");
+      loadAsset(rootGui + s + "menu_textbar_disabled.png");
+      loadAsset(rootGui + s + "menu_textbar_hover.png");
+      loadAsset(rootGui + s + "recipe_tab.png");
       loaded = true;
     } catch (IOException e) {
       e.printStackTrace();
@@ -92,9 +106,15 @@ public class MenuAssets {
    * @throws IOException Thrown when the file doesn't exist or cannot load.
    */
   public static void loadAsset(@NotNull String path) throws IOException {
-    File file = new File(assetsFolder, path);
+    File file = new File(PluginSmartBoards.instance.getDataFolder(), path);
     String name = file.getName().split("\\.")[0].toLowerCase().trim();
-    mapAssets.put(name, new MapImage(ImageIO.read(file)));
+    if (!file.exists()) {
+      PluginSmartBoards.instance.saveResource(path, false);
+    }
+    System.out.println(file);
+    if (file.exists()) {
+      mapAssets.put(name, new MapImage(ImageIO.read(file)));
+    }
   }
 
   /**

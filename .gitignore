@@ -1,1 +1,6 @@
 **/target/**
+.idea/
+SmartBoardsCommons.zip
+SmartBoardsEditor.zip
+SmartBoardsPlugin/dependency-reduced-pom.xml
+SmartBoardsPlugin/src/main/resources/images/gui/

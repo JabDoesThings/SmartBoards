@@ -281,11 +281,12 @@ public class TransitionEffects {
         }
         g.dispose();
       }
+
       float alphaStop = 1.0F;
       float alphaStart = 1.0F - flerp;
-      System.out.println("flerp: " + flerp);
-      System.out.println("\toffset: " + xOffset + " " + yOffset);
-      System.out.println("\tf: " + fx + " " + fy + " " + fWidth + " " + fHeight);
+      //      System.out.println("flerp: " + flerp);
+      //      System.out.println("\toffset: " + xOffset + " " + yOffset);
+      //      System.out.println("\tf: " + fx + " " + fy + " " + fWidth + " " + fHeight);
       // Draw the frame.
       frames[index] = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
       Graphics2D g = (Graphics2D) frames[index].getGraphics();
@@ -576,7 +577,9 @@ public class TransitionEffects {
   public static void disableJavaFX() {
     // Since we started a JavaFX thread we have to shut it down. Otherwise the JVM
     // won't exit.
-    Platform.exit();
+
+    // NOTE: Enabling this causes a thread lock-up when SmartBoards is reloaded. -Jab 09/14/2020
+    //    Platform.exit();
   }
 
   /**
